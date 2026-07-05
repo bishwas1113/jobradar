@@ -66,6 +66,48 @@ label.sm{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(
 .empty{text-align:center;color:var(--stone);padding:70px 0;font-size:14px}
 .empty .disp{font-family:var(--disp);font-size:19px;color:var(--ink);margin-bottom:8px}
 .errors{margin-top:26px;font-size:12px;color:var(--ember)}
+
+.tabs{display:flex;gap:4px;margin-top:18px}
+.tab{font-family:var(--disp);font-size:14px;font-weight:600;color:var(--stone);
+  background:none;border:none;border-bottom:2px solid transparent;padding:10px 4px;
+  margin-right:22px;cursor:pointer}
+.tab[aria-selected="true"]{color:var(--ink);border-bottom-color:var(--moss)}
+
+.sub-title{font-family:var(--disp);font-weight:600;font-size:16px;margin:26px 0 10px}
+.add-company{background:var(--card);border:1px solid var(--line);border-radius:10px;
+  padding:20px;margin-top:18px}
+.add-title{font-family:var(--disp);font-weight:600;font-size:16px}
+.add-sub{color:var(--stone);font-size:12.5px;margin:3px 0 12px}
+.add-row{display:flex;gap:8px;flex-wrap:wrap}
+.add-row input{font-family:var(--body);font-size:13px;padding:8px 10px;
+  border:1px solid var(--line);border-radius:6px;background:var(--paper);color:var(--ink)}
+#addName{flex:0 0 200px}
+#addUrl{flex:1 1 320px;min-width:220px}
+.btn-primary{font-family:var(--body);font-size:13px;font-weight:500;color:var(--card);
+  background:var(--ink);border:none;border-radius:6px;padding:8px 16px;cursor:pointer}
+.btn-primary:hover{background:var(--moss)}
+#addResult{margin-top:12px;font-size:12.5px}
+.detect-ok{color:var(--moss)}
+.detect-bad{color:var(--ember)}
+.yaml-preview{background:var(--paper);border:1px solid var(--line);border-radius:6px;
+  padding:10px 12px;margin-top:8px;font-family:monospace;font-size:11.5px;white-space:pre-wrap;
+  color:var(--ink)}
+.filter-input{width:100%;font-family:var(--body);font-size:13px;padding:8px 10px;
+  border:1px solid var(--line);border-radius:6px;background:var(--card);color:var(--ink);
+  margin-bottom:12px}
+.co-row{display:flex;align-items:center;gap:10px;padding:10px 14px;border:1px solid var(--line);
+  border-radius:8px;background:var(--card);margin-top:8px}
+.co-name{font-family:var(--disp);font-weight:600;font-size:14.5px;flex:1}
+.badge{font-size:10.5px;text-transform:uppercase;letter-spacing:.06em;padding:2px 7px;
+  border-radius:4px;background:var(--moss-soft);color:var(--moss)}
+.badge.unverified{background:#F0E3D8;color:var(--ember)}
+.badge.custom{background:var(--line);color:var(--stone)}
+.co-link{font-size:12.5px;color:var(--ink);text-decoration:none;border-bottom:1px solid var(--line)}
+.co-link:hover{border-color:var(--ink)}
+.co-remove{background:none;border:none;color:var(--stone);cursor:pointer;font-size:12px}
+.co-remove:hover{color:var(--ember)}
+.download-note{color:var(--stone);font-size:11.5px;margin-top:8px;line-height:1.5}
+#pendingWrap{background:var(--moss-soft);border-radius:10px;padding:16px 18px;margin-top:18px}
 @media(max-width:620px){
   .card{grid-template-columns:52px 1fr}
   .ring{width:48px;height:48px}.ring svg{width:48px;height:48px}
@@ -83,6 +125,12 @@ label.sm{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(
     <div class="meta" id="meta">Loading matches…</div>
   </header>
 
+  <div class="tabs" role="tablist">
+    <button class="tab" role="tab" aria-selected="true" data-tab="matches">Matches</button>
+    <button class="tab" role="tab" aria-selected="false" data-tab="companies">Companies</button>
+  </div>
+
+  <section id="panel-matches">
   <div class="controls" role="toolbar" aria-label="Filters and sort">
     <div class="chips" id="levelChips"></div>
     <select id="dateSel" aria-label="Posted within">
@@ -104,6 +152,32 @@ label.sm{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(
 
   <div id="list"></div>
   <div class="errors" id="errors"></div>
+  </section>
+
+  <section id="panel-companies" hidden>
+    <div class="add-company">
+      <div class="add-title">Add a company</div>
+      <div class="add-sub">Paste a link to their careers/job-search page. We'll detect the ATS automatically.</div>
+      <div class="add-row">
+        <input type="text" id="addName" placeholder="Company name (e.g. Sanofi)">
+        <input type="text" id="addUrl" placeholder="https://sanofi.wd3.myworkdayjobs.com/en-US/... or boards.greenhouse.io/... or jobs.lever.co/...">
+        <button class="btn-primary" id="addBtn">Detect &amp; add</button>
+      </div>
+      <div id="addResult"></div>
+    </div>
+
+    <div id="pendingWrap" hidden>
+      <div class="sub-title">Pending additions (not yet in companies.yaml)</div>
+      <div id="pendingList"></div>
+      <button class="btn-primary" id="downloadBtn">Download updated companies.yaml</button>
+      <div class="download-note">Downloads a full companies.yaml with your existing companies plus these
+        additions. Replace the file in your GitHub repo and commit — the next scan will include them.</div>
+    </div>
+
+    <div class="sub-title" id="companiesCount">Configured companies</div>
+    <input type="text" id="companySearch" placeholder="Filter companies…" class="filter-input">
+    <div id="companiesList"></div>
+  </section>
 </div>
 
 <script>
@@ -222,6 +296,118 @@ fetch("data/matches.json").then(r=>r.json()).then(d=>{
   if(d.errors&&d.errors.length)
     $("#errors").textContent="Scan warnings: "+d.errors.map(e=>e.company+" ("+e.error+")").join(" · ");
 }).catch(()=>{$("#meta").textContent="No data yet — run the pipeline once to generate data/matches.json";});
+
+// ---------- Companies tab ----------
+let COMPANIES={search_terms:[],companies:[]};
+const PENDING_KEY="radar.pendingCompanies";
+let pending=JSON.parse(localStorage.getItem(PENDING_KEY)||"[]");
+
+document.querySelectorAll(".tab").forEach(t=>t.onclick=()=>{
+  document.querySelectorAll(".tab").forEach(x=>x.setAttribute("aria-selected","false"));
+  t.setAttribute("aria-selected","true");
+  $("#panel-matches").hidden=t.dataset.tab!=="matches";
+  $("#panel-companies").hidden=t.dataset.tab!=="companies";
+});
+
+function detectATS(url){
+  try{ url=url.trim(); }catch(e){ return null; }
+  let m;
+  if((m=url.match(/^https?:\/\/([a-z0-9-]+)\.(wd\d+)\.myworkdayjobs\.com\/(?:[a-z]{2}-[A-Z]{2}\/)?([^\/?#]+)/i)))
+    return {ats:"workday",tenant:m[1].toLowerCase(),wd:m[2].toLowerCase(),site:m[3]};
+  if((m=url.match(/^https?:\/\/(?:boards|job-boards)\.greenhouse\.io\/([a-z0-9-]+)/i)))
+    return {ats:"greenhouse",board:m[1]};
+  if((m=url.match(/^https?:\/\/(?:jobs\.lever\.co|api\.lever\.co\/v0\/postings)\/([a-z0-9-]+)/i)))
+    return {ats:"lever",site:m[1]};
+  return null;
+}
+
+function yamlEscape(s){
+  return /^[A-Za-z0-9_.\- ]+$/.test(s)?s:JSON.stringify(s);
+}
+
+function toYamlEntry(c){
+  const lines=[`  - name: ${yamlEscape(c.name)}`,`    ats: ${c.ats}`];
+  if(c.ats==="workday"){
+    lines.push(`    tenant: ${c.tenant}`,`    wd: ${c.wd}`,`    site: ${yamlEscape(c.site)}`);
+  }else if(c.ats==="greenhouse"){
+    lines.push(`    board: ${c.board}`);
+  }else if(c.ats==="lever"){
+    lines.push(`    site: ${c.site}`);
+  }else{
+    lines.push(`    note: ${yamlEscape(c.note||c.url||"")}`);
+  }
+  lines.push(`    verified: false`);
+  return lines.join("\n");
+}
+
+$("#addBtn").onclick=()=>{
+  const name=$("#addName").value.trim();
+  const url=$("#addUrl").value.trim();
+  const out=$("#addResult");
+  if(!name||!url){ out.innerHTML=`<span class="detect-bad">Enter both a company name and a career page URL.</span>`; return; }
+  const found=detectATS(url);
+  const entry=found?{name,...found}:{name,ats:"unknown",note:url};
+  const yaml=toYamlEntry(entry);
+  if(found){
+    out.innerHTML=`<span class="detect-ok">Detected ${found.ats} — ready to add.</span><div class="yaml-preview">${esc(yaml)}</div>`;
+  }else{
+    out.innerHTML=`<span class="detect-bad">Couldn't auto-detect Workday/Greenhouse/Lever from that URL — added as a custom entry. You'll likely need a small custom adapter for this one.</span><div class="yaml-preview">${esc(yaml)}</div>`;
+  }
+  pending.push(entry);
+  localStorage.setItem(PENDING_KEY,JSON.stringify(pending));
+  $("#addName").value="";$("#addUrl").value="";
+  renderPending();
+};
+
+function renderPending(){
+  const wrap=$("#pendingWrap");
+  wrap.hidden=pending.length===0;
+  $("#pendingList").innerHTML=pending.map((c,i)=>`
+    <div class="co-row">
+      <span class="co-name">${esc(c.name)}</span>
+      <span class="badge unverified">${esc(c.ats)}</span>
+      <button class="co-remove" data-i="${i}">Remove</button>
+    </div>`).join("");
+  $("#pendingList").querySelectorAll(".co-remove").forEach(b=>b.onclick=()=>{
+    pending.splice(+b.dataset.i,1);
+    localStorage.setItem(PENDING_KEY,JSON.stringify(pending));
+    renderPending();
+  });
+}
+
+$("#downloadBtn").onclick=()=>{
+  const all=[...COMPANIES.companies.map(c=>({
+    name:c.name,ats:c.ats,tenant:c.tenant,wd:c.wd,site:c.site,board:c.board,
+    verified:c.verified,note:c.note})),...pending];
+  const terms=(COMPANIES.search_terms||[]).map(t=>`  - "${t}"`).join("\n");
+  const body=all.map(toYamlEntry).join("\n");
+  const yamlText=`search_terms:\n${terms}\n\ncompanies:\n${body}\n`;
+  const blob=new Blob([yamlText],{type:"text/yaml"});
+  const a=document.createElement("a");
+  a.href=URL.createObjectURL(blob);a.download="companies.yaml";a.click();
+};
+
+function renderCompanies(){
+  const q=($("#companySearch").value||"").toLowerCase();
+  const rows=COMPANIES.companies.filter(c=>!q||c.name.toLowerCase().includes(q));
+  $("#companiesCount").textContent=`Configured companies (${COMPANIES.companies.length})`;
+  $("#companiesList").innerHTML=rows.map(c=>`
+    <div class="co-row">
+      <span class="co-name">${esc(c.name)}</span>
+      <span class="badge ${c.ats==='unknown'?'custom':(c.verified?'':'unverified')}">${esc(c.ats)}</span>
+      ${c.verified?'':c.ats!=="unknown"?'<span class="badge unverified">unverified</span>':''}
+      ${c.url?`<a class="co-link" href="${esc(c.url)}" target="_blank" rel="noopener">Open career site</a>`
+             :`<span class="co-link" style="opacity:.6">${esc(c.note||"no link yet")}</span>`}
+    </div>`).join("")||`<div class="empty">No companies match "${esc(q)}"</div>`;
+}
+$("#companySearch").oninput=renderCompanies;
+
+fetch("data/companies.json").then(r=>r.json()).then(d=>{
+  COMPANIES=d;
+  renderCompanies();
+  renderPending();
+}).catch(()=>{$("#companiesList").innerHTML='<div class="empty">No company data yet — run the pipeline once.</div>';});
+
 </script>
 </body>
 </html>

@@ -30,6 +30,37 @@ def job_key(j: Job) -> str:
     return hashlib.sha1(f"{j.url}|{j.title}".encode()).hexdigest()[:16]
 
 
+def company_url(c: dict) -> str:
+    """Best-effort public career-site link for the Companies tab."""
+    ats = c.get("ats")
+    if ats == "workday":
+        return f"https://{c['tenant']}.{c['wd']}.myworkdayjobs.com/en-US/{c['site']}"
+    if ats == "greenhouse":
+        return f"https://boards.greenhouse.io/{c['board']}"
+    if ats == "lever":
+        return f"https://jobs.lever.co/{c['site']}"
+    return ""
+
+
+def export_companies(cfg: dict) -> None:
+    """Write docs/data/companies.json so the dashboard's Companies tab can
+    list every configured company with a link, without parsing YAML in JS."""
+    rows = []
+    for c in cfg["companies"]:
+        rows.append({
+            "name": c["name"],
+            "ats": c.get("ats", "unknown"),
+            "tenant": c.get("tenant"), "wd": c.get("wd"), "site": c.get("site"),
+            "board": c.get("board"),
+            "verified": bool(c.get("verified")),
+            "note": c.get("note", ""),
+            "url": company_url(c),
+        })
+    OUT.mkdir(parents=True, exist_ok=True)
+    (OUT / "companies.json").write_text(json.dumps(
+        {"search_terms": cfg.get("search_terms", []), "companies": rows}, indent=1))
+
+
 def load_seen() -> dict:
     if SEEN_FILE.exists():
         return json.loads(SEEN_FILE.read_text())
@@ -61,6 +92,7 @@ def run(config_path: str, resume_path: str, max_age_days: int, fixtures: str | N
     cfg = yaml.safe_load(Path(config_path).read_text())
     profile = parse_resume(Path(resume_path).read_text())
     errors: list = []
+    export_companies(cfg)
 
     if fixtures:
         jobs = load_fixture_jobs(Path(fixtures))

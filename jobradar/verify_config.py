@@ -25,9 +25,12 @@ SHARDS = ["wd1", "wd3", "wd5", "wd12"]
 
 def check_workday(c, session) -> tuple[bool, str]:
     url = f"https://{c['tenant']}.{c['wd']}.myworkdayjobs.com/wday/cxs/{c['tenant']}/{c['site']}/jobs"
-    r = session.post(url, json={"appliedFacets": {}, "limit": 1, "offset": 0, "searchText": ""})
+    r = session.post(url, json={"appliedFacets": {}, "limit": 3, "offset": 0, "searchText": ""})
     if r is not None and r.status_code == 200 and "jobPostings" in r.text:
-        return True, f"OK ({r.json().get('total', '?')} postings)"
+        data = r.json()
+        postings = data.get("jobPostings", [])
+        sample = postings[0].get("title", "?") if postings else "(no live postings right now)"
+        return True, f"OK ({data.get('total', '?')} postings) — e.g. \"{sample}\""
     status = getattr(r, "status_code", "no-response")
     for shard in SHARDS:
         if shard == c["wd"]:
@@ -42,14 +45,18 @@ def check_workday(c, session) -> tuple[bool, str]:
 def check_greenhouse(c, session) -> tuple[bool, str]:
     r = session.get(f"https://boards-api.greenhouse.io/v1/boards/{c['board']}/jobs")
     if r is not None and r.status_code == 200:
-        return True, f"OK ({len(r.json().get('jobs', []))} postings)"
+        jobs = r.json().get("jobs", [])
+        sample = jobs[0].get("title", "?") if jobs else "(no live postings right now)"
+        return True, f"OK ({len(jobs)} postings) — e.g. \"{sample}\""
     return False, f"FAIL {getattr(r, 'status_code', 'no-response')} (check board slug)"
 
 
 def check_lever(c, session) -> tuple[bool, str]:
-    r = session.get(f"https://api.lever.co/v0/postings/{c['site']}?mode=json&limit=1")
+    r = session.get(f"https://api.lever.co/v0/postings/{c['site']}?mode=json&limit=3")
     if r is not None and r.status_code == 200:
-        return True, "OK"
+        jobs = r.json()
+        sample = jobs[0].get("text", "?") if jobs else "(no live postings right now)"
+        return True, f"OK ({len(jobs)}+ postings) — e.g. \"{sample}\""
     return False, f"FAIL {getattr(r, 'status_code', 'no-response')} (check site slug)"
 
 

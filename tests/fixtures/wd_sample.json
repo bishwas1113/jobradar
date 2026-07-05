@@ -1,0 +1,103 @@
+{
+ "jobs": [
+  {
+   "company": "Bristol Myers Squibb",
+   "title": "Associate Director, Commercial Analytics - Oncology",
+   "location": "Princeton, NJ / Remote",
+   "url": "https://bristol.wd5.myworkdayjobs.com/en-US/careers/job/Associate-Director-Commercial-Analytics---Oncology",
+   "posted": "2026-07-03",
+   "description": "Lead commercial analytics for the oncology portfolio\nPartner with brand teams on HCP targeting and segmentation using IQVIA and Symphony Health claims data\nBuild forecasting models and Tableau dashboards tracking TRx NRx and patient journey metrics\nTranslate ambiguous business questions into analytical workplans for launch brands\nRequires advanced degree and experience with Python SQL and real-world data",
+   "source": "workday",
+   "job_id": "wd-fix-17975",
+   "is_remote": true
+  },
+  {
+   "company": "Jazz Pharmaceuticals",
+   "title": "Associate Director, Business Insights - Oncology",
+   "location": "Philadelphia, PA",
+   "url": "https://jazz.wd5.myworkdayjobs.com/en-US/careers/job/Associate-Director-Business-Insights---Oncology",
+   "posted": "2026-07-02",
+   "description": "Drive business insights for Zepzelca and Rylaze franchises\nOwn market research segmentation and competitive intelligence deliverables\nDevelop customer analytics using claims data and Veeva CRM\nPresent insights to senior commercial leadership",
+   "source": "workday",
+   "job_id": "wd-fix-93536",
+   "is_remote": false
+  },
+  {
+   "company": "Amgen",
+   "title": "Senior Manager, Data Strategy - R&D Pipeline",
+   "location": "Thousand Oaks, CA / Remote",
+   "url": "https://amgen.wd5.myworkdayjobs.com/en-US/careers/job/Senior-Manager-Data-Strategy---R&D-Pipeline",
+   "posted": "2026-07-01",
+   "description": "Shape data strategy for R&D pipeline analytics and portfolio strategy\nDefine roadmap for clinical trial and real-world evidence data products\nCross-functional leadership with data science and machine learning teams\nPhD preferred with bioinformatics or genomics background",
+   "source": "workday",
+   "job_id": "wd-fix-24187",
+   "is_remote": true
+  },
+  {
+   "company": "Pfizer",
+   "title": "Director, Customer Analytics",
+   "location": "New York, NY",
+   "url": "https://pfizer.wd5.myworkdayjobs.com/en-US/careers/job/Director-Customer-Analytics",
+   "posted": "2026-07-03",
+   "description": "Lead customer analytics center of excellence\nOversee HCP segmentation forecasting and omnichannel measurement\nManage team of analysts using Python SQL and Tableau\nPartner with market access and payer analytics",
+   "source": "workday",
+   "job_id": "wd-fix-40337",
+   "is_remote": false
+  },
+  {
+   "company": "Gilead Sciences",
+   "title": "Senior Director, Commercial Data Strategy",
+   "location": "Foster City, CA",
+   "url": "https://gilead.wd5.myworkdayjobs.com/en-US/careers/job/Senior-Director-Commercial-Data-Strategy",
+   "posted": "2026-07-02",
+   "description": "Set enterprise commercial data strategy across therapeutic areas\nGovern IQVIA Komodo and claims data assets\nRequires 12+ years commercial pharma analytics leadership",
+   "source": "workday",
+   "job_id": "wd-fix-81462",
+   "is_remote": false
+  },
+  {
+   "company": "Corteva Agriscience",
+   "title": "Associate Director, Analytics & Insights",
+   "location": "Indianapolis, IN / Remote",
+   "url": "https://corteva.wd5.myworkdayjobs.com/en-US/careers/job/Associate-Director-Analytics-&-Insights",
+   "posted": "2026-07-01",
+   "description": "Lead analytics and insights for seed portfolio\nGenomics and field sensor data strategy\nBuild dashboards and machine learning models for pipeline innovation",
+   "source": "workday",
+   "job_id": "wd-fix-76297",
+   "is_remote": true
+  },
+  {
+   "company": "Vertex Pharmaceuticals",
+   "title": "Senior Manager, Commercial Insights",
+   "location": "Boston, MA",
+   "url": "https://vertex.wd5.myworkdayjobs.com/en-US/careers/job/Senior-Manager-Commercial-Insights",
+   "posted": "2026-06-24",
+   "description": "Commercial insights for cystic fibrosis franchise\nMarket research and forecasting",
+   "source": "workday",
+   "job_id": "wd-fix-33305",
+   "is_remote": false
+  },
+  {
+   "company": "Takeda",
+   "title": "Director, Facilities Project Engineering",
+   "location": "Boston, MA",
+   "url": "https://takeda.wd5.myworkdayjobs.com/en-US/careers/job/Director-Facilities-Project-Engineering",
+   "posted": "2026-07-03",
+   "description": "Oversee HVAC construction and site maintenance vendors",
+   "source": "workday",
+   "job_id": "wd-fix-98844",
+   "is_remote": false
+  },
+  {
+   "company": "AbbVie",
+   "title": "Account Director, Key Accounts",
+   "location": "Chicago, IL",
+   "url": "https://abbvie.wd5.myworkdayjobs.com/en-US/careers/job/Account-Director-Key-Accounts",
+   "posted": "2026-07-03",
+   "description": "Own key account relationships for immunology sales",
+   "source": "workday",
+   "job_id": "wd-fix-236",
+   "is_remote": false
+  }
+ ]
+}

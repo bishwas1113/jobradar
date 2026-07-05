@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Radar — daily matches</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@500;600&family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#F3F0E9; --card:#FAF8F3; --ink:#26241E; --stone:#8B8577;
+  --line:#DDD8CC; --moss:#56604A; --moss-soft:#E7E9E0; --ember:#A9663F;
+  --disp:'Shippori Mincho',Georgia,serif;
+  --body:'Zen Kaku Gothic New',-apple-system,sans-serif;
+}
+*{box-sizing:border-box;margin:0}
+body{background:var(--paper);color:var(--ink);font-family:var(--body);
+  font-size:15px;line-height:1.55;padding:0 20px 80px}
+.wrap{max-width:880px;margin:0 auto}
+
+header{padding:44px 0 26px;border-bottom:1px solid var(--ink)}
+h1{font-family:var(--disp);font-weight:600;font-size:30px;letter-spacing:.01em}
+h1 .jp{color:var(--stone);font-size:16px;font-weight:500;margin-left:10px;letter-spacing:.3em}
+.meta{color:var(--stone);font-size:13px;margin-top:6px}
+.meta b{color:var(--ink);font-weight:500}
+
+.controls{display:flex;flex-wrap:wrap;gap:10px;align-items:center;
+  padding:18px 0;border-bottom:1px solid var(--line);position:sticky;top:0;
+  background:var(--paper);z-index:5}
+.chips{display:flex;gap:6px;flex-wrap:wrap}
+.chip{font-family:var(--body);font-size:12.5px;padding:5px 12px;border:1px solid var(--line);
+  border-radius:999px;background:transparent;color:var(--stone);cursor:pointer}
+.chip[aria-pressed="true"]{background:var(--moss);border-color:var(--moss);color:var(--card)}
+.chip:focus-visible,select:focus-visible,.apply:focus-visible,.dismiss:focus-visible{
+  outline:2px solid var(--moss);outline-offset:2px}
+select{font-family:var(--body);font-size:12.5px;color:var(--ink);background:var(--card);
+  border:1px solid var(--line);border-radius:6px;padding:5px 8px}
+.spacer{flex:1}
+label.sm{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--stone)}
+
+.card{display:grid;grid-template-columns:66px 1fr auto;gap:18px;align-items:center;
+  background:var(--card);border:1px solid var(--line);border-radius:10px;
+  padding:18px 20px;margin-top:14px;transition:opacity .3s}
+.card.new{border-left:3px solid var(--moss)}
+.ring{width:58px;height:58px;position:relative;flex:none}
+.ring svg{transform:rotate(112deg)}
+.ring circle{fill:none;stroke-width:4;stroke-linecap:round}
+.ring .track{stroke:var(--line)}
+.ring .val{stroke:var(--moss)}
+.ring.low .val{stroke:var(--stone)}
+.ring .num{position:absolute;inset:0;display:grid;place-items:center;
+  font-family:var(--disp);font-weight:600;font-size:16px}
+.title{font-family:var(--disp);font-weight:600;font-size:17.5px;line-height:1.3}
+.sub{color:var(--stone);font-size:13px;margin-top:3px}
+.sub .lvl{color:var(--moss);font-weight:500}
+.tags{margin-top:8px;display:flex;gap:5px;flex-wrap:wrap}
+.tag{font-size:11px;color:var(--moss);background:var(--moss-soft);
+  border-radius:4px;padding:2px 7px}
+.actions{display:flex;flex-direction:column;gap:8px;align-items:flex-end}
+.apply{font-family:var(--body);font-size:13px;font-weight:500;color:var(--card);
+  background:var(--ink);border:none;border-radius:6px;padding:8px 16px;
+  cursor:pointer;text-decoration:none;white-space:nowrap}
+.apply:hover{background:var(--moss)}
+.dismiss{font-size:12px;color:var(--stone);background:none;border:none;cursor:pointer}
+.dismiss:hover{color:var(--ember)}
+.empty{text-align:center;color:var(--stone);padding:70px 0;font-size:14px}
+.empty .disp{font-family:var(--disp);font-size:19px;color:var(--ink);margin-bottom:8px}
+.errors{margin-top:26px;font-size:12px;color:var(--ember)}
+@media(max-width:620px){
+  .card{grid-template-columns:52px 1fr}
+  .ring{width:48px;height:48px}.ring svg{width:48px;height:48px}
+  .actions{grid-column:1/-1;flex-direction:row;justify-content:flex-end}
+}
+@media(prefers-reduced-motion:no-preference){
+  .ring .val{transition:stroke-dashoffset .8s ease}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <h1>Radar<span class="jp">仕事探し</span></h1>
+    <div class="meta" id="meta">Loading matches…</div>
+  </header>
+
+  <div class="controls" role="toolbar" aria-label="Filters and sort">
+    <div class="chips" id="levelChips"></div>
+    <select id="dateSel" aria-label="Posted within">
+      <option value="1">Last 24 hours</option>
+      <option value="3" selected>Last 3 days</option>
+      <option value="7">Last 7 days</option>
+      <option value="999">Any date</option>
+    </select>
+    <select id="companySel" aria-label="Company"><option value="">All companies</option></select>
+    <select id="stateSel" aria-label="State"><option value="">All states</option></select>
+    <div class="spacer"></div>
+    <label class="sm" for="sortSel">Sort</label>
+    <select id="sortSel">
+      <option value="score">Match score</option>
+      <option value="date">Newest first</option>
+      <option value="company">Company</option>
+    </select>
+  </div>
+
+  <div id="list"></div>
+  <div class="errors" id="errors"></div>
+</div>
+
+<script>
+const LEVELS=["Senior Manager","Associate Director","Director","Senior Director"];
+const STATES={AL:"Alabama",AK:"Alaska",AZ:"Arizona",AR:"Arkansas",CA:"California",CO:"Colorado",CT:"Connecticut",DE:"Delaware",FL:"Florida",GA:"Georgia",HI:"Hawaii",ID:"Idaho",IL:"Illinois",IN:"Indiana",IA:"Iowa",KS:"Kansas",KY:"Kentucky",LA:"Louisiana",ME:"Maine",MD:"Maryland",MA:"Massachusetts",MI:"Michigan",MN:"Minnesota",MS:"Mississippi",MO:"Missouri",MT:"Montana",NE:"Nebraska",NV:"Nevada",NH:"New Hampshire",NJ:"New Jersey",NM:"New Mexico",NY:"New York",NC:"North Carolina",ND:"North Dakota",OH:"Ohio",OK:"Oklahoma",OR:"Oregon",PA:"Pennsylvania",RI:"Rhode Island",SC:"South Carolina",SD:"South Dakota",TN:"Tennessee",TX:"Texas",UT:"Utah",VT:"Vermont",VA:"Virginia",WA:"Washington",WV:"West Virginia",WI:"Wisconsin",WY:"Wyoming",DC:"District of Columbia"};
+const NAME2ABBR=Object.fromEntries(Object.entries(STATES).map(([a,n])=>[n.toLowerCase(),a]));
+function jobStates(m){
+  const loc=m.location||"",found=new Set();
+  for(const mm of loc.matchAll(/\b([A-Z]{2})\b/g)) if(STATES[mm[1]])found.add(mm[1]);
+  const low=loc.toLowerCase();
+  for(const[name,ab]of Object.entries(NAME2ABBR)) if(low.includes(name))found.add(ab);
+  if(m.is_remote||low.includes("remote"))found.add("Remote");
+  if(!found.size)found.add("Other");
+  return found;
+}
+const state={levels:new Set(LEVELS),days:3,company:"",st:"",sort:"score",
+  dismissed:new Set(JSON.parse(localStorage.getItem("radar.dismissed")||"[]"))};
+let DATA={matches:[],errors:[]};
+
+const $=s=>document.querySelector(s);
+const esc=s=>(s||"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+
+function ageDays(iso){
+  if(!iso)return 0;                       // unknown dates always show
+  const d=new Date(iso.replace("+",""));
+  return isNaN(d)?0:Math.floor((Date.now()-d)/86400000);
+}
+function fmtDate(iso){
+  if(!iso)return"date unknown";
+  const a=ageDays(iso);
+  return a<=0?"today":a===1?"yesterday":a+" days ago";
+}
+
+function ring(score){
+  const r=25,C=2*Math.PI*r,frac=Math.max(0,Math.min(1,score/100));
+  const off=C*(1-frac*0.86);             // enso: never a fully closed circle
+  return`<div class="ring ${score<55?"low":""}" aria-label="Match score ${score}">
+    <svg width="58" height="58" viewBox="0 0 58 58">
+      <circle class="track" cx="29" cy="29" r="${r}" stroke-dasharray="${C*0.86} ${C}"/>
+      <circle class="val" cx="29" cy="29" r="${r}" stroke-dasharray="${C}" stroke-dashoffset="${off}"/>
+    </svg><span class="num">${Math.round(score)}</span></div>`;
+}
+
+function render(){
+  const list=$("#list");
+  let rows=DATA.matches.filter(m=>
+    !state.dismissed.has(m.job_id)&&
+    state.levels.has(m.level)&&
+    ageDays(m.posted)<state.days+1&&
+    (!state.company||m.company===state.company)&&
+    (!state.st||jobStates(m).has(state.st)));
+  rows.sort((a,b)=>state.sort==="score"?b.score-a.score
+    :state.sort==="date"?(b.posted||"").localeCompare(a.posted||"")
+    :a.company.localeCompare(b.company)||b.score-a.score);
+
+  if(!rows.length){
+    list.innerHTML=`<div class="empty"><div class="disp">Nothing in this window</div>
+      Widen the date range, or the next scan runs tomorrow morning</div>`;
+    return;
+  }
+  const today=new Date().toISOString().slice(0,10);
+  list.innerHTML=rows.map(m=>{
+    const isNew=(m.score_parts&&m.score_parts.first_seen||"").slice(0,10)===today;
+    const tags=((m.score_parts||{}).matched_skills||[]).slice(0,6)
+      .map(t=>`<span class="tag">${esc(t)}</span>`).join("");
+    return`<article class="card ${isNew?"new":""}">
+      ${ring(m.score)}
+      <div>
+        <div class="title">${esc(m.title)}</div>
+        <div class="sub"><span class="lvl">${esc(m.level)}</span> · ${esc(m.company)} · ${esc(m.location)} · posted ${fmtDate(m.posted)}</div>
+        <div class="tags">${tags}</div>
+      </div>
+      <div class="actions">
+        <a class="apply" href="${esc(m.url)}" target="_blank" rel="noopener">Open application</a>
+        <button class="dismiss" data-id="${esc(m.job_id)}">Dismiss</button>
+      </div>
+    </article>`;}).join("");
+  list.querySelectorAll(".dismiss").forEach(b=>b.onclick=()=>{
+    state.dismissed.add(b.dataset.id);
+    localStorage.setItem("radar.dismissed",JSON.stringify([...state.dismissed]));
+    render();updateMeta();
+  });
+}
+
+function updateMeta(){
+  const total=DATA.matches.filter(m=>!state.dismissed.has(m.job_id)).length;
+  const when=DATA.generated_at?new Date(DATA.generated_at).toLocaleString():"—";
+  $("#meta").innerHTML=`<b>${total}</b> matches · scanned <b>${DATA.raw_postings??"—"}</b> postings · last run ${esc(when)}`;
+}
+
+function buildControls(){
+  $("#levelChips").innerHTML=LEVELS.map(l=>
+    `<button class="chip" aria-pressed="true" data-l="${l}">${l}</button>`).join("");
+  document.querySelectorAll(".chip").forEach(c=>c.onclick=()=>{
+    const on=c.getAttribute("aria-pressed")==="true";
+    c.setAttribute("aria-pressed",String(!on));
+    on?state.levels.delete(c.dataset.l):state.levels.add(c.dataset.l);
+    render();
+  });
+  const companies=[...new Set(DATA.matches.map(m=>m.company))].sort();
+  $("#companySel").innerHTML='<option value="">All companies</option>'+
+    companies.map(c=>`<option>${esc(c)}</option>`).join("");
+  const sts=new Set();DATA.matches.forEach(m=>jobStates(m).forEach(s=>sts.add(s)));
+  const ordered=[...sts].sort((a,b)=>(a==="Remote"?-1:b==="Remote"?1:a==="Other"?1:b==="Other"?-1:a.localeCompare(b)));
+  $("#stateSel").innerHTML='<option value="">All states</option>'+
+    ordered.map(s=>`<option value="${s}">${STATES[s]||s}</option>`).join("");
+  $("#stateSel").onchange=e=>{state.st=e.target.value;render();};
+  $("#dateSel").onchange=e=>{state.days=+e.target.value;render();};
+  $("#companySel").onchange=e=>{state.company=e.target.value;render();};
+  $("#sortSel").onchange=e=>{state.sort=e.target.value;render();};
+}
+
+fetch("data/matches.json").then(r=>r.json()).then(d=>{
+  DATA=d;
+  buildControls();updateMeta();render();
+  if(d.errors&&d.errors.length)
+    $("#errors").textContent="Scan warnings: "+d.errors.map(e=>e.company+" ("+e.error+")").join(" · ");
+}).catch(()=>{$("#meta").textContent="No data yet — run the pipeline once to generate data/matches.json";});
+</script>
+</body>
+</html>

@@ -1,0 +1,180 @@
+# JobRadar company registry.
+# ats: workday | greenhouse | lever | unknown
+# verified: false means the tenant/board ID is a best guess.
+#   Run `python -m jobradar.verify_config` to test every entry and get
+#   suggested corrections before the first real pipeline run.
+# Workday entries need: tenant, wd (e.g. wd1/wd3/wd5), site (career site name).
+# Greenhouse entries need: board. Lever entries need: site.
+
+search_terms:            # used by the Workday adapter (server-side search)
+  - "commercial analytics"
+  - "data strategy"
+  - "business insights"
+  - "customer analytics"
+  - "pipeline analytics"
+  - "R&D data"
+
+companies:
+  # ---- Global biopharma (mostly Workday) ----
+  - name: Amgen
+    ats: workday
+    tenant: amgen
+    wd: wd1
+    site: Careers
+    verified: false
+  - name: Gilead Sciences
+    ats: workday
+    tenant: gilead
+    wd: wd1
+    site: gileadcareers
+    verified: false
+  - name: Regeneron
+    ats: workday
+    tenant: regeneron
+    wd: wd1
+    site: careers
+    verified: false
+  - name: Vertex Pharmaceuticals
+    ats: workday
+    tenant: vrtx
+    wd: wd5
+    site: vertex_careers
+    verified: false
+  - name: Biogen
+    ats: workday
+    tenant: biogen
+    wd: wd1
+    site: careers
+    verified: false
+  - name: Novo Nordisk
+    ats: workday
+    tenant: novonordisk
+    wd: wd3
+    site: nncareers
+    verified: false
+  - name: Jazz Pharmaceuticals
+    ats: workday
+    tenant: jazzpharma
+    wd: wd5
+    site: careers
+    verified: false
+  - name: Bristol Myers Squibb
+    ats: workday
+    tenant: bristolmyerssquibb
+    wd: wd5
+    site: BMS
+    verified: false
+  - name: Pfizer
+    ats: workday
+    tenant: pfizer
+    wd: wd1
+    site: PfizerCareers
+    verified: false
+  - name: AstraZeneca
+    ats: workday
+    tenant: astrazeneca
+    wd: wd3
+    site: Careers
+    verified: false
+  - name: Takeda
+    ats: workday
+    tenant: takeda
+    wd: wd3
+    site: External
+    verified: false
+  - name: AbbVie
+    ats: workday
+    tenant: abbvie
+    wd: wd5
+    site: External
+    verified: false
+  - name: Eli Lilly
+    ats: workday
+    tenant: lilly
+    wd: wd5
+    site: LLY
+    verified: false
+  - name: Otsuka
+    ats: workday
+    tenant: otsuka
+    wd: wd5
+    site: External
+    verified: false
+
+  # ---- High-growth biotech / TechBio (Greenhouse & Lever) ----
+  - name: Moderna
+    ats: greenhouse
+    board: modernatx
+    verified: false
+  - name: Beam Therapeutics
+    ats: greenhouse
+    board: beamtherapeutics
+    verified: false
+  - name: Enveda Biosciences
+    ats: greenhouse
+    board: envedabiosciences
+    verified: false
+  - name: Exact Sciences
+    ats: workday
+    tenant: exactsciences
+    wd: wd1
+    site: Exact_Sciences
+    verified: false
+  - name: Insilico Medicine
+    ats: lever
+    site: insilicomedicine
+    verified: false
+  - name: Arrowhead Pharmaceuticals
+    ats: workday
+    tenant: arrowheadpharma
+    wd: wd5
+    site: careers
+    verified: false
+
+  # ---- AgTech & crop science ----
+  - name: Corteva Agriscience
+    ats: workday
+    tenant: corteva
+    wd: wd1
+    site: External
+    verified: false
+  - name: Indigo Ag
+    ats: greenhouse
+    board: indigoag
+    verified: false
+  - name: Pivot Bio
+    ats: greenhouse
+    board: pivotbio
+    verified: false
+  - name: Inari
+    ats: greenhouse
+    board: inariagriculture
+    verified: false
+  - name: Benson Hill
+    ats: greenhouse
+    board: bensonhill
+    verified: false
+
+  # ---- Custom/Phenom career sites — need per-company adapters or Playwright ----
+  # These do NOT run in the pipeline until an adapter is configured.
+  - name: Genentech (Roche)
+    ats: unknown
+    note: gene.com careers, Roche group platform
+  - name: Johnson & Johnson
+    ats: unknown
+    note: jobs.jnj.com (Phenom)
+  - name: Merck
+    ats: unknown
+    note: jobs.merck.com (Phenom)
+  - name: Novartis
+    ats: unknown
+    note: careers.novartis.com
+  - name: Thermo Fisher
+    ats: unknown
+    note: jobs.thermofisher.com (Phenom)
+  - name: Bayer Crop Science
+    ats: unknown
+    note: career.bayer.com (SuccessFactors)
+  - name: Syngenta
+    ats: unknown
+    note: syngenta.com careers (SuccessFactors)

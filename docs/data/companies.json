@@ -46,44 +46,44 @@
    "ats": "workday",
    "tenant": "vrtx",
    "wd": "wd5",
-   "site": "vertex_careers",
+   "site": "Vertex_Careers",
    "board": null,
    "verified": true,
    "note": "",
-   "url": "https://vrtx.wd5.myworkdayjobs.com/en-US/vertex_careers"
+   "url": "https://vrtx.wd5.myworkdayjobs.com/en-US/Vertex_Careers"
   },
   {
    "name": "Biogen",
    "ats": "workday",
-   "tenant": "biogen",
-   "wd": "wd1",
-   "site": "careers",
+   "tenant": "biibhr",
+   "wd": "wd3",
+   "site": "external",
    "board": null,
    "verified": true,
    "note": "",
-   "url": "https://biogen.wd1.myworkdayjobs.com/en-US/careers"
+   "url": "https://biibhr.wd3.myworkdayjobs.com/en-US/external"
   },
   {
    "name": "Novo Nordisk",
-   "ats": "workday",
-   "tenant": "novonordisk",
-   "wd": "wd3",
-   "site": "nncareers",
+   "ats": "unknown",
+   "tenant": null,
+   "wd": null,
+   "site": null,
    "board": null,
    "verified": true,
-   "note": "",
-   "url": "https://novonordisk.wd3.myworkdayjobs.com/en-US/nncareers"
+   "note": "careers.novonordisk.com -- own custom platform, not Workday",
+   "url": ""
   },
   {
    "name": "Jazz Pharmaceuticals",
    "ats": "workday",
-   "tenant": "jazzpharma",
-   "wd": "wd5",
-   "site": "careers",
+   "tenant": "vhr-jazz",
+   "wd": "wd1",
+   "site": "JazzPharmaceuticals",
    "board": null,
    "verified": true,
    "note": "",
-   "url": "https://jazzpharma.wd5.myworkdayjobs.com/en-US/careers"
+   "url": "https://vhr-jazz.wd1.myworkdayjobs.com/en-US/JazzPharmaceuticals"
   },
   {
    "name": "Bristol Myers Squibb",
@@ -131,14 +131,14 @@
   },
   {
    "name": "AbbVie",
-   "ats": "workday",
-   "tenant": "abbvie",
-   "wd": "wd5",
-   "site": "External",
+   "ats": "unknown",
+   "tenant": null,
+   "wd": null,
+   "site": null,
    "board": null,
    "verified": true,
-   "note": "",
-   "url": "https://abbvie.wd5.myworkdayjobs.com/en-US/External"
+   "note": "careers.abbvie.com -- own custom platform, not Workday",
+   "url": ""
   },
   {
    "name": "Eli Lilly",
@@ -186,14 +186,14 @@
   },
   {
    "name": "Enveda Biosciences",
-   "ats": "greenhouse",
+   "ats": "lever",
    "tenant": null,
    "wd": null,
-   "site": null,
-   "board": "envedabiosciences",
+   "site": "enveda",
+   "board": null,
    "verified": true,
    "note": "",
-   "url": "https://boards.greenhouse.io/envedabiosciences"
+   "url": "https://jobs.lever.co/enveda"
   },
   {
    "name": "Exact Sciences",
@@ -205,17 +205,6 @@
    "verified": true,
    "note": "",
    "url": "https://exactsciences.wd1.myworkdayjobs.com/en-US/Exact_Sciences"
-  },
-  {
-   "name": "Insilico Medicine",
-   "ats": "lever",
-   "tenant": null,
-   "wd": null,
-   "site": "insilicomedicine",
-   "board": null,
-   "verified": true,
-   "note": "",
-   "url": "https://jobs.lever.co/insilicomedicine"
   },
   {
    "name": "Arrowhead Pharmaceuticals",
@@ -271,17 +260,6 @@
    "verified": true,
    "note": "",
    "url": "https://boards.greenhouse.io/inariagriculture"
-  },
-  {
-   "name": "Benson Hill",
-   "ats": "greenhouse",
-   "tenant": null,
-   "wd": null,
-   "site": null,
-   "board": "bensonhill",
-   "verified": true,
-   "note": "",
-   "url": "https://boards.greenhouse.io/bensonhill"
   },
   {
    "name": "Genentech (Roche)",
@@ -359,6 +337,28 @@
    "verified": false,
    "note": "syngenta.com careers (SuccessFactors)",
    "url": ""
+  },
+  {
+   "name": "Veeva",
+   "ats": "lever",
+   "tenant": null,
+   "wd": null,
+   "site": "veeva",
+   "board": null,
+   "verified": true,
+   "note": "",
+   "url": "https://jobs.lever.co/veeva"
+  },
+  {
+   "name": "Komodo Health",
+   "ats": "greenhouse",
+   "tenant": null,
+   "wd": null,
+   "site": null,
+   "board": "komodohealth",
+   "verified": true,
+   "note": "",
+   "url": "https://boards.greenhouse.io/komodohealth"
   }
  ]
 }

@@ -52,7 +52,7 @@ def fetch_workday(
     max_pages_per_term: int = 3,
     page_size: int = 20,
     detail_cache: Optional[dict] = None,
-    max_seconds: float = 90.0,
+    max_seconds: float = 150.0,
 ) -> List[Job]:
     import time
     from .. import cache as cache_mod
@@ -76,8 +76,9 @@ def fetch_workday(
             r = session.post(list_url, json=payload)
             if r is None or r.status_code != 200:
                 if page == 0 and term == search_terms[0]:
+                    body = (r.text[:200] if r is not None else "no response")
                     raise RuntimeError(
-                        f"workday:{tenant}/{site} HTTP {getattr(r, 'status_code', 'ERR')}"
+                        f"workday:{tenant}/{site} HTTP {getattr(r, 'status_code', 'ERR')} - {body}"
                     )
                 break
             postings = r.json().get("jobPostings", [])

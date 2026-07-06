@@ -13,7 +13,8 @@ LEVER_URL = "https://api.lever.co/v0/postings/{site}?mode=json"
 def fetch_greenhouse(company: str, board: str, session: PoliteSession) -> List[Job]:
     r = session.get(GH_URL.format(board=board))
     if r is None or r.status_code != 200:
-        raise RuntimeError(f"greenhouse:{board} HTTP {getattr(r, 'status_code', 'ERR')}")
+        body = (r.text[:200] if r is not None else "no response")
+        raise RuntimeError(f"greenhouse:{board} HTTP {getattr(r, 'status_code', 'ERR')} - {body}")
     jobs = []
     for j in r.json().get("jobs", []):
         # Greenhouse boards API exposes updated_at / first_published; prefer the
@@ -36,7 +37,8 @@ def fetch_greenhouse(company: str, board: str, session: PoliteSession) -> List[J
 def fetch_lever(company: str, site: str, session: PoliteSession) -> List[Job]:
     r = session.get(LEVER_URL.format(site=site))
     if r is None or r.status_code != 200:
-        raise RuntimeError(f"lever:{site} HTTP {getattr(r, 'status_code', 'ERR')}")
+        body = (r.text[:200] if r is not None else "no response")
+        raise RuntimeError(f"lever:{site} HTTP {getattr(r, 'status_code', 'ERR')} - {body}")
     jobs = []
     for j in r.json():
         created_ms = j.get("createdAt")

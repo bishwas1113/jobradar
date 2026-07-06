@@ -28,25 +28,23 @@ companies:
   ats: workday
   tenant: vrtx
   wd: wd5
-  site: vertex_careers
+  site: Vertex_Careers
   verified: true
 - name: Biogen
   ats: workday
-  tenant: biogen
-  wd: wd1
-  site: careers
+  tenant: biibhr
+  wd: wd3
+  site: external
   verified: true
 - name: Novo Nordisk
-  ats: workday
-  tenant: novonordisk
-  wd: wd3
-  site: nncareers
+  ats: unknown
   verified: true
+  note: careers.novonordisk.com -- own custom platform, not Workday
 - name: Jazz Pharmaceuticals
   ats: workday
-  tenant: jazzpharma
-  wd: wd5
-  site: careers
+  tenant: vhr-jazz
+  wd: wd1
+  site: JazzPharmaceuticals
   verified: true
 - name: Bristol Myers Squibb
   ats: workday
@@ -73,11 +71,9 @@ companies:
   site: External
   verified: true
 - name: AbbVie
-  ats: workday
-  tenant: abbvie
-  wd: wd5
-  site: External
+  ats: unknown
   verified: true
+  note: careers.abbvie.com -- own custom platform, not Workday
 - name: Eli Lilly
   ats: workday
   tenant: lilly
@@ -102,18 +98,14 @@ companies:
   board: beamtherapeutics
   verified: true
 - name: Enveda Biosciences
-  ats: greenhouse
-  board: envedabiosciences
+  ats: lever
   verified: true
+  site: enveda
 - name: Exact Sciences
   ats: workday
   tenant: exactsciences
   wd: wd1
   site: Exact_Sciences
-  verified: true
-- name: Insilico Medicine
-  ats: lever
-  site: insilicomedicine
   verified: true
 - name: Arrowhead Pharmaceuticals
   ats: workday
@@ -138,10 +130,6 @@ companies:
 - name: Inari
   ats: greenhouse
   board: inariagriculture
-  verified: true
-- name: Benson Hill
-  ats: greenhouse
-  board: bensonhill
   verified: true
 - name: Genentech (Roche)
   ats: workday
@@ -179,3 +167,11 @@ companies:
 - name: Syngenta
   ats: unknown
   note: syngenta.com careers (SuccessFactors)
+- name: Veeva
+  ats: lever
+  site: veeva
+  verified: true
+- name: Komodo Health
+  ats: greenhouse
+  board: komodohealth
+  verified: true

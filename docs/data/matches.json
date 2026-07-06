@@ -1,79 +1,52 @@
 {
- "generated_at": "2026-07-06T16:52:11+00:00",
+ "generated_at": "2026-07-06T12:00:00+00:00",
  "max_age_days": 3,
- "raw_postings": 633,
- "matches": [],
+ "raw_postings": 2,
+ "matches": [
+  {
+   "company": "FastA",
+   "title": "Associate Director, Analytics",
+   "location": "Remote",
+   "url": "u-FastA",
+   "posted": "2026-07-05",
+   "description": "analytics",
+   "source": "",
+   "job_id": "",
+   "score": 42.0,
+   "score_parts": {
+    "semantic": 0.219,
+    "skills": 0.5,
+    "level_fit": 1.0,
+    "matched_skills": [],
+    "first_seen": "2026-07-06T12:00:00+00:00"
+   },
+   "level": "Associate Director",
+   "is_remote": false
+  },
+  {
+   "company": "FastB",
+   "title": "Associate Director, Analytics",
+   "location": "Remote",
+   "url": "u-FastB",
+   "posted": "2026-07-05",
+   "description": "analytics",
+   "source": "",
+   "job_id": "",
+   "score": 42.0,
+   "score_parts": {
+    "semantic": 0.219,
+    "skills": 0.5,
+    "level_fit": 1.0,
+    "matched_skills": [],
+    "first_seen": "2026-07-06T12:00:00+00:00"
+   },
+   "level": "Associate Director",
+   "is_remote": false
+  }
+ ],
  "errors": [
   {
-   "company": "Biogen",
-   "error": "workday:biogen/careers HTTP 422"
-  },
-  {
-   "company": "Jazz Pharmaceuticals",
-   "error": "workday:jazzpharma/careers HTTP 422"
-  },
-  {
-   "company": "Vertex Pharmaceuticals",
-   "error": "workday:vrtx/vertex_careers HTTP 422"
-  },
-  {
-   "company": "Novo Nordisk",
-   "error": "workday:novonordisk/nncareers HTTP 422"
-  },
-  {
-   "company": "AbbVie",
-   "error": "workday:abbvie/External HTTP 401"
-  },
-  {
-   "company": "Eli Lilly",
-   "error": "workday:lilly/LLY HTTP 422"
-  },
-  {
-   "company": "Otsuka",
-   "error": "workday:otsuka/External HTTP 422"
-  },
-  {
-   "company": "Enveda Biosciences",
-   "error": "greenhouse:envedabiosciences HTTP 404"
-  },
-  {
-   "company": "Corteva Agriscience",
-   "error": "workday:corteva/External HTTP 422"
-  },
-  {
-   "company": "Insilico Medicine",
-   "error": "lever:insilicomedicine HTTP 404"
-  },
-  {
-   "company": "Arrowhead Pharmaceuticals",
-   "error": "workday:arrowheadpharma/careers HTTP 422"
-  },
-  {
-   "company": "Benson Hill",
-   "error": "greenhouse:bensonhill HTTP 404"
-  },
-  {
-   "company": "Inari",
-   "error": "greenhouse:inariagriculture HTTP 404"
-  },
-  {
-   "company": "Indigo Ag",
-   "error": "greenhouse:indigoag HTTP 404"
-  },
-  {
-   "company": "Johnson & Johnson",
-   "error": "timed out (slow endpoint) - skipped this run, will retry tomorrow"
-  },
-  {
-   "company": "Merck",
-   "error": "timed out (slow endpoint) - skipped this run, will retry tomorrow"
-  },
-  {
-   "company": "Novartis",
-   "error": "timed out (slow endpoint) - skipped this run, will retry tomorrow"
-  },
-  {
-   "company": "Thermo Fisher",
+   "company": "SlowCorp",
    "error": "timed out (slow endpoint) - skipped this run, will retry tomorrow"
   }
  ],

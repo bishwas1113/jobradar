@@ -132,8 +132,8 @@ def fetch_one_company(c: dict, terms: list, delay: float = 1.0) -> tuple[str, li
 
 def fetch_all_parallel(cfg: dict, errors: list, profile, max_age_days: int,
                         seen: dict, now: str, max_workers: int = 6,
-                        first_pass_seconds: float = 90.0,
-                        retry_seconds: float = 60.0) -> tuple[list[Job], int]:
+                        first_pass_seconds: float = 150.0,
+                        retry_seconds: float = 100.0) -> tuple[list[Job], int]:
     """Scans every company concurrently instead of one at a time, so a single
     slow ATS endpoint never blocks the rest of the scan. Companies still
     in flight after the first pass get one retry window; anything still

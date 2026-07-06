@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-07-05T03:35:23+00:00",
+ "generated_at": "2026-07-05T03:43:22+00:00",
  "max_age_days": 3,
  "raw_postings": 11,
  "matches": [
@@ -7,14 +7,14 @@
    "company": "Bristol Myers Squibb",
    "title": "Associate Director, Commercial Analytics - Oncology",
    "location": "Princeton, NJ / Remote",
-   "url": "https://bristol.wd5.myworkdayjobs.com/en-US/careers/job/Associate-Director-Commercial-Analytics---Oncology",
-   "posted": "2026-07-03",
+   "url": "https://bristolmyerssquibb.wd5.myworkdayjobs.com/en-US/BMS/job/Associate-Director-Commercial-Analytics---Oncology",
+   "posted": "2026-07-05",
    "description": "Lead commercial analytics for the oncology portfolio\nPartner with brand teams on HCP targeting and segmentation using IQVIA and Symphony Health claims data\nBuild forecasting models and Tableau dashboards tracking TRx NRx and patient journey metrics\nTranslate ambiguous business questions into analytical workplans for launch brands\nRequires advanced degree and experience with Python SQL and real-world data",
    "source": "workday",
-   "job_id": "wd-fix-17975",
+   "job_id": "wd-fix-34367",
    "score": 70.1,
    "score_parts": {
-    "semantic": 0.51,
+    "semantic": 0.512,
     "skills": 0.9,
     "level_fit": 1.0,
     "matched_skills": [
@@ -27,7 +27,7 @@
      "segmentation",
      "claims data"
     ],
-    "first_seen": "2026-07-03T20:00:50+00:00"
+    "first_seen": "2026-07-05T03:43:22+00:00"
    },
    "level": "Associate Director",
    "is_remote": true
@@ -36,14 +36,14 @@
    "company": "Jazz Pharmaceuticals",
    "title": "Associate Director, Business Insights - Oncology",
    "location": "Philadelphia, PA",
-   "url": "https://jazz.wd5.myworkdayjobs.com/en-US/careers/job/Associate-Director-Business-Insights---Oncology",
-   "posted": "2026-07-02",
+   "url": "https://jazzpharma.wd5.myworkdayjobs.com/en-US/careers/job/Associate-Director-Business-Insights---Oncology",
+   "posted": "2026-07-04",
    "description": "Drive business insights for Zepzelca and Rylaze franchises\nOwn market research segmentation and competitive intelligence deliverables\nDevelop customer analytics using claims data and Veeva CRM\nPresent insights to senior commercial leadership",
    "source": "workday",
-   "job_id": "wd-fix-93536",
-   "score": 48.9,
+   "job_id": "wd-fix-4139",
+   "score": 48.2,
    "score_parts": {
-    "semantic": 0.218,
+    "semantic": 0.205,
     "skills": 0.731,
     "level_fit": 1.0,
     "matched_skills": [
@@ -54,10 +54,62 @@
      "oncology",
      "crm"
     ],
-    "first_seen": "2026-07-03T20:00:50+00:00"
+    "first_seen": "2026-07-05T03:43:22+00:00"
    },
    "level": "Associate Director",
    "is_remote": false
+  },
+  {
+   "company": "Corteva Agriscience",
+   "title": "Associate Director, Analytics & Insights",
+   "location": "Indianapolis, IN / Remote",
+   "url": "https://corteva.wd1.myworkdayjobs.com/en-US/External/job/Associate-Director-Analytics-&-Insights",
+   "posted": "2026-07-03",
+   "description": "Lead analytics and insights for seed portfolio\nGenomics and field sensor data strategy\nBuild dashboards and machine learning models for pipeline innovation",
+   "source": "workday",
+   "job_id": "wd-fix-16886",
+   "score": 46.7,
+   "score_parts": {
+    "semantic": 0.177,
+    "skills": 0.733,
+    "level_fit": 1.0,
+    "matched_skills": [
+     "data strategy",
+     "machine learning",
+     "dashboards",
+     "strategy"
+    ],
+    "first_seen": "2026-07-05T03:43:22+00:00"
+   },
+   "level": "Associate Director",
+   "is_remote": true
+  },
+  {
+   "company": "Amgen",
+   "title": "Senior Manager, Data Strategy - R&D Pipeline",
+   "location": "Thousand Oaks, CA / Remote",
+   "url": "https://amgen.wd1.myworkdayjobs.com/en-US/Careers/job/Senior-Manager-Data-Strategy---R&D-Pipeline",
+   "posted": "2026-07-03",
+   "description": "Shape data strategy for R&D pipeline analytics and portfolio strategy\nDefine roadmap for clinical trial and real-world evidence data products\nCross-functional leadership with data science and machine learning teams\nPhD preferred with bioinformatics or genomics background",
+   "source": "workday",
+   "job_id": "wd-fix-23827",
+   "score": 41.6,
+   "score_parts": {
+    "semantic": 0.192,
+    "skills": 0.533,
+    "level_fit": 1.0,
+    "matched_skills": [
+     "data strategy",
+     "machine learning",
+     "phd",
+     "clinical trial",
+     "cross-functional",
+     "strategy"
+    ],
+    "first_seen": "2026-07-05T03:43:22+00:00"
+   },
+   "level": "Senior Manager",
+   "is_remote": true
   },
   {
    "company": "Beam Therapeutics",
@@ -68,9 +120,9 @@
    "description": "<p>Shape data strategy for precision genetic medicines pipeline</p><ul><li>Build analytics connecting R&D pipeline and portfolio strategy</li><li>Machine learning and bioinformatics collaboration</li><li>PhD strongly preferred</li></ul>",
    "source": "greenhouse",
    "job_id": "gh-fix-101",
-   "score": 36.8,
+   "score": 34.7,
    "score_parts": {
-    "semantic": 0.098,
+    "semantic": 0.062,
     "skills": 0.545,
     "level_fit": 1.0,
     "matched_skills": [

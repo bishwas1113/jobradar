@@ -263,6 +263,10 @@ function render(){
 }
 
 function updateMeta(){
+  if(!DATA.generated_at){
+    $("#meta").innerHTML="No scan has run yet — check the Actions tab in the repo";
+    return;
+  }
   const total=DATA.matches.filter(m=>!state.dismissed.has(m.job_id)).length;
   const when=DATA.generated_at?new Date(DATA.generated_at).toLocaleString():"—";
   $("#meta").innerHTML=`<b>${total}</b> matches · scanned <b>${DATA.raw_postings??"—"}</b> postings · last run ${esc(when)}`;
@@ -293,6 +297,12 @@ function buildControls(){
 fetch("data/matches.json").then(r=>r.json()).then(d=>{
   DATA=d;
   buildControls();updateMeta();render();
+  if(!d.generated_at){
+    $("#list").innerHTML=`<div class="empty"><div class="disp">No scan has run yet</div>
+      This dashboard has never received real data. Check the repo's Actions tab —
+      once "Daily job scan" runs successfully, real postings will appear here.
+      Nothing shown before that point is invented.</div>`;
+  }
   if(d.errors&&d.errors.length)
     $("#errors").textContent="Scan warnings: "+d.errors.map(e=>e.company+" ("+e.error+")").join(" · ");
 }).catch(()=>{$("#meta").textContent="No data yet — run the pipeline once to generate data/matches.json";});

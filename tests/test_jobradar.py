@@ -78,6 +78,54 @@ def test_html_to_text_preserves_lines():
     assert txt.splitlines() == ["Lead analytics", "Build models", "Own KPIs"]
 
 
+def test_detail_cache_respects_ttl_and_freshness():
+    from jobradar.cache import get_cached, put_cached, CACHE_TTL_HOURS
+    from datetime import datetime, timezone, timedelta
+    cache = {}
+    put_cached(cache, "job-1", "a real description", "2026-07-01", False)
+    assert get_cached(cache, "job-1")["description"] == "a real description"
+    # Simulate a stale entry older than the TTL
+    cache["job-2"] = {
+        "description": "stale", "posted": "2026-06-01", "is_remote": False,
+        "fetched_at": (datetime.now(timezone.utc) - timedelta(hours=CACHE_TTL_HOURS + 1)).isoformat(),
+    }
+    assert get_cached(cache, "job-2") is None
+    assert get_cached(cache, "does-not-exist") is None
+
+
+def test_slow_company_does_not_block_others():
+    import time
+    import jobradar.pipeline as pl
+    from jobradar.adapters.base import Job
+
+    def fake_fetch(c, terms, delay=1.0):
+        if c["name"] == "SlowCorp":
+            time.sleep(2.0)
+            return c["name"], [], None
+        return c["name"], [Job(c["name"], "Associate Director, Analytics", "Remote",
+                                f"u-{c['name']}", posted="2026-07-05", description="analytics")], None
+
+    original = pl.fetch_one_company
+    pl.fetch_one_company = fake_fetch
+    try:
+        cfg = {"search_terms": ["analytics"], "companies": [
+            {"name": "FastA", "ats": "greenhouse", "board": "x"},
+            {"name": "SlowCorp", "ats": "greenhouse", "board": "x"},
+            {"name": "FastB", "ats": "greenhouse", "board": "x"},
+        ]}
+        errors = []
+        t0 = time.monotonic()
+        jobs, _ = pl.fetch_all_parallel(cfg, errors, parse_resume(Path(__file__).parent.parent.joinpath("resume.txt").read_text()),
+                                          3, {}, "2026-07-06T12:00:00+00:00",
+                                          max_workers=4, first_pass_seconds=0.8, retry_seconds=0.5)
+        elapsed = time.monotonic() - t0
+        assert elapsed < 1.8, f"Should not wait for SlowCorp's full 2s, took {elapsed:.2f}s"
+        assert sorted(j.company for j in jobs) == ["FastA", "FastB"]
+        assert any("SlowCorp" in e["company"] for e in errors)
+    finally:
+        pl.fetch_one_company = original
+
+
 if __name__ == "__main__":
     fns = [v for k, v in sorted(globals().items()) if k.startswith("test_")]
     for fn in fns:

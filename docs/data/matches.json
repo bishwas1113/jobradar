@@ -4,5 +4,6 @@
  "raw_postings": 0,
  "matches": [],
  "errors": [],
+ "partial": false,
  "note": "No scan has run yet. Populated automatically by the daily GitHub Action."
 }

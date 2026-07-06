@@ -51,12 +51,22 @@ def fetch_workday(
     detail_prefilter: Optional[Callable[[str], bool]] = None,
     max_pages_per_term: int = 3,
     page_size: int = 20,
+    detail_cache: Optional[dict] = None,
+    max_seconds: float = 90.0,
 ) -> List[Job]:
+    import time
+    from .. import cache as cache_mod
+
+    start = time.monotonic()
     list_url = LIST_URL.format(tenant=tenant, wd=wd, site=site)
     seen: dict[str, Job] = {}
 
     for term in search_terms:
+        if time.monotonic() - start > max_seconds:
+            break  # time budget spent on listing; skip remaining terms
         for page in range(max_pages_per_term):
+            if time.monotonic() - start > max_seconds:
+                break
             payload = {
                 "appliedFacets": {},
                 "limit": page_size,
@@ -90,19 +100,37 @@ def fetch_workday(
             if len(postings) < page_size:
                 break
 
-    # Fetch descriptions only for postings that pass the cheap pre-filter.
+    # Fetch descriptions only for postings that pass the cheap pre-filter,
+    # reusing the cache when a posting was already fetched recently.
     jobs: List[Job] = []
     for path, job in seen.items():
         if detail_prefilter and not detail_prefilter(job.title):
+            continue
+        if time.monotonic() - start > max_seconds:
+            # Out of time budget for detail fetches: keep the posting with
+            # whatever we have (title/location/date), just without a
+            # description. It'll still show up, just score lower on skills.
+            jobs.append(job)
+            continue
+        cache_key = job.job_id
+        cached = cache_mod.get_cached(detail_cache, cache_key) if detail_cache is not None else None
+        if cached:
+            job.description = cached["description"]
+            if cached.get("posted"):
+                job.posted = cached["posted"]
+            job.is_remote = bool(cached.get("is_remote"))
+            jobs.append(job)
             continue
         r = session.get(DETAIL_URL.format(tenant=tenant, wd=wd, site=site, path=path))
         if r is not None and r.status_code == 200:
             info = r.json().get("jobPostingInfo", {}) or {}
             job.description = html_to_text(info.get("jobDescription", ""))
-            start = info.get("startDate")
-            if start:
-                job.posted = str(start)[:10]
+            start_date = info.get("startDate")
+            if start_date:
+                job.posted = str(start_date)[:10]
             if info.get("remoteType", "").lower().startswith("fully"):
                 job.is_remote = True
+            if detail_cache is not None:
+                cache_mod.put_cached(detail_cache, cache_key, job.description, job.posted, job.is_remote)
         jobs.append(job)
     return jobs

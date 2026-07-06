@@ -302,6 +302,10 @@ fetch("data/matches.json").then(r=>r.json()).then(d=>{
       This dashboard has never received real data. Check the repo's Actions tab —
       once "Daily job scan" runs successfully, real postings will appear here.
       Nothing shown before that point is invented.</div>`;
+  }else if(d.partial){
+    $("#errors").innerHTML=`<span style="color:var(--ember)">This scan was cut off partway through
+      (likely the time limit) — results below are real, but incomplete. The next run will pick up
+      the remaining companies.</span>` + ($("#errors").innerHTML||"");
   }
   if(d.errors&&d.errors.length)
     $("#errors").textContent="Scan warnings: "+d.errors.map(e=>e.company+" ("+e.error+")").join(" · ");

@@ -9,8 +9,11 @@ import argparse
 import hashlib
 import json
 import sys
+import threading
+import time
 from datetime import datetime, timezone
 from pathlib import Path
+from typing import Optional
 
 import yaml
 
@@ -24,6 +27,8 @@ from .scoring import score_jobs
 ROOT = Path(__file__).resolve().parent.parent
 OUT = ROOT / "docs" / "data"
 SEEN_FILE = OUT / "seen.json"
+CACHE_FILE = OUT / "detail_cache.json"
+ARCHIVE_DIR = OUT / "archive"
 
 
 def job_key(j: Job) -> str:
@@ -67,25 +72,139 @@ def load_seen() -> dict:
     return {}
 
 
-def fetch_all(cfg: dict, session: PoliteSession, errors: list) -> list[Job]:
-    jobs: list[Job] = []
-    terms = cfg.get("search_terms", ["analytics"])
-    for c in cfg["companies"]:
+def build_payload(jobs: list[Job], profile, cfg: dict, max_age_days: int,
+                   errors: list, raw_count: int, seen: dict, now: str,
+                   partial: bool) -> dict:
+    """Filter/score/write whatever jobs have been collected so far. Called after
+    every company during the scan so a kill at any point leaves a valid,
+    useful file on disk -- never just an in-memory result that vanishes."""
+    filtered = apply_filters(list(jobs), {
+        "locations": cfg.get("locations", ["Philadelphia", "Pennsylvania"]),
+        "allow_remote": cfg.get("allow_remote", True),
+        "max_age_days": max_age_days,
+    })
+    filtered = score_jobs(filtered, profile)
+    for j in filtered:
+        k = job_key(j)
+        j.score_parts["first_seen"] = seen.get(k, now)
+        seen[k] = seen.get(k, now)
+    payload = {
+        "generated_at": now,
+        "max_age_days": max_age_days,
+        "raw_postings": raw_count,
+        "matches": [j.to_dict() for j in filtered],
+        "errors": errors,
+        "partial": partial,  # true while the scan is still in progress / was cut short
+    }
+    OUT.mkdir(parents=True, exist_ok=True)
+    (OUT / "matches.json").write_text(json.dumps(payload, indent=1))
+    SEEN_FILE.write_text(json.dumps(seen, indent=0))
+    return payload
+
+
+def fetch_one_company(c: dict, terms: list, delay: float = 1.0) -> tuple[str, list[Job], Optional[str]]:
+    """Runs in its own thread with its own PoliteSession (so the polite
+    request-spacing only throttles requests to that one company, not across
+    all of them). Returns (company_name, jobs, error_or_None)."""
+    from .cache import load_cache  # local import: cache file is read fresh per thread start
+    session = PoliteSession(delay=delay)
+    detail_cache = load_cache(CACHE_FILE)
+    try:
         ats = c.get("ats")
+        if ats == "greenhouse":
+            jobs = fetch_greenhouse(c["name"], c["board"], session)
+        elif ats == "lever":
+            jobs = fetch_lever(c["name"], c["site"], session)
+        elif ats == "workday":
+            jobs = fetch_workday(
+                c["name"], c["tenant"], c["wd"], c["site"], session,
+                search_terms=terms, detail_prefilter=title_prefilter,
+                detail_cache=detail_cache,
+            )
+        else:
+            jobs = []
+        from .cache import save_cache
+        save_cache(CACHE_FILE, detail_cache)
+        return c["name"], jobs, None
+    except Exception as e:
+        return c["name"], [], str(e)
+
+
+def fetch_all_parallel(cfg: dict, errors: list, profile, max_age_days: int,
+                        seen: dict, now: str, max_workers: int = 6,
+                        first_pass_seconds: float = 90.0,
+                        retry_seconds: float = 60.0) -> tuple[list[Job], int]:
+    """Scans every company concurrently instead of one at a time, so a single
+    slow ATS endpoint never blocks the rest of the scan. Companies still
+    in flight after the first pass get one retry window; anything still
+    unfinished after that is skipped for this run (logged, not silently
+    dropped) rather than holding up everything else indefinitely.
+
+    Checkpoints (a full write of everything collected so far) happen after
+    every company finishes, same guarantee as the old sequential version --
+    just now driven by whichever company finishes next, in any order.
+    """
+    import concurrent.futures as cf
+
+    terms = cfg.get("search_terms", ["analytics"])
+    companies = cfg["companies"]
+    jobs: list[Job] = []
+    write_lock = threading.Lock()
+
+    def checkpoint(is_partial: bool):
+        with write_lock:
+            build_payload(jobs, profile, cfg, max_age_days, errors, len(jobs), seen, now,
+                          partial=is_partial)
+
+    pool = cf.ThreadPoolExecutor(max_workers=max_workers)
+    pending = {pool.submit(fetch_one_company, c, terms): c for c in companies}
+
+    def drain(timeout_budget: float, remaining: dict) -> dict:
+        """Collect whatever finishes within the budget; return the still-pending map."""
+        deadline = time.monotonic() + timeout_budget
+        still_pending = dict(remaining)
         try:
-            if ats == "greenhouse":
-                jobs += fetch_greenhouse(c["name"], c["board"], session)
-            elif ats == "lever":
-                jobs += fetch_lever(c["name"], c["site"], session)
-            elif ats == "workday":
-                jobs += fetch_workday(
-                    c["name"], c["tenant"], c["wd"], c["site"], session,
-                    search_terms=terms, detail_prefilter=title_prefilter,
-                )
-            # ats == "unknown": skipped until an adapter is configured
-        except Exception as e:  # fault isolation: one company never kills the run
-            errors.append({"company": c["name"], "error": str(e)})
-    return jobs
+            for fut in cf.as_completed(list(remaining.keys()),
+                                        timeout=max(0.1, deadline - time.monotonic())):
+                c = still_pending.pop(fut, None)
+                name, found_jobs, err = fut.result()
+                if err:
+                    errors.append({"company": name, "error": err})
+                else:
+                    jobs.extend(found_jobs)
+                checkpoint(is_partial=True)
+        except cf.TimeoutError:
+            pass
+        return still_pending
+
+    still_pending = drain(first_pass_seconds, pending)
+    if still_pending:
+        still_pending = drain(retry_seconds, still_pending)
+    if still_pending:
+        # Genuinely too slow even with the retry window: log and move on.
+        # Note: Python cannot forcibly kill an in-flight request, so that
+        # company's own thread keeps running in the background and its
+        # result (if any) is simply discarded when it eventually finishes --
+        # but critically, we do NOT wait for it, and it never delayed any
+        # other company's result above.
+        for fut, c in still_pending.items():
+            errors.append({"company": c["name"],
+                           "error": "timed out (slow endpoint) - skipped this run, will retry tomorrow"})
+    pool.shutdown(wait=False, cancel_futures=True)  # never block our own return on stragglers
+
+    checkpoint(is_partial=False)
+    return jobs, len(jobs)
+
+
+def write_archive(payload: dict) -> None:
+    """Dated snapshot of each completed run, so past scans aren't lost when
+    matches.json gets overwritten tomorrow. Keeps the most recent 30 days."""
+    ARCHIVE_DIR.mkdir(parents=True, exist_ok=True)
+    date_str = (payload.get("generated_at") or "")[:10] or datetime.now(timezone.utc).date().isoformat()
+    (ARCHIVE_DIR / f"{date_str}.json").write_text(json.dumps(payload, indent=1))
+    snapshots = sorted(ARCHIVE_DIR.glob("*.json"))
+    for old in snapshots[:-30]:
+        old.unlink(missing_ok=True)
 
 
 def run(config_path: str, resume_path: str, max_age_days: int, fixtures: str | None) -> dict:
@@ -94,37 +213,19 @@ def run(config_path: str, resume_path: str, max_age_days: int, fixtures: str | N
     errors: list = []
     export_companies(cfg)
 
-    if fixtures:
-        jobs = load_fixture_jobs(Path(fixtures))
-    else:
-        session = PoliteSession(delay=1.0)
-        jobs = fetch_all(cfg, session, errors)
-
-    raw_count = len(jobs)
-    jobs = apply_filters(jobs, {
-        "locations": cfg.get("locations", ["Philadelphia", "Pennsylvania"]),
-        "allow_remote": cfg.get("allow_remote", True),
-        "max_age_days": max_age_days,
-    })
-    jobs = score_jobs(jobs, profile)
-
     seen = load_seen()
     now = datetime.now(timezone.utc).isoformat(timespec="seconds")
-    for j in jobs:
-        k = job_key(j)
-        j.score_parts["first_seen"] = seen.get(k, now)
-        seen[k] = seen.get(k, now)
 
-    OUT.mkdir(parents=True, exist_ok=True)
-    payload = {
-        "generated_at": now,
-        "max_age_days": max_age_days,
-        "raw_postings": raw_count,
-        "matches": [j.to_dict() for j in jobs],
-        "errors": errors,
-    }
-    (OUT / "matches.json").write_text(json.dumps(payload, indent=1))
-    SEEN_FILE.write_text(json.dumps(seen, indent=0))
+    if fixtures:
+        jobs = load_fixture_jobs(Path(fixtures))
+        raw_count = len(jobs)
+        payload = build_payload(jobs, profile, cfg, max_age_days, errors, raw_count,
+                                 seen, now, partial=False)
+    else:
+        jobs, raw_count = fetch_all_parallel(cfg, errors, profile, max_age_days, seen, now)
+        payload = build_payload(jobs, profile, cfg, max_age_days, errors, raw_count,
+                                 seen, now, partial=False)
+        write_archive(payload)
     return payload
 
 

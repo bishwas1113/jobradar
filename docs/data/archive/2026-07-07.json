@@ -1,7 +1,7 @@
 {
- "generated_at": "2026-07-07T19:54:06+00:00",
+ "generated_at": "2026-07-07T20:10:23+00:00",
  "max_age_days": 3,
- "raw_postings": 1680,
+ "raw_postings": 1624,
  "matches": [
   {
    "company": "Thermo Fisher",
@@ -20,7 +20,7 @@
     "matched_skills": [
      "strategy"
     ],
-    "first_seen": "2026-07-07T19:54:06+00:00"
+    "first_seen": "2026-07-07T20:10:23+00:00"
    },
    "level": "Associate Director",
    "is_remote": true
@@ -45,7 +45,7 @@
      "cross-functional",
      "strategy"
     ],
-    "first_seen": "2026-07-07T13:30:14+00:00"
+    "first_seen": "2026-07-07T20:10:23+00:00"
    },
    "level": "Senior Manager",
    "is_remote": true
@@ -70,7 +70,7 @@
      "power bi",
      "cross-functional"
     ],
-    "first_seen": "2026-07-07T13:30:14+00:00"
+    "first_seen": "2026-07-07T20:10:23+00:00"
    },
    "level": "Senior Manager",
    "is_remote": true
@@ -95,33 +95,7 @@
      "cross-functional",
      "strategy"
     ],
-    "first_seen": "2026-07-07T13:30:14+00:00"
-   },
-   "level": "Associate Director",
-   "is_remote": true
-  },
-  {
-   "company": "Johnson & Johnson",
-   "title": "Associate Director of Process Design & Optimization",
-   "location": "6 Locations",
-   "url": "https://jj.wd5.myworkdayjobs.com/en-US/JJ/job/Pittsburgh-Pennsylvania-United-States-of-America/Associate-Director-of-Process-Design---Optimization_R-077966-1",
-   "posted": "2026-07-06",
-   "description": "At Johnson & Johnson,\u202fwe believe health is everything. Our strength in healthcare innovation empowers us to build a\u202fworld where complex diseases are prevented, treated, and cured,\u202fwhere treatments are smarter and less invasive, and\u202fsolutions are personal.\u202fThrough our expertise in Innovative Medicine and MedTech, we are uniquely positioned to innovate across the full spectrum of healthcare solutions today to deliver the breakthroughs of tomorrow, and profoundly impact health for humanity.\u202fLearn more at jnj.com\nAs guided by Our Credo, Johnson & Johnson is responsible to our employees who work wi",
-   "source": "workday",
-   "job_id": "wd-jj-/job/Pittsburgh-Pennsylvania-United-States-of-America/Associate-Director-of-Process-Design---Optimization_R-077966-1",
-   "score": 55.2,
-   "score_parts": {
-    "semantic": 0.269,
-    "skills": 0.846,
-    "level_fit": 1.0,
-    "matched_skills": [
-     "oncology",
-     "operating model",
-     "crm",
-     "cross-functional",
-     "strategy"
-    ],
-    "first_seen": "2026-07-07T13:30:14+00:00"
+    "first_seen": "2026-07-07T20:10:23+00:00"
    },
    "level": "Associate Director",
    "is_remote": true
@@ -145,34 +119,10 @@
      "operating model",
      "strategy"
     ],
-    "first_seen": "2026-07-07T13:30:14+00:00"
+    "first_seen": "2026-07-07T20:10:23+00:00"
    },
    "level": "Director",
    "is_remote": true
-  },
-  {
-   "company": "Johnson & Johnson",
-   "title": "Associate Director, Strategy & Operations",
-   "location": "Spring House, Pennsylvania, United States of America",
-   "url": "https://jj.wd5.myworkdayjobs.com/en-US/JJ/job/Spring-House-Pennsylvania-United-States-of-America/Associate-Director--Strategy---Operations_R-072011-1",
-   "posted": "2026-07-07",
-   "description": "At Johnson & Johnson,\u202fwe believe health is everything. Our strength in healthcare innovation empowers us to build a\u202fworld where complex diseases are prevented, treated, and cured,\u202fwhere treatments are smarter and less invasive, and\u202fsolutions are personal.\u202fThrough our expertise in Innovative Medicine and MedTech, we are uniquely positioned to innovate across the full spectrum of healthcare solutions today to deliver the breakthroughs of tomorrow, and profoundly impact health for humanity.\u202fLearn more at jnj.com .\nAs guided by Our Credo, Johnson & Johnson is responsible to our employees who work ",
-   "source": "workday",
-   "job_id": "wd-jj-/job/Spring-House-Pennsylvania-United-States-of-America/Associate-Director--Strategy---Operations_R-072011-1",
-   "score": 52.2,
-   "score_parts": {
-    "semantic": 0.349,
-    "skills": 0.6,
-    "level_fit": 1.0,
-    "matched_skills": [
-     "forecasting",
-     "cross-functional",
-     "strategy"
-    ],
-    "first_seen": "2026-07-07T19:54:06+00:00"
-   },
-   "level": "Associate Director",
-   "is_remote": false
   },
   {
    "company": "Thermo Fisher",
@@ -193,7 +143,7 @@
      "kpi",
      "strategy"
     ],
-    "first_seen": "2026-07-07T19:54:06+00:00"
+    "first_seen": "2026-07-07T20:10:23+00:00"
    },
    "level": "Senior Director",
    "is_remote": true
@@ -218,7 +168,7 @@
      "cross-functional",
      "strategy"
     ],
-    "first_seen": "2026-07-07T19:54:06+00:00"
+    "first_seen": "2026-07-07T20:10:23+00:00"
    },
    "level": "Director",
    "is_remote": false
@@ -244,86 +194,10 @@
      "cross-functional",
      "strategy"
     ],
-    "first_seen": "2026-07-07T19:54:06+00:00"
+    "first_seen": "2026-07-07T20:10:23+00:00"
    },
    "level": "Director",
    "is_remote": false
-  },
-  {
-   "company": "Johnson & Johnson",
-   "title": "Director, MTSC Transformation APAC",
-   "location": "Singapore, Singapore",
-   "url": "https://jj.wd5.myworkdayjobs.com/en-US/JJ/job/Singapore-Singapore/Director--MTSC-Transformation-APAC_R-081144",
-   "posted": "2026-07-04",
-   "description": "At Johnson & Johnson,\u202fwe believe health is everything. Our strength in healthcare innovation empowers us to build a\u202fworld where complex diseases are prevented, treated, and cured,\u202fwhere treatments are smarter and less invasive, and\u202fsolutions are personal.\u202fThrough our expertise in Innovative Medicine and MedTech, we are uniquely positioned to innovate across the full spectrum of healthcare solutions today to deliver the breakthroughs of tomorrow, and profoundly impact health for humanity.\u202fLearn more at jnj.com .\nAs guided by Our Credo, Johnson & Johnson is responsible to our employees who work ",
-   "source": "workday",
-   "job_id": "wd-jj-/job/Singapore-Singapore/Director--MTSC-Transformation-APAC_R-081144",
-   "score": 49.6,
-   "score_parts": {
-    "semantic": 0.283,
-    "skills": 0.733,
-    "level_fit": 0.8,
-    "matched_skills": [
-     "segmentation",
-     "kpi",
-     "operating model",
-     "cross-functional",
-     "strategy"
-    ],
-    "first_seen": "2026-07-07T13:30:14+00:00"
-   },
-   "level": "Director",
-   "is_remote": true
-  },
-  {
-   "company": "Johnson & Johnson",
-   "title": "Sr Manager - QCS Engineering",
-   "location": "52 Locations",
-   "url": "https://jj.wd5.myworkdayjobs.com/en-US/JJ/job/Raritan-New-Jersey-United-States-of-America/Sr-Manager---QCS-Engineering_R-086077-1",
-   "posted": "2026-07-07",
-   "description": "At Johnson & Johnson,\u202fwe believe health is everything. Our strength in healthcare innovation empowers us to build a\u202fworld where complex diseases are prevented, treated, and cured,\u202fwhere treatments are smarter and less invasive, and\u202fsolutions are personal.\u202fThrough our expertise in Innovative Medicine and MedTech, we are uniquely positioned to innovate across the full spectrum of healthcare solutions today to deliver the breakthroughs of tomorrow, and profoundly impact health for humanity.\u202fLearn more at jnj.com\nAs guided by Our Credo, Johnson & Johnson is responsible to our employees who work wi",
-   "source": "workday",
-   "job_id": "wd-jj-/job/Raritan-New-Jersey-United-States-of-America/Sr-Manager---QCS-Engineering_R-086077-1",
-   "score": 49.4,
-   "score_parts": {
-    "semantic": 0.469,
-    "skills": 0.286,
-    "level_fit": 1.0,
-    "matched_skills": [
-     "salesforce",
-     "strategy"
-    ],
-    "first_seen": "2026-07-07T19:54:06+00:00"
-   },
-   "level": "Senior Manager",
-   "is_remote": true
-  },
-  {
-   "company": "Johnson & Johnson",
-   "title": "Director, Global Commercial Strategy \u2013 GI",
-   "location": "2 Locations",
-   "url": "https://jj.wd5.myworkdayjobs.com/en-US/JJ/job/Horsham-Pennsylvania-United-States-of-America/Director--Global-Commercial-Strategy---GI_R-084725-1",
-   "posted": "2026-07-07",
-   "description": "At Johnson & Johnson,\u202fwe believe health is everything. Our strength in healthcare innovation empowers us to build a\u202fworld where complex diseases are prevented, treated, and cured,\u202fwhere treatments are smarter and less invasive, and\u202fsolutions are personal.\u202fThrough our expertise in Innovative Medicine and MedTech, we are uniquely positioned to innovate across the full spectrum of healthcare solutions today to deliver the breakthroughs of tomorrow, and profoundly impact health for humanity.\u202fLearn more at jnj.com .\nAs guided by Our Credo, Johnson & Johnson is responsible to our employees who work ",
-   "source": "workday",
-   "job_id": "wd-jj-/job/Horsham-Pennsylvania-United-States-of-America/Director--Global-Commercial-Strategy---GI_R-084725-1",
-   "score": 49.2,
-   "score_parts": {
-    "semantic": 0.439,
-    "skills": 0.433,
-    "level_fit": 0.8,
-    "matched_skills": [
-     "phd",
-     "forecasting",
-     "launch",
-     "clinical trial",
-     "cross-functional",
-     "strategy"
-    ],
-    "first_seen": "2026-07-07T19:54:06+00:00"
-   },
-   "level": "Director",
-   "is_remote": true
   },
   {
    "company": "Thermo Fisher",
@@ -345,33 +219,10 @@
      "cross-functional",
      "strategy"
     ],
-    "first_seen": "2026-07-07T13:30:14+00:00"
+    "first_seen": "2026-07-07T20:10:23+00:00"
    },
    "level": "Director",
    "is_remote": true
-  },
-  {
-   "company": "Johnson & Johnson",
-   "title": "Sr. Director, Head USA Clinical Operations",
-   "location": "Spring House, Pennsylvania, United States of America",
-   "url": "https://jj.wd5.myworkdayjobs.com/en-US/JJ/job/Spring-House-Pennsylvania-United-States-of-America/Sr-Director--Head-USA-Clinical-Operations_R-082763",
-   "posted": "2026-07-07",
-   "description": "At Johnson & Johnson,\u202fwe believe health is everything. Our strength in healthcare innovation empowers us to build a\u202fworld where complex diseases are prevented, treated, and cured,\u202fwhere treatments are smarter and less invasive, and\u202fsolutions are personal.\u202fThrough our expertise in Innovative Medicine and MedTech, we are uniquely positioned to innovate across the full spectrum of healthcare solutions today to deliver the breakthroughs of tomorrow, and profoundly impact health for humanity.\u202fLearn more at jnj.com\nAs guided by Our Credo, Johnson & Johnson is responsible to our employees who work wi",
-   "source": "workday",
-   "job_id": "wd-jj-/job/Spring-House-Pennsylvania-United-States-of-America/Sr-Director--Head-USA-Clinical-Operations_R-082763",
-   "score": 37.8,
-   "score_parts": {
-    "semantic": 0.334,
-    "skills": 0.4,
-    "level_fit": 0.5,
-    "matched_skills": [
-     "clinical trial",
-     "strategy"
-    ],
-    "first_seen": "2026-07-07T13:30:14+00:00"
-   },
-   "level": "Senior Director",
-   "is_remote": false
   },
   {
    "company": "Thermo Fisher",
@@ -390,7 +241,7 @@
     "matched_skills": [
      "cross-functional"
     ],
-    "first_seen": "2026-07-07T19:54:06+00:00"
+    "first_seen": "2026-07-07T20:10:23+00:00"
    },
    "level": "Senior Manager",
    "is_remote": true
@@ -424,7 +275,7 @@
    "status": "error",
    "error_kind": "payload-rejected",
    "hint": "Endpoint is real but rejected our request format; adapter auto-retries simpler formats \u2014 if persisting, the remaining variants also failed",
-   "error": "workday:vrtx/Vertex_Careers HTTP 422 - {\"errorCode\":\"HTTP_422\",\"errorCaseId\":\"9CC801MRB2HRMN\",\"httpStatus\":422,\"message\":\"\",\"messageParams\":{}}"
+   "error": "workday:vrtx/Vertex_Careers HTTP 422 (all 4 payload variants failed, no CSRF cookie was set by landing page) - {\"errorCode\":\"HTTP_422\",\"errorCaseId\":\"84A31DMRB32R36\",\"httpStatus\":422,\"message\":\"\",\"messageParams\":{}}"
   },
   {
    "name": "Biogen",
@@ -445,7 +296,7 @@
    "status": "error",
    "error_kind": "payload-rejected",
    "hint": "Endpoint is real but rejected our request format; adapter auto-retries simpler formats \u2014 if persisting, the remaining variants also failed",
-   "error": "workday:vhr-jazz/JazzPharmaceuticals HTTP 422 - {\"errorCode\":\"HTTP_422\",\"errorCaseId\":\"324498MRB2HRM5\",\"httpStatus\":422,\"message\":\"\",\"messageParams\":{}}"
+   "error": "workday:vhr-jazz/JazzPharmaceuticals HTTP 422 (all 4 payload variants failed, no CSRF cookie was set by landing page) - {\"errorCode\":\"HTTP_422\",\"errorCaseId\":\"68F58CMRB32QMA\",\"httpStatus\":422,\"message\":\"\",\"messageParams\":{}}"
   },
   {
    "name": "Bristol Myers Squibb",
@@ -487,7 +338,7 @@
    "status": "error",
    "error_kind": "payload-rejected",
    "hint": "Endpoint is real but rejected our request format; adapter auto-retries simpler formats \u2014 if persisting, the remaining variants also failed",
-   "error": "workday:lilly/LLY HTTP 422 - {\"errorCode\":\"HTTP_422\",\"errorCaseId\":\"962E54MRB2IZ7N\",\"httpStatus\":422,\"message\":\"\",\"messageParams\":{}}"
+   "error": "workday:lilly/LLY HTTP 422 (all 4 payload variants failed, no CSRF cookie was set by landing page) - {\"errorCode\":\"HTTP_422\",\"errorCaseId\":\"ED5E62MRB33IMY\",\"httpStatus\":422,\"message\":\"\",\"messageParams\":{}}"
   },
   {
    "name": "Otsuka",
@@ -495,7 +346,7 @@
    "status": "error",
    "error_kind": "payload-rejected",
    "hint": "Endpoint is real but rejected our request format; adapter auto-retries simpler formats \u2014 if persisting, the remaining variants also failed",
-   "error": "workday:otsuka/External HTTP 422 - {\"errorCode\":\"HTTP_422\",\"errorCaseId\":\"E2EB52MRB2J1N9\",\"httpStatus\":422,\"message\":\"\",\"messageParams\":{}}"
+   "error": "workday:otsuka/External HTTP 422 (all 4 payload variants failed, no CSRF cookie was set by landing page) - {\"errorCode\":\"HTTP_422\",\"errorCaseId\":\"D88AB1MRB33M8V\",\"httpStatus\":422,\"message\":\"\",\"messageParams\":{}}"
   },
   {
    "name": "Moderna",
@@ -531,7 +382,7 @@
    "status": "error",
    "error_kind": "payload-rejected",
    "hint": "Endpoint is real but rejected our request format; adapter auto-retries simpler formats \u2014 if persisting, the remaining variants also failed",
-   "error": "workday:arrowheadpharma/careers HTTP 422 - {\"errorCode\":\"HTTP_422\",\"errorCaseId\":\"0670D6MRB2JJO8\",\"httpStatus\":422,\"message\":\"\",\"messageParams\":{}}"
+   "error": "workday:arrowheadpharma/careers HTTP 422 (all 4 payload variants failed, no CSRF cookie was set by landing page) - {\"errorCode\":\"HTTP_422\",\"errorCaseId\":\"E13584MRB342DU\",\"httpStatus\":422,\"message\":\"\",\"messageParams\":{}}"
   },
   {
    "name": "Corteva Agriscience",
@@ -539,7 +390,7 @@
    "status": "error",
    "error_kind": "payload-rejected",
    "hint": "Endpoint is real but rejected our request format; adapter auto-retries simpler formats \u2014 if persisting, the remaining variants also failed",
-   "error": "workday:corteva/External HTTP 422 - {\"errorCode\":\"HTTP_422\",\"errorCaseId\":\"572C94MRB2JM31\",\"httpStatus\":422,\"message\":\"\",\"messageParams\":{}}"
+   "error": "workday:corteva/External HTTP 422 (all 4 payload variants failed, no CSRF cookie was set by landing page) - {\"errorCode\":\"HTTP_422\",\"errorCaseId\":\"2A0DBAMRB346Y0\",\"httpStatus\":422,\"message\":\"\",\"messageParams\":{}}"
   },
   {
    "name": "Indigo Ag",
@@ -573,9 +424,10 @@
   {
    "name": "Johnson & Johnson",
    "ats": "workday",
-   "status": "ok",
-   "fetched": 0,
-   "matches": 6
+   "status": "error",
+   "error_kind": "slow",
+   "hint": "Endpoint too slow this run; skipped, will retry next scan",
+   "error": "timed out (slow endpoint) - skipped this run, will retry tomorrow"
   },
   {
    "name": "Merck",
@@ -628,31 +480,35 @@
  "errors": [
   {
    "company": "Jazz Pharmaceuticals",
-   "error": "workday:vhr-jazz/JazzPharmaceuticals HTTP 422 - {\"errorCode\":\"HTTP_422\",\"errorCaseId\":\"324498MRB2HRM5\",\"httpStatus\":422,\"message\":\"\",\"messageParams\":{}}"
+   "error": "workday:vhr-jazz/JazzPharmaceuticals HTTP 422 (all 4 payload variants failed, no CSRF cookie was set by landing page) - {\"errorCode\":\"HTTP_422\",\"errorCaseId\":\"68F58CMRB32QMA\",\"httpStatus\":422,\"message\":\"\",\"messageParams\":{}}"
   },
   {
    "company": "Vertex Pharmaceuticals",
-   "error": "workday:vrtx/Vertex_Careers HTTP 422 - {\"errorCode\":\"HTTP_422\",\"errorCaseId\":\"9CC801MRB2HRMN\",\"httpStatus\":422,\"message\":\"\",\"messageParams\":{}}"
+   "error": "workday:vrtx/Vertex_Careers HTTP 422 (all 4 payload variants failed, no CSRF cookie was set by landing page) - {\"errorCode\":\"HTTP_422\",\"errorCaseId\":\"84A31DMRB32R36\",\"httpStatus\":422,\"message\":\"\",\"messageParams\":{}}"
   },
   {
    "company": "Eli Lilly",
-   "error": "workday:lilly/LLY HTTP 422 - {\"errorCode\":\"HTTP_422\",\"errorCaseId\":\"962E54MRB2IZ7N\",\"httpStatus\":422,\"message\":\"\",\"messageParams\":{}}"
+   "error": "workday:lilly/LLY HTTP 422 (all 4 payload variants failed, no CSRF cookie was set by landing page) - {\"errorCode\":\"HTTP_422\",\"errorCaseId\":\"ED5E62MRB33IMY\",\"httpStatus\":422,\"message\":\"\",\"messageParams\":{}}"
   },
   {
    "company": "Otsuka",
-   "error": "workday:otsuka/External HTTP 422 - {\"errorCode\":\"HTTP_422\",\"errorCaseId\":\"E2EB52MRB2J1N9\",\"httpStatus\":422,\"message\":\"\",\"messageParams\":{}}"
+   "error": "workday:otsuka/External HTTP 422 (all 4 payload variants failed, no CSRF cookie was set by landing page) - {\"errorCode\":\"HTTP_422\",\"errorCaseId\":\"D88AB1MRB33M8V\",\"httpStatus\":422,\"message\":\"\",\"messageParams\":{}}"
   },
   {
    "company": "Arrowhead Pharmaceuticals",
-   "error": "workday:arrowheadpharma/careers HTTP 422 - {\"errorCode\":\"HTTP_422\",\"errorCaseId\":\"0670D6MRB2JJO8\",\"httpStatus\":422,\"message\":\"\",\"messageParams\":{}}"
+   "error": "workday:arrowheadpharma/careers HTTP 422 (all 4 payload variants failed, no CSRF cookie was set by landing page) - {\"errorCode\":\"HTTP_422\",\"errorCaseId\":\"E13584MRB342DU\",\"httpStatus\":422,\"message\":\"\",\"messageParams\":{}}"
+  },
+  {
+   "company": "Corteva Agriscience",
+   "error": "workday:corteva/External HTTP 422 (all 4 payload variants failed, no CSRF cookie was set by landing page) - {\"errorCode\":\"HTTP_422\",\"errorCaseId\":\"2A0DBAMRB346Y0\",\"httpStatus\":422,\"message\":\"\",\"messageParams\":{}}"
   },
   {
    "company": "Inari",
    "error": "greenhouse:inariagriculture HTTP 404 - board empty (no openings) OR slug wrong; check boards.greenhouse.io/inariagriculture in a browser"
   },
   {
-   "company": "Corteva Agriscience",
-   "error": "workday:corteva/External HTTP 422 - {\"errorCode\":\"HTTP_422\",\"errorCaseId\":\"572C94MRB2JM31\",\"httpStatus\":422,\"message\":\"\",\"messageParams\":{}}"
+   "company": "Johnson & Johnson",
+   "error": "timed out (slow endpoint) - skipped this run, will retry tomorrow"
   }
  ],
  "partial": false

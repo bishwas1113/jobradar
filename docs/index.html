@@ -126,6 +126,10 @@ label.sm{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(
   background:none;border:1px solid var(--ember);border-radius:5px;padding:3px 9px;cursor:pointer}
 .copy-err:hover{background:var(--ember);color:var(--card)}
 .copy-err.copied{background:var(--moss);border-color:var(--moss);color:var(--card)}
+.removedrow{opacity:.55}
+.removedrow .co-name{text-decoration:line-through}
+.apply-row{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
+.apply-row a.btn-primary{text-decoration:none;display:inline-block}
 @media(max-width:620px){
   .card{grid-template-columns:52px 1fr}
   .ring{width:48px;height:48px}.ring svg{width:48px;height:48px}
@@ -187,11 +191,17 @@ label.sm{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(
     </div>
 
     <div id="pendingWrap" hidden>
-      <div class="sub-title">Pending additions (not yet in companies.yaml)</div>
+      <div class="sub-title">Changes to apply</div>
       <div id="pendingList"></div>
-      <button class="btn-primary" id="downloadBtn">Download updated companies.yaml</button>
-      <div class="download-note">Downloads a full companies.yaml with your existing companies plus these
-        additions. Replace the file in your GitHub repo and commit — the next scan will include them.</div>
+      <div id="removedList"></div>
+      <div class="apply-row">
+        <button class="btn-primary" id="copyYamlBtn">Copy updated companies.yaml</button>
+        <button class="btn-primary" id="downloadBtn">Download instead</button>
+        <a class="btn-primary" id="ghEditLink" target="_blank" rel="noopener" hidden>Open companies.yaml in GitHub editor</a>
+      </div>
+      <div class="download-note">Easiest path: click <b>Copy</b>, then <b>Open in GitHub editor</b>, select-all in the editor,
+        paste, and commit. The next scan picks up your changes automatically. (Download works too if you prefer
+        committing from your computer.)</div>
     </div>
 
     <div class="sub-title" id="companiesCount">Configured companies</div>
@@ -374,7 +384,11 @@ fetch("data/matches.json").then(r=>r.json()).then(d=>{
 // ---------- Companies tab ----------
 let COMPANIES={search_terms:[],companies:[]};
 const PENDING_KEY="radar.pendingCompanies";
+const REMOVED_KEY="radar.removedCompanies";
 let pending=JSON.parse(localStorage.getItem(PENDING_KEY)||"[]");
+let removed=new Set(JSON.parse(localStorage.getItem(REMOVED_KEY)||"[]"));
+
+function saveRemoved(){localStorage.setItem(REMOVED_KEY,JSON.stringify([...removed]));}
 
 document.querySelectorAll(".tab").forEach(t=>t.onclick=()=>{
   document.querySelectorAll(".tab").forEach(x=>x.setAttribute("aria-selected","false"));
@@ -410,7 +424,7 @@ function toYamlEntry(c){
   }else{
     lines.push(`    note: ${yamlEscape(c.note||c.url||"")}`);
   }
-  lines.push(`    verified: false`);
+  if(c.ats!=="unknown") lines.push(`    verified: ${c.verified===true?"true":"false"}`);
   return lines.join("\n");
 }
 
@@ -433,46 +447,90 @@ $("#addBtn").onclick=()=>{
   renderPending();
 };
 
+function buildYaml(){
+  const all=[...COMPANIES.companies
+      .filter(c=>!removed.has(c.name))
+      .map(c=>({name:c.name,ats:c.ats,tenant:c.tenant,wd:c.wd,site:c.site,board:c.board,
+                verified:c.verified,note:c.note})),
+    ...pending.filter(p=>!removed.has(p.name))];
+  const terms=(COMPANIES.search_terms||[]).map(t=>`  - "${t}"`).join("\n");
+  const body=all.map(toYamlEntry).join("\n");
+  return`search_terms:\n${terms}\n\ncompanies:\n${body}\n`;
+}
+
 function renderPending(){
   const wrap=$("#pendingWrap");
-  wrap.hidden=pending.length===0;
+  wrap.hidden=pending.length===0&&removed.size===0;
   $("#pendingList").innerHTML=pending.map((c,i)=>`
     <div class="co-row">
-      <span class="co-name">${esc(c.name)}</span>
-      <span class="badge unverified">${esc(c.ats)}</span>
-      <button class="co-remove" data-i="${i}">Remove</button>
+      <span class="co-name">+ ${esc(c.name)}</span>
+      <span class="badge">${esc(c.ats)}</span>
+      <button class="co-remove" data-i="${i}">Cancel</button>
+    </div>`).join("");
+  $("#removedList").innerHTML=[...removed].map(n=>`
+    <div class="co-row removedrow">
+      <span class="co-name">− ${esc(n)}</span>
+      <span class="badge unverified">will be removed</span>
+      <button class="co-remove" data-n="${esc(n)}">Undo</button>
     </div>`).join("");
   $("#pendingList").querySelectorAll(".co-remove").forEach(b=>b.onclick=()=>{
     pending.splice(+b.dataset.i,1);
     localStorage.setItem(PENDING_KEY,JSON.stringify(pending));
     renderPending();
   });
+  $("#removedList").querySelectorAll(".co-remove").forEach(b=>b.onclick=()=>{
+    removed.delete(b.dataset.n);saveRemoved();renderPending();renderCompanies();
+  });
 }
 
 $("#downloadBtn").onclick=()=>{
-  const all=[...COMPANIES.companies.map(c=>({
-    name:c.name,ats:c.ats,tenant:c.tenant,wd:c.wd,site:c.site,board:c.board,
-    verified:c.verified,note:c.note})),...pending];
-  const terms=(COMPANIES.search_terms||[]).map(t=>`  - "${t}"`).join("\n");
-  const body=all.map(toYamlEntry).join("\n");
-  const yamlText=`search_terms:\n${terms}\n\ncompanies:\n${body}\n`;
-  const blob=new Blob([yamlText],{type:"text/yaml"});
+  const blob=new Blob([buildYaml()],{type:"text/yaml"});
   const a=document.createElement("a");
   a.href=URL.createObjectURL(blob);a.download="companies.yaml";a.click();
 };
+
+$("#copyYamlBtn").onclick=async()=>{
+  const y=buildYaml();
+  try{ await navigator.clipboard.writeText(y); }
+  catch(e){
+    const ta=document.createElement("textarea");ta.value=y;document.body.appendChild(ta);
+    ta.select();document.execCommand("copy");ta.remove();
+  }
+  const b=$("#copyYamlBtn");b.textContent="Copied!";
+  setTimeout(()=>b.textContent="Copy updated companies.yaml",2000);
+};
+
+// If served from <user>.github.io/<repo>/, we can deep-link to the GitHub file editor.
+(function(){
+  const m=location.hostname.match(/^([a-z0-9-]+)\.github\.io$/i);
+  const repo=location.pathname.split("/").filter(Boolean)[0];
+  if(m&&repo){
+    const a=$("#ghEditLink");
+    a.href=`https://github.com/${m[1]}/${repo}/edit/main/companies.yaml`;
+    a.hidden=false;
+  }
+})();
 
 function renderCompanies(){
   const q=($("#companySearch").value||"").toLowerCase();
   const rows=COMPANIES.companies.filter(c=>!q||c.name.toLowerCase().includes(q));
   $("#companiesCount").textContent=`Configured companies (${COMPANIES.companies.length})`;
-  $("#companiesList").innerHTML=rows.map(c=>`
-    <div class="co-row">
+  $("#companiesList").innerHTML=rows.map(c=>{
+    const gone=removed.has(c.name);
+    return`
+    <div class="co-row ${gone?"removedrow":""}">
       <span class="co-name">${esc(c.name)}</span>
       <span class="badge ${c.ats==='unknown'?'custom':(c.verified?'':'unverified')}">${esc(c.ats)}</span>
       ${c.verified?'':c.ats!=="unknown"?'<span class="badge unverified">unverified</span>':''}
       ${c.url?`<a class="co-link" href="${esc(c.url)}" target="_blank" rel="noopener">Open career site</a>`
              :`<span class="co-link" style="opacity:.6">${esc(c.note||"no link yet")}</span>`}
-    </div>`).join("")||`<div class="empty">No companies match "${esc(q)}"</div>`;
+      <button class="co-remove" data-n="${esc(c.name)}">${gone?"Undo remove":"Remove"}</button>
+    </div>`;}).join("")||`<div class="empty">No companies match "${esc(q)}"</div>`;
+  $("#companiesList").querySelectorAll(".co-remove").forEach(b=>b.onclick=()=>{
+    const n=b.dataset.n;
+    if(removed.has(n)) removed.delete(n); else removed.add(n);
+    saveRemoved();renderCompanies();renderPending();
+  });
 }
 $("#companySearch").oninput=renderCompanies;
 

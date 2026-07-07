@@ -41,7 +41,19 @@ def parse_posted_on(text: str) -> Optional[str]:
     return None
 
 
-def _wd_post_resilient(session, list_url, term, offset, page_size):
+def _wd_warmup(session, tenant, wd, site) -> dict:
+    """Some Workday tenants reject CXS API POSTs with a bare 422 unless the
+    request carries the CSRF token a browser would have — obtained by first
+    visiting the public careers landing page (which sets a CALYPSO_CSRF_TOKEN
+    cookie). Do that warm-up GET and return the matching header if the cookie
+    appears. Harmless no-op for tenants that don't require it."""
+    landing = f"https://{tenant}.{wd}.myworkdayjobs.com/en-US/{site}"
+    session.get(landing)  # cookies persist on the underlying requests.Session
+    token = session.s.cookies.get("CALYPSO_CSRF_TOKEN")
+    return {"X-CALYPSO-CSRF-TOKEN": token} if token else {}
+
+
+def _wd_post_resilient(session, list_url, term, offset, page_size, extra_headers=None):
     """Some Workday tenants reject certain request-body shapes with a 422 and
     an empty error message (the endpoint is correct, the body isn't to their
     liking). Try progressively simpler/safer payload variants until one is
@@ -55,7 +67,7 @@ def _wd_post_resilient(session, list_url, term, offset, page_size):
     ]
     last = None
     for payload in variants:
-        r = session.post(list_url, json=payload)
+        r = session.post(list_url, json=payload, headers=extra_headers or None)
         last = r
         if r is not None and r.status_code == 200 and "jobPostings" in (r.text or ""):
             return r, (payload.get("searchText", "") == "")
@@ -81,6 +93,8 @@ def fetch_workday(
     start = time.monotonic()
     list_url = LIST_URL.format(tenant=tenant, wd=wd, site=site)
     seen: dict[str, Job] = {}
+    # Warm-up: obtain the CSRF cookie some tenants require before API POSTs.
+    csrf_headers = _wd_warmup(session, tenant, wd, site)
 
     for term in search_terms:
         if time.monotonic() - start > max_seconds:
@@ -88,12 +102,15 @@ def fetch_workday(
         for page in range(max_pages_per_term):
             if time.monotonic() - start > max_seconds:
                 break
-            r, used_empty = _wd_post_resilient(session, list_url, term, page * page_size, page_size)
+            r, used_empty = _wd_post_resilient(session, list_url, term, page * page_size,
+                                                page_size, extra_headers=csrf_headers)
             if r is None or r.status_code != 200:
                 if page == 0 and term == search_terms[0]:
                     body = (r.text[:200] if r is not None else "no response")
+                    tried = "with CSRF token" if csrf_headers else "no CSRF cookie was set by landing page"
                     raise RuntimeError(
-                        f"workday:{tenant}/{site} HTTP {getattr(r, 'status_code', 'ERR')} - {body}"
+                        f"workday:{tenant}/{site} HTTP {getattr(r, 'status_code', 'ERR')} "
+                        f"(all 4 payload variants failed, {tried}) - {body}"
                     )
                 break
             postings = safe_json(r, f"workday:{tenant}").get("jobPostings", [])

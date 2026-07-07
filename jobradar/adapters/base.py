@@ -89,7 +89,9 @@ class PoliteSession:
     def get(self, url, **kw):
         return self.request("GET", url, **kw)
 
-    def post(self, url, **kw):
+    def post(self, url, headers: dict | None = None, **kw):
+        if headers:
+            kw["headers"] = headers
         return self.request("POST", url, **kw)
 
 

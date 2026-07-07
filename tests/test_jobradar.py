@@ -156,15 +156,48 @@ def test_workday_recovers_from_422_on_oversized_limit():
 
     class FakeSession:
         # Rejects limit>20 with 422 (real Jazz/Vertex behavior), accepts <=20
-        def post(self, url, json=None):
+        def post(self, url, json=None, headers=None, **kw):
             if json.get("limit", 0) > 20:
                 return FakeResp(422)
             return FakeResp(200, postings=[])
-        def get(self, url):
+        def get(self, url, **kw):
             return FakeResp(200)
 
     r, used_empty = W._wd_post_resilient(FakeSession(), "http://x", "analytics", 0, 100)
     assert r is not None and r.status_code == 200, "should recover from oversized-limit 422"
+
+
+def test_workday_csrf_warmup_recovers_422():
+    import json as _json
+    from jobradar.adapters import workday as W
+
+    class FakeResp:
+        def __init__(self, status, postings=None):
+            self.status_code = status
+            self._p = postings if postings is not None else []
+            self.text = _json.dumps({"jobPostings": self._p}) if status == 200 else '{"httpStatus":422}'
+        def json(self): return {"jobPostings": self._p, "jobPostingInfo": {}}
+
+    class FakeCookies(dict):
+        def get(self, k): return dict.get(self, k)
+    class FakeInner:
+        def __init__(self): self.cookies = FakeCookies()
+    class FakeSession:
+        def __init__(self): self.s = FakeInner()
+        def get(self, url, **kw):
+            if "/en-US/" in url and "/job/" not in url:
+                self.s.cookies["CALYPSO_CSRF_TOKEN"] = "t"
+            return FakeResp(200)
+        def post(self, url, headers=None, json=None, **kw):
+            if not headers or headers.get("X-CALYPSO-CSRF-TOKEN") != "t":
+                return FakeResp(422)
+            return FakeResp(200, postings=[{"externalPath": "/job/X",
+                "title": "Associate Director, Analytics", "locationsText": "Remote",
+                "postedOn": "Posted Today"}] if json.get("offset", 0) == 0 else [])
+
+    jobs = W.fetch_workday("X", "t1", "wd1", "Site", FakeSession(),
+                            search_terms=["analytics"], detail_prefilter=None, detail_cache={})
+    assert len(jobs) == 1 and jobs[0].title.startswith("Associate Director")
 
 
 if __name__ == "__main__":

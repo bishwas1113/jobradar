@@ -13,12 +13,28 @@ from jobradar.scoring import score_jobs
 
 
 def test_level_detection():
-    assert detect_level("Associate Director, Oncology Insights") == "Associate Director"
-    assert detect_level("Senior Manager, Commercial Analytics") == "Senior Manager"
-    assert detect_level("Sr. Director Data Strategy") == "Senior Director"
+    # Senior Manager — all common spellings
+    for t in ["Senior Manager, Commercial Analytics", "Sr. Manager, Insights",
+              "Sr Manager Data Strategy", "Snr Manager, Analytics",
+              "Senior Mgr, Business Insights", "Sr. Mgr. Customer Analytics"]:
+        assert detect_level(t) == "Senior Manager", t
+    # Associate Director — all common spellings
+    for t in ["Associate Director, Oncology Insights", "Assoc. Director, Analytics",
+              "Assoc Director Commercial", "Associate Dir, Data Strategy",
+              "Assoc. Dir. Insights", "AD, Business Insights"]:
+        assert detect_level(t) == "Associate Director", t
+    # Director / Senior Director
     assert detect_level("Director, HCP Analytics") == "Director"
-    assert detect_level("Senior Data Analyst") is None
-    assert detect_level("Manager, Insights") is None
+    assert detect_level("Sr. Director Data Strategy") == "Senior Director"
+    assert detect_level("Snr Director, Insights") == "Senior Director"
+    # Above band — excluded even though they contain "Director"
+    for t in ["Executive Director, Analytics", "Exec. Director, Insights",
+              "VP, Commercial Analytics", "Vice President, Data Strategy",
+              "Head of Analytics", "Chief Data Officer"]:
+        assert detect_level(t) is None, t
+    # Too junior — not matched
+    for t in ["Senior Data Analyst", "Manager, Insights", "Analytics Manager"]:
+        assert detect_level(t) is None, t
 
 
 def test_prefilter_excludes_out_of_scope():
@@ -124,6 +140,31 @@ def test_slow_company_does_not_block_others():
         assert any("SlowCorp" in e["company"] for e in errors)
     finally:
         pl.fetch_one_company = original
+
+
+def test_workday_recovers_from_422_on_oversized_limit():
+    import json as _json
+    from jobradar.adapters import workday as W
+
+    class FakeResp:
+        def __init__(self, status, postings=None):
+            self.status_code = status
+            self._p = postings or []
+            self.text = _json.dumps({"jobPostings": self._p}) if status == 200 else '{"httpStatus":422,"message":""}'
+        def json(self):
+            return {"jobPostings": self._p}
+
+    class FakeSession:
+        # Rejects limit>20 with 422 (real Jazz/Vertex behavior), accepts <=20
+        def post(self, url, json=None):
+            if json.get("limit", 0) > 20:
+                return FakeResp(422)
+            return FakeResp(200, postings=[])
+        def get(self, url):
+            return FakeResp(200)
+
+    r, used_empty = W._wd_post_resilient(FakeSession(), "http://x", "analytics", 0, 100)
+    assert r is not None and r.status_code == 200, "should recover from oversized-limit 422"
 
 
 if __name__ == "__main__":

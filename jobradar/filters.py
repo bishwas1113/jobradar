@@ -8,12 +8,28 @@ from typing import List, Optional
 from .adapters.base import Job
 
 # Level taxonomy — order matters (most specific first).
+# Covers common real-world spellings: senior/sr/snr, manager/mgr, director/dir,
+# associate/assoc, with or without periods.
+_SR = r"(?:senior|sr|snr)\.?"
+_MGR = r"(?:manager|mgr)\.?"
+_DIR = r"(?:director|dir)\.?"
+_ASSOC = r"(?:associate|assoc)\.?"
+
 LEVEL_PATTERNS = [
-    ("Senior Director", re.compile(r"\b(senior|sr\.?)\s+director\b", re.I)),
-    ("Associate Director", re.compile(r"\b(associate|assoc\.?)\s+director\b|\bAD\b(?=[,\s]|$)", re.I)),
-    ("Director", re.compile(r"\bdirector\b", re.I)),
-    ("Senior Manager", re.compile(r"\b(senior|sr\.?)\s+manager\b", re.I)),
+    ("Senior Director", re.compile(rf"\b{_SR}\s+{_DIR}", re.I)),
+    ("Associate Director",
+     re.compile(rf"\b{_ASSOC}\s+{_DIR}|\bAD\b(?=[,\s]|$)", re.I)),
+    ("Director", re.compile(r"\b(director|dir)\.?\b", re.I)),
+    ("Senior Manager", re.compile(rf"\b{_SR}\s+{_MGR}", re.I)),
 ]
+
+# Titles at or above these bands are out of the target range — excluded even
+# though they contain "Director". Checked BEFORE level detection.
+_ABOVE_BAND = re.compile(
+    r"\b(executive|exec\.?)\s+(director|dir\.?)\b"
+    r"|\b(vice\s+president|vp|svp|evp)\b"
+    r"|\bchief\b|\bhead\s+of\b", re.I,
+)
 
 # Titles that pass level but are out of scope (sales-force, HR, facilities...).
 EXCLUDE_TITLE = re.compile(
@@ -23,6 +39,8 @@ EXCLUDE_TITLE = re.compile(
 
 
 def detect_level(title: str) -> Optional[str]:
+    if _ABOVE_BAND.search(title):
+        return None  # Executive Director, VP, Chief, Head of — above target band
     for name, pat in LEVEL_PATTERNS:
         if pat.search(title):
             return name

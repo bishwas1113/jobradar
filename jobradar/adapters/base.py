@@ -80,6 +80,9 @@ class PoliteSession:
             if r.status_code == 429:
                 time.sleep(10 * (attempt + 1))
                 continue
+            if 500 <= r.status_code < 600 and attempt < self.max_retries:
+                time.sleep(3 * (attempt + 1))  # transient server error: back off and retry
+                continue
             return r
         return None
 
@@ -92,3 +95,14 @@ class PoliteSession:
 
 def today_iso() -> str:
     return date.today().isoformat()
+
+
+def safe_json(r, context: str) -> dict | list:
+    """Parse a response body as JSON, raising a clear error (with a body
+    snippet) instead of an opaque traceback when an endpoint returns HTML
+    or truncated garbage — which real ATS endpoints occasionally do."""
+    try:
+        return r.json()
+    except Exception:
+        snippet = (r.text or "")[:150].replace("\n", " ")
+        raise RuntimeError(f"{context}: response was not valid JSON — starts with: {snippet!r}")

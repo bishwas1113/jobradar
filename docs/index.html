@@ -108,6 +108,24 @@ label.sm{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(
 .co-remove:hover{color:var(--ember)}
 .download-note{color:var(--stone);font-size:11.5px;margin-top:8px;line-height:1.5}
 #pendingWrap{background:var(--moss-soft);border-radius:10px;padding:16px 18px;margin-top:18px}
+
+.co-grid-title{font-family:var(--disp);font-weight:600;font-size:15px;margin:20px 0 2px}
+.co-grid-sub{font-family:var(--body);font-weight:400;font-size:11.5px;color:var(--stone);margin-left:8px}
+.co-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:8px;margin-top:8px}
+.co-cell{background:var(--card);border:1px solid var(--line);border-radius:8px;
+  padding:10px 12px;font-size:12px}
+.co-cell .nm{font-family:var(--disp);font-weight:600;font-size:13px;margin-bottom:4px}
+.co-cell.ok{border-left:3px solid var(--moss);cursor:pointer}
+.co-cell.ok:hover{background:var(--moss-soft)}
+.co-cell.empty .st{color:var(--stone)}
+.co-cell.error{border-left:3px solid var(--ember)}
+.co-cell.error .st{color:var(--ember);font-weight:500}
+.co-cell.skipped,.co-cell.pending{opacity:.65}
+.co-cell .hint{color:var(--stone);font-size:11px;margin-top:3px;line-height:1.4}
+.copy-err{margin-top:6px;font-family:var(--body);font-size:11px;color:var(--ember);
+  background:none;border:1px solid var(--ember);border-radius:5px;padding:3px 9px;cursor:pointer}
+.copy-err:hover{background:var(--ember);color:var(--card)}
+.copy-err.copied{background:var(--moss);border-color:var(--moss);color:var(--card)}
 @media(max-width:620px){
   .card{grid-template-columns:52px 1fr}
   .ring{width:48px;height:48px}.ring svg{width:48px;height:48px}
@@ -150,6 +168,8 @@ label.sm{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(
     </select>
   </div>
 
+  <div class="co-grid-title">Company status <span class="co-grid-sub">every target, every run — postings, empty, or the error</span></div>
+  <div class="co-grid" id="coGrid"></div>
   <div id="list"></div>
   <div class="errors" id="errors"></div>
   </section>
@@ -294,9 +314,49 @@ function buildControls(){
   $("#sortSel").onchange=e=>{state.sort=e.target.value;render();};
 }
 
+function renderCoGrid(){
+  const grid=$("#coGrid");
+  const cs=DATA.companies_status||[];
+  if(!cs.length){grid.innerHTML="";return;}
+  grid.innerHTML=cs.map((c,i)=>{
+    if(c.status==="ok")
+      return`<div class="co-cell ok" data-co="${esc(c.name)}" title="Click to filter to ${esc(c.name)}">
+        <div class="nm">${esc(c.name)}</div>
+        <div class="st">${c.matches} match${c.matches===1?"":"es"} · ${c.fetched} fetched</div></div>`;
+    if(c.status==="empty")
+      return`<div class="co-cell empty"><div class="nm">${esc(c.name)}</div>
+        <div class="st">no matching postings</div>
+        <div class="hint">${c.fetched||0} fetched, none passed level/location/date filters</div></div>`;
+    if(c.status==="error")
+      return`<div class="co-cell error"><div class="nm">${esc(c.name)}</div>
+        <div class="st">${esc(c.error_kind||"error")}</div>
+        <div class="hint">${esc(c.hint||"")}</div>
+        <button class="copy-err" data-i="${i}">Copy error for chat</button></div>`;
+    return`<div class="co-cell ${c.status}"><div class="nm">${esc(c.name)}</div>
+      <div class="st">${c.status}</div><div class="hint">${esc(c.hint||"")}</div></div>`;
+  }).join("");
+  grid.querySelectorAll(".co-cell.ok").forEach(el=>el.onclick=()=>{
+    state.company=el.dataset.co;
+    $("#companySel").value=el.dataset.co;
+    render();
+  });
+  grid.querySelectorAll(".copy-err").forEach(b=>b.onclick=async()=>{
+    const c=cs[+b.dataset.i];
+    const text=`JobRadar scan error\nCompany: ${c.name}\nATS: ${c.ats}\nKind: ${c.error_kind}\nVerbose: ${c.error}`;
+    try{
+      await navigator.clipboard.writeText(text);
+    }catch(e){
+      const ta=document.createElement("textarea");ta.value=text;document.body.appendChild(ta);
+      ta.select();document.execCommand("copy");ta.remove();
+    }
+    b.textContent="Copied — paste in chat";b.classList.add("copied");
+    setTimeout(()=>{b.textContent="Copy error for chat";b.classList.remove("copied");},2500);
+  });
+}
+
 fetch("data/matches.json").then(r=>r.json()).then(d=>{
   DATA=d;
-  buildControls();updateMeta();render();
+  buildControls();updateMeta();render();renderCoGrid();
   if(!d.generated_at){
     $("#list").innerHTML=`<div class="empty"><div class="disp">No scan has run yet</div>
       This dashboard has never received real data. Check the repo's Actions tab —

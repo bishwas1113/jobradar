@@ -121,7 +121,7 @@ companies:
   verified: true
 - name: Indigo Ag
   ats: greenhouse
-  board: indigoag
+  board: indigo
   verified: true
 - name: Pivot Bio
   ats: greenhouse

@@ -4,7 +4,7 @@ from __future__ import annotations
 from datetime import datetime, timezone
 from typing import List
 
-from .base import Job, PoliteSession, html_to_text
+from .base import Job, PoliteSession, html_to_text, safe_json
 
 GH_URL = "https://boards-api.greenhouse.io/v1/boards/{board}/jobs?content=true"
 LEVER_URL = "https://api.lever.co/v0/postings/{site}?mode=json"
@@ -12,11 +12,19 @@ LEVER_URL = "https://api.lever.co/v0/postings/{site}?mode=json"
 
 def fetch_greenhouse(company: str, board: str, session: PoliteSession) -> List[Job]:
     r = session.get(GH_URL.format(board=board))
+    if r is not None and r.status_code == 404:
+        # A 404 here is ambiguous: either the board slug is wrong, OR the board
+        # is real but currently has zero openings (some boards 404 when empty).
+        # Raise with a message that names both possibilities so it's not
+        # mistaken for a definite config error.
+        raise RuntimeError(
+            f"greenhouse:{board} HTTP 404 - board empty (no openings) OR slug wrong; "
+            f"check boards.greenhouse.io/{board} in a browser")
     if r is None or r.status_code != 200:
         body = (r.text[:200] if r is not None else "no response")
         raise RuntimeError(f"greenhouse:{board} HTTP {getattr(r, 'status_code', 'ERR')} - {body}")
     jobs = []
-    for j in r.json().get("jobs", []):
+    for j in safe_json(r, f"greenhouse:{board}").get("jobs", []):
         # Greenhouse boards API exposes updated_at / first_published; prefer the
         # earliest-publication field when present, fall back to updated_at.
         posted_raw = j.get("first_published") or j.get("updated_at") or ""
@@ -40,7 +48,7 @@ def fetch_lever(company: str, site: str, session: PoliteSession) -> List[Job]:
         body = (r.text[:200] if r is not None else "no response")
         raise RuntimeError(f"lever:{site} HTTP {getattr(r, 'status_code', 'ERR')} - {body}")
     jobs = []
-    for j in r.json():
+    for j in safe_json(r, f"lever:{site}"):
         created_ms = j.get("createdAt")
         posted = None
         if created_ms:

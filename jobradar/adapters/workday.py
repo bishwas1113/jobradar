@@ -15,7 +15,7 @@ import re
 from datetime import date, timedelta
 from typing import Callable, List, Optional
 
-from .base import Job, PoliteSession, html_to_text
+from .base import Job, PoliteSession, html_to_text, safe_json
 
 LIST_URL = "https://{tenant}.{wd}.myworkdayjobs.com/wday/cxs/{tenant}/{site}/jobs"
 DETAIL_URL = "https://{tenant}.{wd}.myworkdayjobs.com/wday/cxs/{tenant}/{site}{path}"
@@ -39,6 +39,27 @@ def parse_posted_on(text: str) -> Optional[str]:
         d = (date.today() - timedelta(days=days)).isoformat()
         return d + "+" if "+" in text else d  # '30+' marks a lower bound
     return None
+
+
+def _wd_post_resilient(session, list_url, term, offset, page_size):
+    """Some Workday tenants reject certain request-body shapes with a 422 and
+    an empty error message (the endpoint is correct, the body isn't to their
+    liking). Try progressively simpler/safer payload variants until one is
+    accepted. Returns (response, used_empty_search) where response is the first
+    variant that returned 200, or the last non-200 response for error reporting."""
+    variants = [
+        {"appliedFacets": {}, "limit": page_size, "offset": offset, "searchText": term},
+        {"appliedFacets": {}, "limit": min(page_size, 20), "offset": offset, "searchText": term},
+        {"appliedFacets": {}, "limit": min(page_size, 20), "offset": offset, "searchText": ""},
+        {"limit": min(page_size, 20), "offset": offset, "searchText": term},
+    ]
+    last = None
+    for payload in variants:
+        r = session.post(list_url, json=payload)
+        last = r
+        if r is not None and r.status_code == 200 and "jobPostings" in (r.text or ""):
+            return r, (payload.get("searchText", "") == "")
+    return last, False
 
 
 def fetch_workday(
@@ -67,13 +88,7 @@ def fetch_workday(
         for page in range(max_pages_per_term):
             if time.monotonic() - start > max_seconds:
                 break
-            payload = {
-                "appliedFacets": {},
-                "limit": page_size,
-                "offset": page * page_size,
-                "searchText": term,
-            }
-            r = session.post(list_url, json=payload)
+            r, used_empty = _wd_post_resilient(session, list_url, term, page * page_size, page_size)
             if r is None or r.status_code != 200:
                 if page == 0 and term == search_terms[0]:
                     body = (r.text[:200] if r is not None else "no response")
@@ -81,7 +96,7 @@ def fetch_workday(
                         f"workday:{tenant}/{site} HTTP {getattr(r, 'status_code', 'ERR')} - {body}"
                     )
                 break
-            postings = r.json().get("jobPostings", [])
+            postings = safe_json(r, f"workday:{tenant}").get("jobPostings", [])
             if not postings:
                 break
             for p in postings:
@@ -99,6 +114,12 @@ def fetch_workday(
                     job_id=f"wd-{tenant}-{path}",
                 )
             if len(postings) < page_size:
+                break
+            # If we had to fall back to an unfiltered (empty searchText) query,
+            # don't page deep through the whole catalog — the local level +
+            # keyword filters still apply, but we cap breadth to stay polite
+            # and within the time budget.
+            if used_empty and page >= 1:
                 break
 
     # Fetch descriptions only for postings that pass the cheap pre-filter,
@@ -124,7 +145,10 @@ def fetch_workday(
             continue
         r = session.get(DETAIL_URL.format(tenant=tenant, wd=wd, site=site, path=path))
         if r is not None and r.status_code == 200:
-            info = r.json().get("jobPostingInfo", {}) or {}
+            try:
+                info = safe_json(r, f"workday:{tenant}:detail").get("jobPostingInfo", {}) or {}
+            except RuntimeError:
+                info = {}  # keep the job with title/location; just no description
             job.description = html_to_text(info.get("jobDescription", ""))
             start_date = info.get("startDate")
             if start_date:

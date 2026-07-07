@@ -74,7 +74,7 @@ def load_seen() -> dict:
 
 def build_payload(jobs: list[Job], profile, cfg: dict, max_age_days: int,
                    errors: list, raw_count: int, seen: dict, now: str,
-                   partial: bool) -> dict:
+                   partial: bool, company_fetch: dict | None = None) -> dict:
     """Filter/score/write whatever jobs have been collected so far. Called after
     every company during the scan so a kill at any point leaves a valid,
     useful file on disk -- never just an in-memory result that vanishes."""
@@ -88,11 +88,38 @@ def build_payload(jobs: list[Job], profile, cfg: dict, max_age_days: int,
         k = job_key(j)
         j.score_parts["first_seen"] = seen.get(k, now)
         seen[k] = seen.get(k, now)
+
+    # Per-company outcome: every configured company gets an explicit status so
+    # the dashboard can render a placeholder for each -- never a silent absence.
+    err_by_company = {e["company"]: e["error"] for e in errors}
+    match_counts: dict[str, int] = {}
+    for j in filtered:
+        match_counts[j.company] = match_counts.get(j.company, 0) + 1
+    company_status = []
+    for c in cfg["companies"]:
+        name = c["name"]
+        entry = {"name": name, "ats": c.get("ats", "unknown")}
+        if c.get("ats") == "unknown":
+            entry.update(status="skipped", hint=c.get("note", "no adapter configured"))
+        elif name in err_by_company:
+            kind, hint = classify_error(err_by_company[name])
+            entry.update(status="error", error_kind=kind, hint=hint,
+                         error=err_by_company[name])
+        elif company_fetch is not None and name not in company_fetch and partial:
+            entry.update(status="pending", hint="not yet scanned in this run")
+        else:
+            fetched = (company_fetch or {}).get(name, 0)
+            matched = match_counts.get(name, 0)
+            entry.update(status="ok" if matched else "empty",
+                         fetched=fetched, matches=matched)
+        company_status.append(entry)
+
     payload = {
         "generated_at": now,
         "max_age_days": max_age_days,
         "raw_postings": raw_count,
         "matches": [j.to_dict() for j in filtered],
+        "companies_status": company_status,
         "errors": errors,
         "partial": partial,  # true while the scan is still in progress / was cut short
     }
@@ -100,6 +127,27 @@ def build_payload(jobs: list[Job], profile, cfg: dict, max_age_days: int,
     (OUT / "matches.json").write_text(json.dumps(payload, indent=1))
     SEEN_FILE.write_text(json.dumps(seen, indent=0))
     return payload
+
+
+def classify_error(err: str) -> tuple[str, str]:
+    """Map a verbose error to (kind, human hint). The verbose text is kept
+    alongside for copy-paste troubleshooting; this just adds orientation."""
+    e = err.lower()
+    if "422" in e:
+        return "payload-rejected", "Endpoint is real but rejected our request format; adapter auto-retries simpler formats — if persisting, the remaining variants also failed"
+    if "404" in e:
+        return "not-found", "Board/tenant not found — either the slug is wrong or the board currently has zero openings"
+    if "401" in e or "403" in e:
+        return "blocked", "Endpoint requires auth or is blocking automated requests — may need a custom adapter"
+    if "timed out" in e or "timeout" in e:
+        return "slow", "Endpoint too slow this run; skipped, will retry next scan"
+    if "not valid json" in e:
+        return "bad-response", "Endpoint returned a non-JSON page (maintenance page or bot-block); usually transient"
+    if e.startswith("http 5") or " 50" in e or " 52" in e or " 53" in e:
+        return "server-error", "Their server errored; usually transient, retried automatically"
+    if "no response" in e or "connection" in e:
+        return "unreachable", "Network-level failure reaching the endpoint; usually transient"
+    return "unknown", "Unrecognized failure — copy the verbose error into chat to troubleshoot"
 
 
 def fetch_one_company(c: dict, terms: list, delay: float = 1.0) -> tuple[str, list[Job], Optional[str]]:
@@ -149,12 +197,13 @@ def fetch_all_parallel(cfg: dict, errors: list, profile, max_age_days: int,
     terms = cfg.get("search_terms", ["analytics"])
     companies = cfg["companies"]
     jobs: list[Job] = []
+    company_fetch: dict[str, int] = {}   # company -> raw postings fetched
     write_lock = threading.Lock()
 
     def checkpoint(is_partial: bool):
         with write_lock:
             build_payload(jobs, profile, cfg, max_age_days, errors, len(jobs), seen, now,
-                          partial=is_partial)
+                          partial=is_partial, company_fetch=company_fetch)
 
     pool = cf.ThreadPoolExecutor(max_workers=max_workers)
     pending = {pool.submit(fetch_one_company, c, terms): c for c in companies}
@@ -172,6 +221,7 @@ def fetch_all_parallel(cfg: dict, errors: list, profile, max_age_days: int,
                     errors.append({"company": name, "error": err})
                 else:
                     jobs.extend(found_jobs)
+                    company_fetch[name] = len(found_jobs)
                 checkpoint(is_partial=True)
         except cf.TimeoutError:
             pass

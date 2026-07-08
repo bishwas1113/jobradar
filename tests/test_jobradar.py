@@ -123,6 +123,19 @@ def test_slow_company_does_not_block_others():
 
     original = pl.fetch_one_company
     pl.fetch_one_company = fake_fetch
+    
+    import tempfile
+    tmpdir = tempfile.TemporaryDirectory()
+    original_out = pl.OUT
+    original_seen = pl.SEEN_FILE
+    original_cache = pl.CACHE_FILE
+    original_archive = pl.ARCHIVE_DIR
+
+    pl.OUT = Path(tmpdir.name)
+    pl.SEEN_FILE = pl.OUT / "seen.json"
+    pl.CACHE_FILE = pl.OUT / "detail_cache.json"
+    pl.ARCHIVE_DIR = pl.OUT / "archive"
+
     try:
         cfg = {"search_terms": ["analytics"], "companies": [
             {"name": "FastA", "ats": "greenhouse", "board": "x"},
@@ -140,6 +153,11 @@ def test_slow_company_does_not_block_others():
         assert any("SlowCorp" in e["company"] for e in errors)
     finally:
         pl.fetch_one_company = original
+        pl.OUT = original_out
+        pl.SEEN_FILE = original_seen
+        pl.CACHE_FILE = original_cache
+        pl.ARCHIVE_DIR = original_archive
+        tmpdir.cleanup()
 
 
 def test_workday_recovers_from_422_on_oversized_limit():

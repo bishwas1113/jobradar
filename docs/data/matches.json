@@ -1,685 +1,77 @@
 {
- "generated_at": "2026-07-08T12:57:06+00:00",
+ "generated_at": "2026-07-06T12:00:00+00:00",
  "max_age_days": 3,
- "raw_postings": 1666,
+ "raw_postings": 2,
  "matches": [
   {
-   "company": "Merck",
-   "title": "Associate Director \u2013 Business Insights & Analytics, US Oncology, Digital Human Health",
-   "location": "USA - Pennsylvania - North Wales (Upper Gwynedd)",
-   "url": "https://msd.wd5.myworkdayjobs.com/en-US/SearchJobs/job/USA---Pennsylvania---North-Wales-Upper-Gwynedd/Associate-Director---Business-Insights---Analytics--US-Oncology--Digital-Human-Health_R400982",
-   "posted": "2026-07-07",
-   "description": "Job Description\nThis role will reside within the Digital Human Health (DHH) US Market Engagement Team. This team operates as part of the US commercial team, providing strategic thought-partnership to US commercial stakeholders through understanding brand strategy, co-creating DHH demand and associated business requirements aligned to business priorities. The US Market Engagement team quarterbacks demand fulfillment and leads the activation of DHH products and services.\nThe Associate Director will be responsible for developing and communicating data-driven and actionable insights that drive gre",
-   "source": "workday",
-   "job_id": "wd-msd-/job/USA---Pennsylvania---North-Wales-Upper-Gwynedd/Associate-Director---Business-Insights---Analytics--US-Oncology--Digital-Human-Health_R400982",
-   "score": 68.3,
-   "score_parts": {
-    "semantic": 0.548,
-    "skills": 0.773,
-    "level_fit": 1.0,
-    "matched_skills": [
-     "commercial analytics",
-     "business insights",
-     "data strategy",
-     "iqvia",
-     "brand strategy",
-     "claims data",
-     "oncology",
-     "phd"
-    ],
-    "first_seen": "2026-07-08T12:57:06+00:00"
-   },
-   "level": "Associate Director",
-   "is_remote": false
-  },
-  {
-   "company": "Thermo Fisher",
-   "title": "Senior Manager/Associate Director of Strategic Finance",
-   "location": "Remote, United Kingdom",
-   "url": "https://thermofisher.wd5.myworkdayjobs.com/en-US/ThermoFisherCareers/job/Remote-United-Kingdom/Senior-Manager-Associate-Director-of-Strategic-Finance_R-01352064",
-   "posted": "2026-07-07",
-   "description": "Work Schedule\nStandard (Mon-Fri)\nEnvironmental Conditions\nOffice\nJob Description\nPPD is a leading global contract research organization providing comprehensive, integrated drug development, laboratory and lifecycle management services. At PPD we are passionate, deliberate, and driven by our purpose \u2013 to improve health. Come join our high-performance culture and support our business as a strategic finance leader.\nThe Senior Manager/Associate Director \u2013 Strategic Finance, Clinical Development Services Division \u00a0serves as a strategic finance partner to the PPD finance, commercial, and operations ",
-   "source": "workday",
-   "job_id": "wd-thermofisher-/job/Remote-United-Kingdom/Senior-Manager-Associate-Director-of-Strategic-Finance_R-01352064",
-   "score": 64.4,
-   "score_parts": {
-    "semantic": 0.354,
-    "skills": 1.0,
-    "level_fit": 1.0,
-    "matched_skills": [
-     "strategy"
-    ],
-    "first_seen": "2026-07-07T20:10:23+00:00"
-   },
-   "level": "Associate Director",
-   "is_remote": true
-  },
-  {
-   "company": "Thermo Fisher",
-   "title": "Sr Manager, Small Molecule",
-   "location": "Greenfield, Indiana, USA",
-   "url": "https://thermofisher.wd5.myworkdayjobs.com/en-US/ThermoFisherCareers/job/Greenfield-Indiana-USA/Sr-Manager--Small-Molecule_R-01355464",
-   "posted": "2026-07-06",
-   "description": "Work Schedule\nStandard (Mon-Fri)\nEnvironmental Conditions\nSome degree of PPE (Personal Protective Equipment) required (safety glasses, gowning, gloves, lab coat, ear plugs etc.)\nJob Description\nSr. Manager, Small Molecule\nThis is a fully onsite role based\u00a0 at \u00a0our Greenfield, IN Laboratory. We welcome applicants from all locations within the US.\u00a0We welcome applicants from all locations within the US.\u00a0Please note that relocation\u00a0 assistance \u00a0will be provided for this position,\nMust be legally authorized to work in the United States without\u202fsponsorship.\nMust be able to pass a comprehensive backg",
-   "source": "workday",
-   "job_id": "wd-thermofisher-/job/Greenfield-Indiana-USA/Sr-Manager--Small-Molecule_R-01355464",
-   "score": 62.9,
-   "score_parts": {
-    "semantic": 0.325,
-    "skills": 1.0,
-    "level_fit": 1.0,
-    "matched_skills": [
-     "forecasting",
-     "clinical trial",
-     "cross-functional",
-     "strategy"
-    ],
-    "first_seen": "2026-07-07T20:10:23+00:00"
-   },
-   "level": "Senior Manager",
-   "is_remote": true
-  },
-  {
-   "company": "Thermo Fisher",
-   "title": "Sr Manager, Commercial Finance - Large Molecule",
-   "location": "3 Locations",
-   "url": "https://thermofisher.wd5.myworkdayjobs.com/en-US/ThermoFisherCareers/job/Waltham-Massachusetts-USA/Sr-Manager--Commercial-Finance---Large-Molecule_R-01356775",
-   "posted": "2026-07-06",
-   "description": "Work Schedule\nStandard (Mon-Fri)\nEnvironmental Conditions\nOffice\nJob Description\nWhen you are part of the team at Thermo Fisher Scientific, you'll do meaningful work that makes a positive impact on a global scale! Join 80,000 colleagues who bring our Mission to life every day to enable our customers to make the world healthier, cleaner and safer. You'll find the resources here to achieve your career goals and help take science a step beyond by developing solutions for some of the world's toughest challenges. This includes protecting the environment, making our food is safe, and helping find cu",
-   "source": "workday",
-   "job_id": "wd-thermofisher-/job/Waltham-Massachusetts-USA/Sr-Manager--Commercial-Finance---Large-Molecule_R-01356775",
-   "score": 62.4,
-   "score_parts": {
-    "semantic": 0.407,
-    "skills": 0.833,
-    "level_fit": 1.0,
-    "matched_skills": [
-     "business insights",
-     "forecasting",
-     "power bi",
-     "cross-functional"
-    ],
-    "first_seen": "2026-07-07T20:10:23+00:00"
-   },
-   "level": "Senior Manager",
-   "is_remote": true
-  },
-  {
-   "company": "Johnson & Johnson",
-   "title": "Associate Director of Patient Experience, Immunology",
-   "location": "Horsham, Pennsylvania, United States of America",
-   "url": "https://jj.wd5.myworkdayjobs.com/en-US/JJ/job/Horsham-Pennsylvania-United-States-of-America/Associate-Director-of-Patient-Experience--Immunology_R-085307-1",
-   "posted": "2026-07-07",
-   "description": "At Johnson & Johnson,\u202fwe believe health is everything. Our strength in healthcare innovation empowers us to build a\u202fworld where complex diseases are prevented, treated, and cured,\u202fwhere treatments are smarter and less invasive, and\u202fsolutions are personal.\u202fThrough our expertise in Innovative Medicine and MedTech, we are uniquely positioned to innovate across the full spectrum of healthcare solutions today to deliver the breakthroughs of tomorrow, and profoundly impact health for humanity.\u202fLearn more at jnj.com .\nAs guided by Our Credo, Johnson & Johnson is responsible to our employees who work ",
-   "source": "workday",
-   "job_id": "wd-jj-/job/Horsham-Pennsylvania-United-States-of-America/Associate-Director-of-Patient-Experience--Immunology_R-085307-1",
-   "score": 58.8,
-   "score_parts": {
-    "semantic": 0.324,
-    "skills": 0.867,
-    "level_fit": 1.0,
-    "matched_skills": [
-     "customer analytics",
-     "patient journey",
-     "crm",
-     "cross-functional",
-     "strategy"
-    ],
-    "first_seen": "2026-07-08T12:57:06+00:00"
-   },
-   "level": "Associate Director",
-   "is_remote": false
-  },
-  {
-   "company": "Thermo Fisher",
-   "title": "Associate Director, Scientific Development",
-   "location": "Shanghai, China",
-   "url": "https://thermofisher.wd5.myworkdayjobs.com/en-US/ThermoFisherCareers/job/Shanghai-China/Associate-Director--Scientific-Development_R-01357722-1",
-   "posted": "2026-07-06",
-   "description": "Work Schedule\nStandard (Mon-Fri)\nEnvironmental Conditions\nOffice\nJob Description\nPurpose :\nThe Associate Director, Scientific Development supports and leads assigned customer- and commercial-focused strategic development engagements that accelerate business growth, customer impact, and coordinated scientific solutioning. This role connects customer needs, commercial priorities, and Strategic Scientific Solutions (S3) scientific expertise to support therapeutic area prioritization, integrated product development planning, and effective engagement across internal and external stakeholders.\nEs s ",
-   "source": "workday",
-   "job_id": "wd-thermofisher-/job/Shanghai-China/Associate-Director--Scientific-Development_R-01357722-1",
-   "score": 58.7,
-   "score_parts": {
-    "semantic": 0.417,
-    "skills": 0.692,
-    "level_fit": 1.0,
-    "matched_skills": [
-     "phd",
-     "forecasting",
-     "cross-functional",
-     "strategy"
-    ],
-    "first_seen": "2026-07-07T20:10:23+00:00"
-   },
-   "level": "Associate Director",
-   "is_remote": true
-  },
-  {
-   "company": "Johnson & Johnson",
-   "title": "Associate Director of Process Design & Optimization",
-   "location": "6 Locations",
-   "url": "https://jj.wd5.myworkdayjobs.com/en-US/JJ/job/Pittsburgh-Pennsylvania-United-States-of-America/Associate-Director-of-Process-Design---Optimization_R-077966-1",
-   "posted": "2026-07-06",
-   "description": "At Johnson & Johnson,\u202fwe believe health is everything. Our strength in healthcare innovation empowers us to build a\u202fworld where complex diseases are prevented, treated, and cured,\u202fwhere treatments are smarter and less invasive, and\u202fsolutions are personal.\u202fThrough our expertise in Innovative Medicine and MedTech, we are uniquely positioned to innovate across the full spectrum of healthcare solutions today to deliver the breakthroughs of tomorrow, and profoundly impact health for humanity.\u202fLearn more at jnj.com\nAs guided by Our Credo, Johnson & Johnson is responsible to our employees who work wi",
-   "source": "workday",
-   "job_id": "wd-jj-/job/Pittsburgh-Pennsylvania-United-States-of-America/Associate-Director-of-Process-Design---Optimization_R-077966-1",
-   "score": 55.2,
-   "score_parts": {
-    "semantic": 0.269,
-    "skills": 0.846,
-    "level_fit": 1.0,
-    "matched_skills": [
-     "oncology",
-     "operating model",
-     "crm",
-     "cross-functional",
-     "strategy"
-    ],
-    "first_seen": "2026-07-08T12:57:06+00:00"
-   },
-   "level": "Associate Director",
-   "is_remote": true
-  },
-  {
-   "company": "Thermo Fisher",
-   "title": "Associate Director, PPI Business System",
-   "location": "3 Locations",
-   "url": "https://thermofisher.wd5.myworkdayjobs.com/en-US/ThermoFisherCareers/job/Remote-Colombia/Associate-Director--PPI-Business-System_R-01359984",
-   "posted": "2026-07-08",
-   "description": "Work Schedule\nStandard (Mon-Fri)\nEnvironmental Conditions\nOffice\nJob Description\nAs part of the Thermo Fisher Scientific team, you\u2019ll discover meaningful work that makes a positive impact on a global scale. Join our colleagues in bringing our Mission to life every single day to enable our customers to make the world healthier, cleaner and safer. We provide our global teams with the resources needed to achieve individual career goals while helping to take science a step beyond by developing solutions for some of the world\u2019s toughest challenges, like protecting the environment, making sure our f",
-   "source": "workday",
-   "job_id": "wd-thermofisher-/job/Remote-Colombia/Associate-Director--PPI-Business-System_R-01359984",
-   "score": 53.2,
-   "score_parts": {
-    "semantic": 0.149,
-    "skills": 1.0,
-    "level_fit": 1.0,
-    "matched_skills": [
-     "cross-functional",
-     "strategy"
-    ],
-    "first_seen": "2026-07-08T12:57:06+00:00"
-   },
-   "level": "Associate Director",
-   "is_remote": true
-  },
-  {
-   "company": "Johnson & Johnson",
-   "title": "Associate Director, Strategy & Operations",
-   "location": "Spring House, Pennsylvania, United States of America",
-   "url": "https://jj.wd5.myworkdayjobs.com/en-US/JJ/job/Spring-House-Pennsylvania-United-States-of-America/Associate-Director--Strategy---Operations_R-072011-1",
-   "posted": "2026-07-07",
-   "description": "At Johnson & Johnson,\u202fwe believe health is everything. Our strength in healthcare innovation empowers us to build a\u202fworld where complex diseases are prevented, treated, and cured,\u202fwhere treatments are smarter and less invasive, and\u202fsolutions are personal.\u202fThrough our expertise in Innovative Medicine and MedTech, we are uniquely positioned to innovate across the full spectrum of healthcare solutions today to deliver the breakthroughs of tomorrow, and profoundly impact health for humanity.\u202fLearn more at jnj.com .\nAs guided by Our Credo, Johnson & Johnson is responsible to our employees who work ",
-   "source": "workday",
-   "job_id": "wd-jj-/job/Spring-House-Pennsylvania-United-States-of-America/Associate-Director--Strategy---Operations_R-072011-1",
-   "score": 52.2,
-   "score_parts": {
-    "semantic": 0.349,
-    "skills": 0.6,
-    "level_fit": 1.0,
-    "matched_skills": [
-     "forecasting",
-     "cross-functional",
-     "strategy"
-    ],
-    "first_seen": "2026-07-08T12:57:06+00:00"
-   },
-   "level": "Associate Director",
-   "is_remote": false
-  },
-  {
-   "company": "Thermo Fisher",
-   "title": "Senior Director, Sales North America",
-   "location": "3 Locations",
-   "url": "https://thermofisher.wd5.myworkdayjobs.com/en-US/ThermoFisherCareers/job/Waltham-Massachusetts-USA/Senior-Director--Sales-North-America_R-01350430",
-   "posted": "2026-07-07",
-   "description": "Work Schedule\nStandard (Mon-Fri)\nEnvironmental Conditions\nOffice\nJob Description\nJob Title: Sr Director, Global Commercial Operations \u2013 CDD NORAM\nWhen you\u2019re part of the team at Thermo Fisher Scientific, you\u2019ll do meaningful work, that makes a positive impact on a global scale. Join 100,000 colleagues who bring our Mission to life each day to enable our customers to make the world healthier, cleaner and safer. You\u2019ll find the resources here to achieve your career goals and help take science a step beyond by developing solutions for some of the world\u2019s toughest challenges, like protecting the e",
-   "source": "workday",
-   "job_id": "wd-thermofisher-/job/Waltham-Massachusetts-USA/Senior-Director--Sales-North-America_R-01350430",
-   "score": 52.1,
-   "score_parts": {
-    "semantic": 0.387,
-    "skills": 0.778,
-    "level_fit": 0.5,
-    "matched_skills": [
-     "segmentation",
-     "kpi",
-     "strategy"
-    ],
-    "first_seen": "2026-07-07T20:10:23+00:00"
-   },
-   "level": "Senior Director",
-   "is_remote": true
-  },
-  {
-   "company": "Amgen",
-   "title": "Strategic Planning & Operations Director, Rheumatology & Nephrology (Rare Disease)",
-   "location": "United States - Remote",
-   "url": "https://amgen.wd1.myworkdayjobs.com/en-US/Careers/job/United-States---Remote/Strategic-Planning---Operations-Director--Rheumatology---Nephrology--Rare-Disease-_R-246870-1",
-   "posted": "2026-07-07",
-   "description": "Career Category\nProject Management\nJob Description\nJoin Amgen\u2019s Mission of Serving Patients\nAt Amgen, if you feel like you\u2019re part of something bigger, it\u2019s because you are. Our shared mission\u2014to serve patients living with serious illnesses\u2014drives all that we do.\nSince 1980, we\u2019ve helped pioneer the world of biotech in our fight against the world\u2019s toughest diseases. With our focus on four therapeutic areas \u2013Oncology, Inflammation, General Medicine, and Rare Disease\u2013 we reach millions of patients each year. Amgen is advancing a broad and deep pipeline of medicines to treat cancer, heart diseas",
-   "source": "workday",
-   "job_id": "wd-amgen-/job/United-States---Remote/Strategic-Planning---Operations-Director--Rheumatology---Nephrology--Rare-Disease-_R-246870-1",
-   "score": 50.7,
-   "score_parts": {
-    "semantic": 0.387,
-    "skills": 0.579,
-    "level_fit": 0.8,
-    "matched_skills": [
-     "oncology",
-     "forecasting",
-     "operating model",
-     "cross-functional",
-     "strategy"
-    ],
-    "first_seen": "2026-07-07T20:10:23+00:00"
-   },
-   "level": "Director",
-   "is_remote": false
-  },
-  {
-   "company": "Johnson & Johnson",
-   "title": "Sr Manager - QCS Engineering",
-   "location": "52 Locations",
-   "url": "https://jj.wd5.myworkdayjobs.com/en-US/JJ/job/Raritan-New-Jersey-United-States-of-America/Sr-Manager---QCS-Engineering_R-086077-1",
-   "posted": "2026-07-07",
-   "description": "At Johnson & Johnson,\u202fwe believe health is everything. Our strength in healthcare innovation empowers us to build a\u202fworld where complex diseases are prevented, treated, and cured,\u202fwhere treatments are smarter and less invasive, and\u202fsolutions are personal.\u202fThrough our expertise in Innovative Medicine and MedTech, we are uniquely positioned to innovate across the full spectrum of healthcare solutions today to deliver the breakthroughs of tomorrow, and profoundly impact health for humanity.\u202fLearn more at jnj.com\nAs guided by Our Credo, Johnson & Johnson is responsible to our employees who work wi",
-   "source": "workday",
-   "job_id": "wd-jj-/job/Raritan-New-Jersey-United-States-of-America/Sr-Manager---QCS-Engineering_R-086077-1",
-   "score": 49.4,
-   "score_parts": {
-    "semantic": 0.469,
-    "skills": 0.286,
-    "level_fit": 1.0,
-    "matched_skills": [
-     "salesforce",
-     "strategy"
-    ],
-    "first_seen": "2026-07-08T12:57:06+00:00"
-   },
-   "level": "Senior Manager",
-   "is_remote": true
-  },
-  {
-   "company": "Johnson & Johnson",
-   "title": "Director, Global Commercial Strategy \u2013 GI",
-   "location": "2 Locations",
-   "url": "https://jj.wd5.myworkdayjobs.com/en-US/JJ/job/Horsham-Pennsylvania-United-States-of-America/Director--Global-Commercial-Strategy---GI_R-084725-1",
-   "posted": "2026-07-07",
-   "description": "At Johnson & Johnson,\u202fwe believe health is everything. Our strength in healthcare innovation empowers us to build a\u202fworld where complex diseases are prevented, treated, and cured,\u202fwhere treatments are smarter and less invasive, and\u202fsolutions are personal.\u202fThrough our expertise in Innovative Medicine and MedTech, we are uniquely positioned to innovate across the full spectrum of healthcare solutions today to deliver the breakthroughs of tomorrow, and profoundly impact health for humanity.\u202fLearn more at jnj.com .\nAs guided by Our Credo, Johnson & Johnson is responsible to our employees who work ",
-   "source": "workday",
-   "job_id": "wd-jj-/job/Horsham-Pennsylvania-United-States-of-America/Director--Global-Commercial-Strategy---GI_R-084725-1",
-   "score": 49.2,
-   "score_parts": {
-    "semantic": 0.439,
-    "skills": 0.433,
-    "level_fit": 0.8,
-    "matched_skills": [
-     "phd",
-     "forecasting",
-     "launch",
-     "clinical trial",
-     "cross-functional",
-     "strategy"
-    ],
-    "first_seen": "2026-07-08T12:57:06+00:00"
-   },
-   "level": "Director",
-   "is_remote": true
-  },
-  {
-   "company": "Thermo Fisher",
-   "title": "IT Director, Business Partner",
-   "location": "4 Locations",
-   "url": "https://thermofisher.wd5.myworkdayjobs.com/en-US/ThermoFisherCareers/job/Pleasanton-California-USA/IT-Director--Business-Partner_R-01359067",
-   "posted": "2026-07-06",
-   "description": "Work Schedule\nStandard (Mon-Fri)\nEnvironmental Conditions\nOffice\nJob Description\nJoin us as an IT Director and contribute to industry-leading genetic sciences tools and solutions that advance scientific discovery, enable customers in applied markets, and improve global health outcomes.\nAs an IT Director, Business Partner, you will serve as a strategic technology leader and trusted advisor to divisional executive leadership, partnering with VP/GMs and senior functional leaders to shape business strategy and accelerate growth through technology-enabled capabilities. You will drive alignment betw",
-   "source": "workday",
-   "job_id": "wd-thermofisher-/job/Pleasanton-California-USA/IT-Director--Business-Partner_R-01359067",
-   "score": 45.4,
-   "score_parts": {
-    "semantic": 0.28,
-    "skills": 0.6,
-    "level_fit": 0.8,
-    "matched_skills": [
-     "phd",
-     "crm",
-     "cross-functional",
-     "strategy"
-    ],
-    "first_seen": "2026-07-07T20:10:23+00:00"
-   },
-   "level": "Director",
-   "is_remote": true
-  },
-  {
-   "company": "Novartis",
-   "title": "Director, AI Foundations Engineer- Remote",
+   "company": "FastB",
+   "title": "Associate Director, Analytics",
    "location": "Remote",
-   "url": "https://novartis.wd3.myworkdayjobs.com/en-US/Novartis_Careers/job/Remote/Director--AI-Platform-Engineer---Remote_REQ-10080349",
-   "posted": "2026-07-07",
-   "description": "Job Description Summary\nThis position can be based remotely anywhere in the U.S. Please note that this role would not provide relocation as a result. The expectation of working hours and travel (domestic and/or international) will be defined by the Hiring Manager.\nJob Description\nThe Strategy, Platforms & Transformation team is dedicated to enabling improved decision-making at Novartis by leveraging data and advanced analytics capabilities to generate actionable insights that drive business growth. We work within the US business, bringing insights and challenging ideas to empower smarter, data",
-   "source": "workday",
-   "job_id": "wd-novartis-/job/Remote/Director--AI-Platform-Engineer---Remote_REQ-10080349",
-   "score": 41.5,
+   "url": "u-FastB",
+   "posted": "2026-07-05",
+   "description": "analytics",
+   "source": "",
+   "job_id": "",
+   "score": 42.0,
    "score_parts": {
-    "semantic": 0.278,
-    "skills": 0.474,
-    "level_fit": 0.8,
-    "matched_skills": [
-     "machine learning",
-     "operating model",
-     "statistical analysis",
-     "strategy"
-    ],
-    "first_seen": "2026-07-08T12:57:06+00:00"
+    "semantic": 0.219,
+    "skills": 0.5,
+    "level_fit": 1.0,
+    "matched_skills": [],
+    "first_seen": "2026-07-06T12:00:00+00:00"
    },
-   "level": "Director",
+   "level": "Associate Director",
    "is_remote": false
   },
   {
-   "company": "Thermo Fisher",
-   "title": "PDS AD & GMP Technician",
-   "location": "Monza, Italy",
-   "url": "https://thermofisher.wd5.myworkdayjobs.com/en-US/ThermoFisherCareers/job/Monza-Italy/PDS-AD---GMP-Technician_R-01357994",
-   "posted": "2026-07-08",
-   "description": "Work Schedule\n7 1/2 hr shift\nEnvironmental Conditions\nAble to lift 40 lbs. without assistance, Adherence to all Good Manufacturing Practices (GMP) Safety Standards, Cold Room/Freezers -22degreesF/-6degrees C, Laboratory Setting, No contact lens allowed; prescriptive glasses will be provided, Office, Some degree of PPE (Personal Protective Equipment) required (safety glasses, gowning, gloves, lab coat, ear plugs etc.), Will work with hazardous/toxic materials\nJob Description\nAs part of the Thermo Fisher Scientific team, you\u2019ll discover meaningful work that makes a positive impact on a global sc",
-   "source": "workday",
-   "job_id": "wd-thermofisher-/job/Monza-Italy/PDS-AD---GMP-Technician_R-01357994",
-   "score": 39.5,
+   "company": "FastA",
+   "title": "Associate Director, Analytics",
+   "location": "Remote",
+   "url": "u-FastA",
+   "posted": "2026-07-05",
+   "description": "analytics",
+   "source": "",
+   "job_id": "",
+   "score": 42.0,
    "score_parts": {
-    "semantic": 0.174,
+    "semantic": 0.219,
     "skills": 0.5,
     "level_fit": 1.0,
-    "matched_skills": [
-     "cross-functional"
-    ],
-    "first_seen": "2026-07-08T12:57:06+00:00"
+    "matched_skills": [],
+    "first_seen": "2026-07-06T12:00:00+00:00"
    },
    "level": "Associate Director",
-   "is_remote": true
-  },
-  {
-   "company": "Thermo Fisher",
-   "title": "Senior Manager, Supply Chain",
-   "location": "Marietta, Ohio, USA",
-   "url": "https://thermofisher.wd5.myworkdayjobs.com/en-US/ThermoFisherCareers/job/Marietta-Ohio-USA/Senior-Manager--Supply-Chain_R-01346905",
-   "posted": "2026-07-07",
-   "description": "Work Schedule\nFirst Shift (Days)\nEnvironmental Conditions\nAble to lift 40 lbs. without assistance, Adherence to all Good Manufacturing Practices (GMP) Safety Standards, Office, Some degree of PPE (Personal Protective Equipment) required (safety glasses, gowning, gloves, lab coat, ear plugs etc.)\nJob Description\nAs part of the Thermo Fisher Scientific team, you\u2019ll discover meaningful work that makes a positive impact on a global scale. Join our colleagues in bringing our Mission to life every single day to enable our customers to make the world healthier, cleaner and safer. We provide our globa",
-   "source": "workday",
-   "job_id": "wd-thermofisher-/job/Marietta-Ohio-USA/Senior-Manager--Supply-Chain_R-01346905",
-   "score": 34.1,
-   "score_parts": {
-    "semantic": 0.075,
-    "skills": 0.5,
-    "level_fit": 1.0,
-    "matched_skills": [
-     "cross-functional"
-    ],
-    "first_seen": "2026-07-07T20:10:23+00:00"
-   },
-   "level": "Senior Manager",
-   "is_remote": true
+   "is_remote": false
   }
  ],
  "companies_status": [
   {
-   "name": "Amgen",
-   "ats": "workday",
+   "name": "FastA",
+   "ats": "greenhouse",
    "status": "ok",
-   "fetched": 0,
+   "fetched": 1,
    "matches": 1
   },
   {
-   "name": "Gilead Sciences",
-   "ats": "workday",
-   "status": "empty",
-   "fetched": 0,
-   "matches": 0
-  },
-  {
-   "name": "Regeneron",
-   "ats": "workday",
-   "status": "empty",
-   "fetched": 0,
-   "matches": 0
-  },
-  {
-   "name": "Vertex Pharmaceuticals",
-   "ats": "workday",
-   "status": "error",
-   "error_kind": "payload-rejected",
-   "hint": "Endpoint is real but rejected our request format; adapter auto-retries simpler formats \u2014 if persisting, the remaining variants also failed",
-   "error": "workday:vrtx/Vertex_Careers HTTP 422 (all 4 payload variants failed, no CSRF cookie was set by landing page) - {\"errorCode\":\"HTTP_422\",\"errorCaseId\":\"8FDF6AMRC31EYH\",\"httpStatus\":422,\"message\":\"\",\"messageParams\":{}}"
-  },
-  {
-   "name": "Biogen",
-   "ats": "workday",
-   "status": "empty",
-   "fetched": 0,
-   "matches": 0
-  },
-  {
-   "name": "Novo Nordisk",
-   "ats": "unknown",
-   "status": "skipped",
-   "hint": "careers.novonordisk.com -- own custom platform, not Workday"
-  },
-  {
-   "name": "Jazz Pharmaceuticals",
-   "ats": "workday",
-   "status": "error",
-   "error_kind": "payload-rejected",
-   "hint": "Endpoint is real but rejected our request format; adapter auto-retries simpler formats \u2014 if persisting, the remaining variants also failed",
-   "error": "workday:vhr-jazz/JazzPharmaceuticals HTTP 422 (all 4 payload variants failed, no CSRF cookie was set by landing page) - {\"errorCode\":\"HTTP_422\",\"errorCaseId\":\"2636D4MRC31DPZ\",\"httpStatus\":422,\"message\":\"\",\"messageParams\":{}}"
-  },
-  {
-   "name": "Bristol Myers Squibb",
-   "ats": "workday",
-   "status": "empty",
-   "fetched": 0,
-   "matches": 0
-  },
-  {
-   "name": "Pfizer",
-   "ats": "workday",
-   "status": "empty",
-   "fetched": 0,
-   "matches": 0
-  },
-  {
-   "name": "AstraZeneca",
-   "ats": "workday",
-   "status": "empty",
-   "fetched": 0,
-   "matches": 0
-  },
-  {
-   "name": "Takeda",
-   "ats": "workday",
-   "status": "empty",
-   "fetched": 0,
-   "matches": 0
-  },
-  {
-   "name": "AbbVie",
-   "ats": "unknown",
-   "status": "skipped",
-   "hint": "careers.abbvie.com -- own custom platform, not Workday"
-  },
-  {
-   "name": "Eli Lilly",
-   "ats": "workday",
-   "status": "error",
-   "error_kind": "payload-rejected",
-   "hint": "Endpoint is real but rejected our request format; adapter auto-retries simpler formats \u2014 if persisting, the remaining variants also failed",
-   "error": "workday:lilly/LLY HTTP 422 (all 4 payload variants failed, no CSRF cookie was set by landing page) - {\"errorCode\":\"HTTP_422\",\"errorCaseId\":\"3B3B6AMRC31W9M\",\"httpStatus\":422,\"message\":\"\",\"messageParams\":{}}"
-  },
-  {
-   "name": "Otsuka",
-   "ats": "workday",
-   "status": "error",
-   "error_kind": "payload-rejected",
-   "hint": "Endpoint is real but rejected our request format; adapter auto-retries simpler formats \u2014 if persisting, the remaining variants also failed",
-   "error": "workday:otsuka/External HTTP 422 (all 4 payload variants failed, no CSRF cookie was set by landing page) - {\"errorCode\":\"HTTP_422\",\"errorCaseId\":\"E2EB52MRC31ZFD\",\"httpStatus\":422,\"message\":\"\",\"messageParams\":{}}"
-  },
-  {
-   "name": "Moderna",
-   "ats": "workday",
-   "status": "empty",
-   "fetched": 0,
-   "matches": 0
-  },
-  {
-   "name": "Beam Therapeutics",
-   "ats": "greenhouse",
-   "status": "empty",
-   "fetched": 0,
-   "matches": 0
-  },
-  {
-   "name": "Enveda Biosciences",
-   "ats": "lever",
-   "status": "empty",
-   "fetched": 0,
-   "matches": 0
-  },
-  {
-   "name": "Exact Sciences",
-   "ats": "workday",
-   "status": "empty",
-   "fetched": 0,
-   "matches": 0
-  },
-  {
-   "name": "Arrowhead Pharmaceuticals",
-   "ats": "workday",
-   "status": "error",
-   "error_kind": "payload-rejected",
-   "hint": "Endpoint is real but rejected our request format; adapter auto-retries simpler formats \u2014 if persisting, the remaining variants also failed",
-   "error": "workday:arrowheadpharma/careers HTTP 422 (all 4 payload variants failed, no CSRF cookie was set by landing page) - {\"errorCode\":\"HTTP_422\",\"errorCaseId\":\"D21463MRC32M4M\",\"httpStatus\":422,\"message\":\"\",\"messageParams\":{}}"
-  },
-  {
-   "name": "Corteva Agriscience",
-   "ats": "workday",
-   "status": "error",
-   "error_kind": "payload-rejected",
-   "hint": "Endpoint is real but rejected our request format; adapter auto-retries simpler formats \u2014 if persisting, the remaining variants also failed",
-   "error": "workday:corteva/External HTTP 422 (all 4 payload variants failed, no CSRF cookie was set by landing page) - {\"errorCode\":\"HTTP_422\",\"errorCaseId\":\"3C6EE0MRC32QR5\",\"httpStatus\":422,\"message\":\"\",\"messageParams\":{}}"
-  },
-  {
-   "name": "Indigo Ag",
-   "ats": "greenhouse",
-   "status": "empty",
-   "fetched": 0,
-   "matches": 0
-  },
-  {
-   "name": "Pivot Bio",
-   "ats": "greenhouse",
-   "status": "empty",
-   "fetched": 0,
-   "matches": 0
-  },
-  {
-   "name": "Inari",
+   "name": "SlowCorp",
    "ats": "greenhouse",
    "status": "error",
-   "error_kind": "not-found",
-   "hint": "Board/tenant not found \u2014 either the slug is wrong or the board currently has zero openings",
-   "error": "greenhouse:inariagriculture HTTP 404 - board empty (no openings) OR slug wrong; check boards.greenhouse.io/inariagriculture in a browser"
+   "error_kind": "slow",
+   "hint": "Endpoint too slow this run; skipped, will retry next scan",
+   "error": "timed out (slow endpoint) - skipped this run, will retry tomorrow"
   },
   {
-   "name": "Genentech (Roche)",
-   "ats": "workday",
-   "status": "empty",
-   "fetched": 0,
-   "matches": 0
-  },
-  {
-   "name": "Johnson & Johnson",
-   "ats": "workday",
+   "name": "FastB",
+   "ats": "greenhouse",
    "status": "ok",
-   "fetched": 0,
-   "matches": 5
-  },
-  {
-   "name": "Merck",
-   "ats": "workday",
-   "status": "ok",
-   "fetched": 0,
+   "fetched": 1,
    "matches": 1
-  },
-  {
-   "name": "Novartis",
-   "ats": "workday",
-   "status": "ok",
-   "fetched": 0,
-   "matches": 1
-  },
-  {
-   "name": "Thermo Fisher",
-   "ats": "workday",
-   "status": "ok",
-   "fetched": 0,
-   "matches": 9
-  },
-  {
-   "name": "Bayer Crop Science",
-   "ats": "unknown",
-   "status": "skipped",
-   "hint": "career.bayer.com (SuccessFactors)"
-  },
-  {
-   "name": "Syngenta",
-   "ats": "unknown",
-   "status": "skipped",
-   "hint": "syngenta.com careers (SuccessFactors)"
-  },
-  {
-   "name": "Veeva",
-   "ats": "lever",
-   "status": "empty",
-   "fetched": 0,
-   "matches": 0
-  },
-  {
-   "name": "Komodo Health",
-   "ats": "greenhouse",
-   "status": "empty",
-   "fetched": 0,
-   "matches": 0
   }
  ],
  "errors": [
   {
-   "company": "Jazz Pharmaceuticals",
-   "error": "workday:vhr-jazz/JazzPharmaceuticals HTTP 422 (all 4 payload variants failed, no CSRF cookie was set by landing page) - {\"errorCode\":\"HTTP_422\",\"errorCaseId\":\"2636D4MRC31DPZ\",\"httpStatus\":422,\"message\":\"\",\"messageParams\":{}}"
-  },
-  {
-   "company": "Vertex Pharmaceuticals",
-   "error": "workday:vrtx/Vertex_Careers HTTP 422 (all 4 payload variants failed, no CSRF cookie was set by landing page) - {\"errorCode\":\"HTTP_422\",\"errorCaseId\":\"8FDF6AMRC31EYH\",\"httpStatus\":422,\"message\":\"\",\"messageParams\":{}}"
-  },
-  {
-   "company": "Eli Lilly",
-   "error": "workday:lilly/LLY HTTP 422 (all 4 payload variants failed, no CSRF cookie was set by landing page) - {\"errorCode\":\"HTTP_422\",\"errorCaseId\":\"3B3B6AMRC31W9M\",\"httpStatus\":422,\"message\":\"\",\"messageParams\":{}}"
-  },
-  {
-   "company": "Otsuka",
-   "error": "workday:otsuka/External HTTP 422 (all 4 payload variants failed, no CSRF cookie was set by landing page) - {\"errorCode\":\"HTTP_422\",\"errorCaseId\":\"E2EB52MRC31ZFD\",\"httpStatus\":422,\"message\":\"\",\"messageParams\":{}}"
-  },
-  {
-   "company": "Arrowhead Pharmaceuticals",
-   "error": "workday:arrowheadpharma/careers HTTP 422 (all 4 payload variants failed, no CSRF cookie was set by landing page) - {\"errorCode\":\"HTTP_422\",\"errorCaseId\":\"D21463MRC32M4M\",\"httpStatus\":422,\"message\":\"\",\"messageParams\":{}}"
-  },
-  {
-   "company": "Corteva Agriscience",
-   "error": "workday:corteva/External HTTP 422 (all 4 payload variants failed, no CSRF cookie was set by landing page) - {\"errorCode\":\"HTTP_422\",\"errorCaseId\":\"3C6EE0MRC32QR5\",\"httpStatus\":422,\"message\":\"\",\"messageParams\":{}}"
-  },
-  {
-   "company": "Inari",
-   "error": "greenhouse:inariagriculture HTTP 404 - board empty (no openings) OR slug wrong; check boards.greenhouse.io/inariagriculture in a browser"
+   "company": "SlowCorp",
+   "error": "timed out (slow endpoint) - skipped this run, will retry tomorrow"
   }
  ],
  "partial": false

@@ -200,6 +200,46 @@ def test_workday_csrf_warmup_recovers_422():
     assert len(jobs) == 1 and jobs[0].title.startswith("Associate Director")
 
 
+def test_workday_csrf_token_extracted_from_page_html():
+    """Tenants that set the CSRF cookie via JavaScript send no Set-Cookie header;
+    the token is embedded in the landing page HTML. Verify we extract it and
+    satisfy a tenant requiring BOTH matching cookie and header."""
+    import json as _json
+    from jobradar.adapters import workday as W
+
+    class FakeResp:
+        def __init__(self, status, postings=None, text=None):
+            self.status_code = status
+            self._p = postings if postings is not None else []
+            self.text = text if text is not None else (
+                _json.dumps({"jobPostings": self._p}) if status == 200 else '{"httpStatus":422}')
+        def json(self): return {"jobPostings": self._p, "jobPostingInfo": {}}
+
+    class FakeCookies(dict):
+        def get(self, k): return dict.get(self, k)
+        def set(self, k, v, domain=None): self[k] = v
+    class FakeInner:
+        def __init__(self): self.cookies = FakeCookies()
+    class FakeSession:
+        def __init__(self): self.s = FakeInner()
+        def get(self, url, **kw):
+            if "/en-US/" in url and "/job/" not in url:
+                return FakeResp(200, text='<script>{"csrfToken":"tok-x"}</script>')
+            return FakeResp(200)
+        def post(self, url, headers=None, json=None, **kw):
+            ok = (self.s.cookies.get("CALYPSO_CSRF_TOKEN") == "tok-x"
+                  and headers and headers.get("X-CALYPSO-CSRF-TOKEN") == "tok-x")
+            if not ok:
+                return FakeResp(422)
+            return FakeResp(200, postings=[{"externalPath": "/job/Y",
+                "title": "Senior Manager, Analytics", "locationsText": "Remote",
+                "postedOn": "Posted Today"}] if json.get("offset", 0) == 0 else [])
+
+    jobs = W.fetch_workday("X", "t2", "wd5", "Site", FakeSession(),
+                            search_terms=["analytics"], detail_prefilter=None, detail_cache={})
+    assert len(jobs) == 1 and "Senior Manager" in jobs[0].title
+
+
 if __name__ == "__main__":
     fns = [v for k, v in sorted(globals().items()) if k.startswith("test_")]
     for fn in fns:

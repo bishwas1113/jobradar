@@ -41,16 +41,43 @@ def parse_posted_on(text: str) -> Optional[str]:
     return None
 
 
+_CSRF_BODY_RES = [
+    re.compile(r'CALYPSO_CSRF_TOKEN["\']?\s*[:=]\s*["\']([\w.-]+)["\']'),
+    re.compile(r'["\']csrfToken["\']\s*:\s*["\']([\w.-]+)["\']'),
+    re.compile(r'name=["\']csrf-token["\']\s+content=["\']([\w.-]+)["\']'),
+]
+
+
 def _wd_warmup(session, tenant, wd, site) -> dict:
     """Some Workday tenants reject CXS API POSTs with a bare 422 unless the
-    request carries the CSRF token a browser would have — obtained by first
-    visiting the public careers landing page (which sets a CALYPSO_CSRF_TOKEN
-    cookie). Do that warm-up GET and return the matching header if the cookie
-    appears. Harmless no-op for tenants that don't require it."""
+    request carries the CSRF token a browser would have. Browsers get it two
+    ways: (1) a Set-Cookie header on the landing page, or (2) JavaScript that
+    reads a token embedded in the page HTML and sets the cookie client-side.
+    We handle both: do the warm-up GET, take the cookie if the server set one,
+    otherwise extract the token straight from the HTML (no JS execution
+    needed -- the token is in the page source for the JS to read).
+    Harmless no-op for tenants that don't require it."""
     landing = f"https://{tenant}.{wd}.myworkdayjobs.com/en-US/{site}"
-    session.get(landing)  # cookies persist on the underlying requests.Session
+    r = session.get(landing)  # cookies persist on the underlying requests.Session
     token = session.s.cookies.get("CALYPSO_CSRF_TOKEN")
-    return {"X-CALYPSO-CSRF-TOKEN": token} if token else {}
+    source = "cookie"
+    if not token and r is not None and r.text:
+        for pat in _CSRF_BODY_RES:
+            m = pat.search(r.text)
+            if m:
+                token = m.group(1)
+                source = "page-html"
+                # Tenants usually require the cookie AND header to match, the
+                # way a browser would send them after its JS sets the cookie.
+                try:
+                    session.s.cookies.set("CALYPSO_CSRF_TOKEN", token,
+                                          domain=f"{tenant}.{wd}.myworkdayjobs.com")
+                except Exception:
+                    pass
+                break
+    if token:
+        return {"X-CALYPSO-CSRF-TOKEN": token, "_source": source}
+    return {}
 
 
 def _wd_post_resilient(session, list_url, term, offset, page_size, extra_headers=None):
@@ -93,8 +120,9 @@ def fetch_workday(
     start = time.monotonic()
     list_url = LIST_URL.format(tenant=tenant, wd=wd, site=site)
     seen: dict[str, Job] = {}
-    # Warm-up: obtain the CSRF cookie some tenants require before API POSTs.
+    # Warm-up: obtain the CSRF token some tenants require before API POSTs.
     csrf_headers = _wd_warmup(session, tenant, wd, site)
+    csrf_source = csrf_headers.pop("_source", None)  # diagnostics only, not a header
 
     for term in search_terms:
         if time.monotonic() - start > max_seconds:
@@ -107,7 +135,8 @@ def fetch_workday(
             if r is None or r.status_code != 200:
                 if page == 0 and term == search_terms[0]:
                     body = (r.text[:200] if r is not None else "no response")
-                    tried = "with CSRF token" if csrf_headers else "no CSRF cookie was set by landing page"
+                    tried = (f"CSRF token from {csrf_source}" if csrf_source
+                             else "no CSRF token found in cookie or page HTML")
                     raise RuntimeError(
                         f"workday:{tenant}/{site} HTTP {getattr(r, 'status_code', 'ERR')} "
                         f"(all 4 payload variants failed, {tried}) - {body}"

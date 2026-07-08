@@ -30,9 +30,15 @@ SHARDS = ["wd1", "wd2", "wd3", "wd5", "wd10", "wd12", "wd101", "wd103", "wd501"]
 
 
 def _wd_probe(session, tenant, wd, site) -> tuple[bool, int, str]:
-    """One live Workday probe. Returns (ok, total_postings, sample_title)."""
+    """One live Workday probe — using the exact same CSRF warm-up as the real
+    pipeline (cookie or page-HTML token), so verify and scan can't disagree.
+    Returns (ok, total_postings, sample_title)."""
+    from .adapters.workday import _wd_warmup
+    headers = _wd_warmup(session, tenant, wd, site)
+    headers.pop("_source", None)
     url = f"https://{tenant}.{wd}.myworkdayjobs.com/wday/cxs/{tenant}/{site}/jobs"
-    r = session.post(url, json={"appliedFacets": {}, "limit": 3, "offset": 0, "searchText": ""})
+    r = session.post(url, headers=headers or None,
+                     json={"appliedFacets": {}, "limit": 3, "offset": 0, "searchText": ""})
     if r is not None and r.status_code == 200 and "jobPostings" in r.text:
         data = r.json()
         postings = data.get("jobPostings", [])

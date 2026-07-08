@@ -56,7 +56,17 @@ def location_ok(job: Job, allowed: List[str], allow_remote: bool = True) -> bool
     loc = (job.location or "").lower()
     if allow_remote and (job.is_remote or "remote" in loc):
         return True
-    return any(a.lower() in loc for a in allowed) if allowed else True
+    if not allowed:
+        return True
+    for a in allowed:
+        a_low = a.lower()
+        if len(a) <= 3:
+            if re.search(r'\b' + re.escape(a_low) + r'\b', loc):
+                return True
+        else:
+            if a_low in loc:
+                return True
+    return False
 
 
 def recent_enough(job: Job, max_age_days: int) -> bool:

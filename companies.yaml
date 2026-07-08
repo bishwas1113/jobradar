@@ -6,12 +6,27 @@ search_terms:
 - pipeline analytics
 - R&D data
 locations:
-- Philadelphia
+- PA
 - Pennsylvania
-- New York
-- Boston
-- Massachusetts
+- NJ
 - New Jersey
+- NY
+- New York
+- MA
+- Massachusetts
+- DE
+- Delaware
+- CA
+- California
+- WA
+- Washington
+- United Kingdom
+- UK
+- London
+- Great Britain
+- Portugal
+- Denmark
+- Spain
 allow_remote: true
 weights:
   semantic: 0.55

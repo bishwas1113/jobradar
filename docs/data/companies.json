@@ -8,12 +8,27 @@
   "R&D data"
  ],
  "locations": [
-  "Philadelphia",
+  "PA",
   "Pennsylvania",
+  "NJ",
+  "New Jersey",
+  "NY",
   "New York",
-  "Boston",
+  "MA",
   "Massachusetts",
-  "New Jersey"
+  "DE",
+  "Delaware",
+  "CA",
+  "California",
+  "WA",
+  "Washington",
+  "United Kingdom",
+  "UK",
+  "London",
+  "Great Britain",
+  "Portugal",
+  "Denmark",
+  "Spain"
  ],
  "allow_remote": true,
  "weights": {

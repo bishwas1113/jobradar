@@ -69,15 +69,22 @@ def _skill_score(resume_skills: dict, jd_text: str) -> tuple[float, list]:
     return score, sorted(overlap, key=overlap.get, reverse=True)
 
 
-def score_jobs(jobs: List[Job], profile: ResumeProfile) -> List[Job]:
+def score_jobs(jobs: List[Job], profile: ResumeProfile, weights: dict | None = None, level_fit: dict | None = None) -> List[Job]:
     if not jobs:
         return jobs
+    if weights is None:
+        weights = {"semantic": 0.55, "skills": 0.30, "level": 0.15}
+    if level_fit is None:
+        level_fit = _LEVEL_FIT
+
     jd_texts = [f"{j.title}\n{j.description}" for j in jobs]
     semantic = _semantic_batch(profile.full_text, jd_texts)
     for j, jd_text, sem in zip(jobs, jd_texts, semantic):
         skill, matched = _skill_score(profile.skills, jd_text)
-        level = _LEVEL_FIT.get(j.level or "", 0.4)
-        final = 100 * (0.55 * sem + 0.30 * skill + 0.15 * level)
+        level = level_fit.get(j.level or "", 0.4)
+        final = 100 * (weights.get("semantic", 0.55) * sem + 
+                       weights.get("skills", 0.30) * skill + 
+                       weights.get("level", 0.15) * level)
         j.score = round(final, 1)
         j.score_parts = {
             "semantic": round(sem, 3),

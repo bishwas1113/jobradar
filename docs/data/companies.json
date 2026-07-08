@@ -7,6 +7,26 @@
   "pipeline analytics",
   "R&D data"
  ],
+ "locations": [
+  "Philadelphia",
+  "Pennsylvania",
+  "New York",
+  "Boston",
+  "Massachusetts",
+  "New Jersey"
+ ],
+ "allow_remote": true,
+ "weights": {
+  "semantic": 0.55,
+  "skills": 0.3,
+  "level": 0.15
+ },
+ "level_fit": {
+  "Senior Manager": 1.0,
+  "Associate Director": 1.0,
+  "Director": 0.8,
+  "Senior Director": 0.5
+ },
  "companies": [
   {
    "name": "Amgen",

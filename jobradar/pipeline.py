@@ -63,8 +63,19 @@ def export_companies(cfg: dict) -> None:
             "url": company_url(c),
         })
     OUT.mkdir(parents=True, exist_ok=True)
-    (OUT / "companies.json").write_text(json.dumps(
-        {"search_terms": cfg.get("search_terms", []), "companies": rows}, indent=1))
+    (OUT / "companies.json").write_text(json.dumps({
+        "search_terms": cfg.get("search_terms", []),
+        "locations": cfg.get("locations", ["Philadelphia", "Pennsylvania"]),
+        "allow_remote": cfg.get("allow_remote", True),
+        "weights": cfg.get("weights", {"semantic": 0.55, "skills": 0.30, "level": 0.15}),
+        "level_fit": cfg.get("level_fit", {
+            "Senior Manager": 1.0,
+            "Associate Director": 1.0,
+            "Director": 0.8,
+            "Senior Director": 0.5
+        }),
+        "companies": rows
+    }, indent=1))
 
 
 def load_seen() -> dict:
@@ -84,7 +95,7 @@ def build_payload(jobs: list[Job], profile, cfg: dict, max_age_days: int,
         "allow_remote": cfg.get("allow_remote", True),
         "max_age_days": max_age_days,
     })
-    filtered = score_jobs(filtered, profile)
+    filtered = score_jobs(filtered, profile, weights=cfg.get("weights"), level_fit=cfg.get("level_fit"))
     for j in filtered:
         k = job_key(j)
         j.score_parts["first_seen"] = seen.get(k, now)

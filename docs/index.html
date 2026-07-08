@@ -150,6 +150,7 @@ label.sm{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(
   <div class="tabs" role="tablist">
     <button class="tab" role="tab" aria-selected="true" data-tab="matches">Matches</button>
     <button class="tab" role="tab" aria-selected="false" data-tab="companies">Companies</button>
+    <button class="tab" role="tab" aria-selected="false" data-tab="config">Configuration</button>
   </div>
 
   <section id="panel-matches">
@@ -207,6 +208,85 @@ label.sm{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(
     <div class="sub-title" id="companiesCount">Configured companies</div>
     <input type="text" id="companySearch" placeholder="Filter companies…" class="filter-input">
     <div id="companiesList"></div>
+  </section>
+
+  <section id="panel-config" hidden>
+    <div class="add-company">
+      <div class="add-title">Selection Filters &amp; Search Terms</div>
+      <div class="add-sub">Customize which jobs are filtered in and search queries used in daily scans.</div>
+      
+      <div style="margin-bottom: 15px;">
+        <label style="font-weight: 500; display: block; margin-bottom: 6px;">Search Terms (one per line)</label>
+        <textarea id="cfgSearchTerms" style="width:100%; height:120px; font-family:var(--body); font-size:13px; padding:8px 10px; border:1px solid var(--line); border-radius:6px; background:var(--paper); color:var(--ink)"></textarea>
+      </div>
+
+      <div style="margin-bottom: 15px;">
+        <label style="font-weight: 500; display: block; margin-bottom: 6px;">Locations (one per line)</label>
+        <textarea id="cfgLocations" style="width:100%; height:120px; font-family:var(--body); font-size:13px; padding:8px 10px; border:1px solid var(--line); border-radius:6px; background:var(--paper); color:var(--ink)"></textarea>
+      </div>
+
+      <div style="margin-bottom: 15px; display: flex; align-items: center; gap: 8px;">
+        <input type="checkbox" id="cfgAllowRemote" style="cursor: pointer; width: 16px; height: 16px; accent-color: var(--moss)">
+        <label for="cfgAllowRemote" style="font-weight: 500; cursor: pointer;">Allow Remote Jobs</label>
+      </div>
+    </div>
+
+    <div class="add-company" style="margin-top: 18px;">
+      <div class="add-title">Scoring Weights &amp; Level Fit</div>
+      <div class="add-sub">Adjust the priority of semantic similarity, skill overlaps, and level match. Sum must be 1.0 (100%).</div>
+      
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; margin-bottom: 20px;">
+        <div>
+          <label style="font-weight: 500; display: block; margin-bottom: 4px;">Semantic Similarity (0-1)</label>
+          <input type="number" id="cfgWeightSemantic" step="0.05" min="0" max="1" style="width:100%; font-family:var(--body); font-size:13px; padding:8px 10px; border:1px solid var(--line); border-radius:6px; background:var(--paper); color:var(--ink)">
+        </div>
+        <div>
+          <label style="font-weight: 500; display: block; margin-bottom: 4px;">Skill Overlap (0-1)</label>
+          <input type="number" id="cfgWeightSkills" step="0.05" min="0" max="1" style="width:100%; font-family:var(--body); font-size:13px; padding:8px 10px; border:1px solid var(--line); border-radius:6px; background:var(--paper); color:var(--ink)">
+        </div>
+        <div>
+          <label style="font-weight: 500; display: block; margin-bottom: 4px;">Seniority Level Match (0-1)</label>
+          <input type="number" id="cfgWeightLevel" step="0.05" min="0" max="1" style="width:100%; font-family:var(--body); font-size:13px; padding:8px 10px; border:1px solid var(--line); border-radius:6px; background:var(--paper); color:var(--ink)">
+        </div>
+      </div>
+
+      <div class="add-title" style="font-size: 14.5px; margin-top: 10px;">Seniority Level Fit Preference</div>
+      <div class="add-sub" style="margin-bottom: 12px;">Value from 0.0 (ignored) to 1.0 (perfect fit).</div>
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 15px;">
+        <div>
+          <label style="font-weight: 500; display: block; margin-bottom: 4px;">Senior Manager</label>
+          <input type="number" id="cfgFitSrMgr" step="0.1" min="0" max="1" style="width:100%; font-family:var(--body); font-size:13px; padding:8px 10px; border:1px solid var(--line); border-radius:6px; background:var(--paper); color:var(--ink)">
+        </div>
+        <div>
+          <label style="font-weight: 500; display: block; margin-bottom: 4px;">Associate Director</label>
+          <input type="number" id="cfgFitAssocDir" step="0.1" min="0" max="1" style="width:100%; font-family:var(--body); font-size:13px; padding:8px 10px; border:1px solid var(--line); border-radius:6px; background:var(--paper); color:var(--ink)">
+        </div>
+        <div>
+          <label style="font-weight: 500; display: block; margin-bottom: 4px;">Director</label>
+          <input type="number" id="cfgFitDir" step="0.1" min="0" max="1" style="width:100%; font-family:var(--body); font-size:13px; padding:8px 10px; border:1px solid var(--line); border-radius:6px; background:var(--paper); color:var(--ink)">
+        </div>
+        <div>
+          <label style="font-weight: 500; display: block; margin-bottom: 4px;">Senior Director</label>
+          <input type="number" id="cfgFitSrDir" step="0.1" min="0" max="1" style="width:100%; font-family:var(--body); font-size:13px; padding:8px 10px; border:1px solid var(--line); border-radius:6px; background:var(--paper); color:var(--ink)">
+        </div>
+      </div>
+
+      <div class="apply-row" style="margin-top: 24px;">
+        <button class="btn-primary" id="copyYamlConfigBtn">Copy updated companies.yaml</button>
+        <button class="btn-primary" id="downloadYamlConfigBtn">Download companies.yaml</button>
+      </div>
+    </div>
+
+    <div class="add-company" style="margin-top: 18px; margin-bottom: 40px;">
+      <div class="add-title">Customize Resume (resume.txt)</div>
+      <div class="add-sub">Paste your real resume text below. Scoring is calculated against this text.</div>
+      <textarea id="cfgResumeText" style="width:100%; height:250px; font-family:monospace; font-size:12.5px; line-height:1.4; padding:10px 12px; border:1px solid var(--line); border-radius:6px; background:var(--paper); color:var(--ink)"></textarea>
+      
+      <div class="apply-row" style="margin-top: 18px;">
+        <button class="btn-primary" id="copyResumeBtn">Copy updated resume.txt</button>
+        <button class="btn-primary" id="downloadResumeBtn">Download resume.txt</button>
+      </div>
+    </div>
   </section>
 </div>
 
@@ -395,6 +475,7 @@ document.querySelectorAll(".tab").forEach(t=>t.onclick=()=>{
   t.setAttribute("aria-selected","true");
   $("#panel-matches").hidden=t.dataset.tab!=="matches";
   $("#panel-companies").hidden=t.dataset.tab!=="companies";
+  $("#panel-config").hidden=t.dataset.tab!=="config";
 });
 
 function detectATS(url){
@@ -453,9 +534,46 @@ function buildYaml(){
       .map(c=>({name:c.name,ats:c.ats,tenant:c.tenant,wd:c.wd,site:c.site,board:c.board,
                 verified:c.verified,note:c.note})),
     ...pending.filter(p=>!removed.has(p.name))];
-  const terms=(COMPANIES.search_terms||[]).map(t=>`  - "${t}"`).join("\n");
+  
+  const terms = ($("#cfgSearchTerms").value||"").split("\n").map(t=>t.trim()).filter(Boolean);
+  const locs = ($("#cfgLocations").value||"").split("\n").map(l=>l.trim()).filter(Boolean);
+  const allowRemote = $("#cfgAllowRemote").checked;
+
+  const wSemantic = parseFloat($("#cfgWeightSemantic").value)||0.55;
+  const wSkills = parseFloat($("#cfgWeightSkills").value)||0.30;
+  const wLevel = parseFloat($("#cfgWeightLevel").value)||0.15;
+
+  const fSrMgr = parseFloat($("#cfgFitSrMgr").value)||1.0;
+  const fAssocDir = parseFloat($("#cfgFitAssocDir").value)||1.0;
+  const fDir = parseFloat($("#cfgFitDir").value)||0.8;
+  const fSrDir = parseFloat($("#cfgFitSrDir").value)||0.5;
+
+  const termsYaml=terms.map(t=>`  - ${yamlEscape(t)}`).join("\n");
+  const locsYaml=locs.map(l=>`  - ${yamlEscape(l)}`).join("\n");
   const body=all.map(toYamlEntry).join("\n");
-  return`search_terms:\n${terms}\n\ncompanies:\n${body}\n`;
+
+  return `search_terms:
+${termsYaml}
+
+locations:
+${locsYaml}
+
+allow_remote: ${allowRemote}
+
+weights:
+  semantic: ${wSemantic}
+  skills: ${wSkills}
+  level: ${wLevel}
+
+level_fit:
+  Senior Manager: ${fSrMgr}
+  Associate Director: ${fAssocDir}
+  Director: ${fDir}
+  Senior Director: ${fSrDir}
+
+companies:
+${body}
+`;
 }
 
 function renderPending(){
@@ -534,11 +652,79 @@ function renderCompanies(){
 }
 $("#companySearch").oninput=renderCompanies;
 
+function populateConfigFields(d){
+  $("#cfgSearchTerms").value=(d.search_terms||[]).join("\n");
+  $("#cfgLocations").value=(d.locations||[]).join("\n");
+  $("#cfgAllowRemote").checked=d.allow_remote!==false;
+  
+  const w=d.weights||{semantic: 0.55, skills: 0.30, level: 0.15};
+  $("#cfgWeightSemantic").value=w.semantic;
+  $("#cfgWeightSkills").value=w.skills;
+  $("#cfgWeightLevel").value=w.level;
+
+  const f=d.level_fit||{"Senior Manager": 1.0, "Associate Director": 1.0, "Director": 0.8, "Senior Director": 0.5};
+  $("#cfgFitSrMgr").value=f["Senior Manager"];
+  $("#cfgFitAssocDir").value=f["Associate Director"];
+  $("#cfgFitDir").value=f["Director"];
+  $("#cfgFitSrDir").value=f["Senior Director"];
+}
+
 fetch("data/companies.json").then(r=>r.json()).then(d=>{
   COMPANIES=d;
   renderCompanies();
   renderPending();
+  populateConfigFields(d);
 }).catch(()=>{$("#companiesList").innerHTML='<div class="empty">No company data yet — run the pipeline once.</div>';});
+
+fetch("resume.txt").then(r=>{
+  if(r.status===200) return r.text();
+  throw new Error("fail");
+}).then(t=>{
+  $("#cfgResumeText").value=t;
+}).catch(()=>{
+  fetch("../resume.txt").then(r=>r.text()).then(t=>{
+    $("#cfgResumeText").value=t;
+  }).catch(()=>{});
+});
+
+$("#copyYamlConfigBtn").onclick=async()=>{
+  const y=buildYaml();
+  try{ await navigator.clipboard.writeText(y); }
+  catch(e){
+    const ta=document.createElement("textarea");ta.value=y;document.body.appendChild(ta);
+    ta.select();document.execCommand("copy");ta.remove();
+  }
+  const b=$("#copyYamlConfigBtn");b.textContent="Copied!";
+  setTimeout(()=>b.textContent="Copy updated companies.yaml",2000);
+};
+
+$("#downloadYamlConfigBtn").onclick=()=>{
+  const blob=new Blob([buildYaml()],{type:"text/yaml"});
+  const a=document.createElement("a");
+  a.href=URL.createObjectURL(blob);a.download="companies.yaml";a.click();
+};
+
+const copyResumeText=()=>{
+  const txt=$("#cfgResumeText").value;
+  return txt;
+};
+
+$("#copyResumeBtn").onclick=async()=>{
+  const txt=copyResumeText();
+  try{ await navigator.clipboard.writeText(txt); }
+  catch(e){
+    const ta=document.createElement("textarea");ta.value=txt;document.body.appendChild(ta);
+    ta.select();document.execCommand("copy");ta.remove();
+  }
+  const b=$("#copyResumeBtn");b.textContent="Copied!";
+  setTimeout(()=>b.textContent="Copy updated resume.txt",2000);
+};
+
+$("#downloadResumeBtn").onclick=()=>{
+  const blob=new Blob([copyResumeText()],{type:"text/plain"});
+  const a=document.createElement("a");
+  a.href=URL.createObjectURL(blob);a.download="resume.txt";a.click();
+};
 
 </script>
 </body>

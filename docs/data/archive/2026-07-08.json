@@ -1,7 +1,7 @@
 {
- "generated_at": "2026-07-08T12:57:06+00:00",
+ "generated_at": "2026-07-08T17:41:35+00:00",
  "max_age_days": 3,
- "raw_postings": 1666,
+ "raw_postings": 1679,
  "matches": [
   {
    "company": "Merck",
@@ -27,7 +27,7 @@
      "oncology",
      "phd"
     ],
-    "first_seen": "2026-07-08T12:57:06+00:00"
+    "first_seen": "2026-07-08T17:41:35+00:00"
    },
    "level": "Associate Director",
    "is_remote": false
@@ -49,7 +49,7 @@
     "matched_skills": [
      "strategy"
     ],
-    "first_seen": "2026-07-07T20:10:23+00:00"
+    "first_seen": "2026-07-08T17:41:35+00:00"
    },
    "level": "Associate Director",
    "is_remote": true
@@ -74,7 +74,7 @@
      "cross-functional",
      "strategy"
     ],
-    "first_seen": "2026-07-07T20:10:23+00:00"
+    "first_seen": "2026-07-08T17:41:35+00:00"
    },
    "level": "Senior Manager",
    "is_remote": true
@@ -99,7 +99,7 @@
      "power bi",
      "cross-functional"
     ],
-    "first_seen": "2026-07-07T20:10:23+00:00"
+    "first_seen": "2026-07-08T17:41:35+00:00"
    },
    "level": "Senior Manager",
    "is_remote": true
@@ -125,7 +125,7 @@
      "cross-functional",
      "strategy"
     ],
-    "first_seen": "2026-07-08T12:57:06+00:00"
+    "first_seen": "2026-07-08T17:41:35+00:00"
    },
    "level": "Associate Director",
    "is_remote": false
@@ -150,7 +150,7 @@
      "cross-functional",
      "strategy"
     ],
-    "first_seen": "2026-07-07T20:10:23+00:00"
+    "first_seen": "2026-07-08T17:41:35+00:00"
    },
    "level": "Associate Director",
    "is_remote": true
@@ -176,7 +176,7 @@
      "cross-functional",
      "strategy"
     ],
-    "first_seen": "2026-07-08T12:57:06+00:00"
+    "first_seen": "2026-07-08T17:41:35+00:00"
    },
    "level": "Associate Director",
    "is_remote": true
@@ -199,7 +199,7 @@
      "cross-functional",
      "strategy"
     ],
-    "first_seen": "2026-07-08T12:57:06+00:00"
+    "first_seen": "2026-07-08T17:41:35+00:00"
    },
    "level": "Associate Director",
    "is_remote": true
@@ -223,7 +223,7 @@
      "cross-functional",
      "strategy"
     ],
-    "first_seen": "2026-07-08T12:57:06+00:00"
+    "first_seen": "2026-07-08T17:41:35+00:00"
    },
    "level": "Associate Director",
    "is_remote": false
@@ -247,7 +247,7 @@
      "kpi",
      "strategy"
     ],
-    "first_seen": "2026-07-07T20:10:23+00:00"
+    "first_seen": "2026-07-08T17:41:35+00:00"
    },
    "level": "Senior Director",
    "is_remote": true
@@ -273,7 +273,7 @@
      "cross-functional",
      "strategy"
     ],
-    "first_seen": "2026-07-07T20:10:23+00:00"
+    "first_seen": "2026-07-08T17:41:35+00:00"
    },
    "level": "Director",
    "is_remote": false
@@ -296,7 +296,7 @@
      "salesforce",
      "strategy"
     ],
-    "first_seen": "2026-07-08T12:57:06+00:00"
+    "first_seen": "2026-07-08T17:41:35+00:00"
    },
    "level": "Senior Manager",
    "is_remote": true
@@ -323,10 +323,37 @@
      "cross-functional",
      "strategy"
     ],
-    "first_seen": "2026-07-08T12:57:06+00:00"
+    "first_seen": "2026-07-08T17:41:35+00:00"
    },
    "level": "Director",
    "is_remote": true
+  },
+  {
+   "company": "Merck",
+   "title": "Associate Director, Ophthalmology HCP Medical Education Marketing",
+   "location": "USA - Pennsylvania - North Wales (Upper Gwynedd)",
+   "url": "https://msd.wd5.myworkdayjobs.com/en-US/SearchJobs/job/USA---Pennsylvania---North-Wales-Upper-Gwynedd/Associate-Director--Ophthalmology-HCP-Medical-Education-Marketing_R399964-1",
+   "posted": "2026-07-08",
+   "description": "Job Description\nOur US Ophthalmology team is committed to transforming the lives of patients living with diabetic macular edema (DME) and neovascular age-related macular degeneration (nAMD) with a portfolio of two products in the pipeline. We aspire to achieve this through a relentless commitment to patients, innovation, ensuring access to life\u2011changing therapies, and collaborating with healthcare systems, governments, and payers to make treatments available to those who need them most. Our focus is on patients, scientific rigor, and flawless execution\u2014bringing breakthrough therapies to those ",
+   "source": "workday",
+   "job_id": "wd-msd-/job/USA---Pennsylvania---North-Wales-Upper-Gwynedd/Associate-Director--Ophthalmology-HCP-Medical-Education-Marketing_R399964-1",
+   "score": 47.7,
+   "score_parts": {
+    "semantic": 0.358,
+    "skills": 0.433,
+    "level_fit": 1.0,
+    "matched_skills": [
+     "segmentation",
+     "kpi",
+     "launch",
+     "power bi",
+     "cross-functional",
+     "strategy"
+    ],
+    "first_seen": "2026-07-08T17:41:35+00:00"
+   },
+   "level": "Associate Director",
+   "is_remote": false
   },
   {
    "company": "Thermo Fisher",
@@ -348,7 +375,7 @@
      "cross-functional",
      "strategy"
     ],
-    "first_seen": "2026-07-07T20:10:23+00:00"
+    "first_seen": "2026-07-08T17:41:35+00:00"
    },
    "level": "Director",
    "is_remote": true
@@ -373,7 +400,7 @@
      "statistical analysis",
      "strategy"
     ],
-    "first_seen": "2026-07-08T12:57:06+00:00"
+    "first_seen": "2026-07-08T17:41:35+00:00"
    },
    "level": "Director",
    "is_remote": false
@@ -395,7 +422,7 @@
     "matched_skills": [
      "cross-functional"
     ],
-    "first_seen": "2026-07-08T12:57:06+00:00"
+    "first_seen": "2026-07-08T17:41:35+00:00"
    },
    "level": "Associate Director",
    "is_remote": true
@@ -417,7 +444,7 @@
     "matched_skills": [
      "cross-functional"
     ],
-    "first_seen": "2026-07-07T20:10:23+00:00"
+    "first_seen": "2026-07-08T17:41:35+00:00"
    },
    "level": "Senior Manager",
    "is_remote": true
@@ -451,7 +478,7 @@
    "status": "error",
    "error_kind": "payload-rejected",
    "hint": "Endpoint is real but rejected our request format; adapter auto-retries simpler formats \u2014 if persisting, the remaining variants also failed",
-   "error": "workday:vrtx/Vertex_Careers HTTP 422 (all 4 payload variants failed, no CSRF cookie was set by landing page) - {\"errorCode\":\"HTTP_422\",\"errorCaseId\":\"8FDF6AMRC31EYH\",\"httpStatus\":422,\"message\":\"\",\"messageParams\":{}}"
+   "error": "workday:vrtx/Vertex_Careers HTTP 422 (all 4 payload variants failed, no CSRF token found in cookie or page HTML) - {\"errorCode\":\"HTTP_422\",\"errorCaseId\":\"996836MRCD78DJ\",\"httpStatus\":422,\"message\":\"\",\"messageParams\":{}}"
   },
   {
    "name": "Biogen",
@@ -472,7 +499,7 @@
    "status": "error",
    "error_kind": "payload-rejected",
    "hint": "Endpoint is real but rejected our request format; adapter auto-retries simpler formats \u2014 if persisting, the remaining variants also failed",
-   "error": "workday:vhr-jazz/JazzPharmaceuticals HTTP 422 (all 4 payload variants failed, no CSRF cookie was set by landing page) - {\"errorCode\":\"HTTP_422\",\"errorCaseId\":\"2636D4MRC31DPZ\",\"httpStatus\":422,\"message\":\"\",\"messageParams\":{}}"
+   "error": "workday:vhr-jazz/JazzPharmaceuticals HTTP 422 (all 4 payload variants failed, no CSRF token found in cookie or page HTML) - {\"errorCode\":\"HTTP_422\",\"errorCaseId\":\"5ECFF7MRCD78ES\",\"httpStatus\":422,\"message\":\"\",\"messageParams\":{}}"
   },
   {
    "name": "Bristol Myers Squibb",
@@ -514,7 +541,7 @@
    "status": "error",
    "error_kind": "payload-rejected",
    "hint": "Endpoint is real but rejected our request format; adapter auto-retries simpler formats \u2014 if persisting, the remaining variants also failed",
-   "error": "workday:lilly/LLY HTTP 422 (all 4 payload variants failed, no CSRF cookie was set by landing page) - {\"errorCode\":\"HTTP_422\",\"errorCaseId\":\"3B3B6AMRC31W9M\",\"httpStatus\":422,\"message\":\"\",\"messageParams\":{}}"
+   "error": "workday:lilly/LLY HTTP 422 (all 4 payload variants failed, no CSRF token found in cookie or page HTML) - {\"errorCode\":\"HTTP_422\",\"errorCaseId\":\"6096C0MRCD7I5X\",\"httpStatus\":422,\"message\":\"\",\"messageParams\":{}}"
   },
   {
    "name": "Otsuka",
@@ -522,7 +549,7 @@
    "status": "error",
    "error_kind": "payload-rejected",
    "hint": "Endpoint is real but rejected our request format; adapter auto-retries simpler formats \u2014 if persisting, the remaining variants also failed",
-   "error": "workday:otsuka/External HTTP 422 (all 4 payload variants failed, no CSRF cookie was set by landing page) - {\"errorCode\":\"HTTP_422\",\"errorCaseId\":\"E2EB52MRC31ZFD\",\"httpStatus\":422,\"message\":\"\",\"messageParams\":{}}"
+   "error": "workday:otsuka/External HTTP 422 (all 4 payload variants failed, no CSRF token found in cookie or page HTML) - {\"errorCode\":\"HTTP_422\",\"errorCaseId\":\"ABE3F7MRCD7MLH\",\"httpStatus\":422,\"message\":\"\",\"messageParams\":{}}"
   },
   {
    "name": "Moderna",
@@ -558,7 +585,7 @@
    "status": "error",
    "error_kind": "payload-rejected",
    "hint": "Endpoint is real but rejected our request format; adapter auto-retries simpler formats \u2014 if persisting, the remaining variants also failed",
-   "error": "workday:arrowheadpharma/careers HTTP 422 (all 4 payload variants failed, no CSRF cookie was set by landing page) - {\"errorCode\":\"HTTP_422\",\"errorCaseId\":\"D21463MRC32M4M\",\"httpStatus\":422,\"message\":\"\",\"messageParams\":{}}"
+   "error": "workday:arrowheadpharma/careers HTTP 422 (all 4 payload variants failed, no CSRF token found in cookie or page HTML) - {\"errorCode\":\"HTTP_422\",\"errorCaseId\":\"AD245CMRCD8452\",\"httpStatus\":422,\"message\":\"\",\"messageParams\":{}}"
   },
   {
    "name": "Corteva Agriscience",
@@ -566,7 +593,7 @@
    "status": "error",
    "error_kind": "payload-rejected",
    "hint": "Endpoint is real but rejected our request format; adapter auto-retries simpler formats \u2014 if persisting, the remaining variants also failed",
-   "error": "workday:corteva/External HTTP 422 (all 4 payload variants failed, no CSRF cookie was set by landing page) - {\"errorCode\":\"HTTP_422\",\"errorCaseId\":\"3C6EE0MRC32QR5\",\"httpStatus\":422,\"message\":\"\",\"messageParams\":{}}"
+   "error": "workday:corteva/External HTTP 422 (all 4 payload variants failed, no CSRF token found in cookie or page HTML) - {\"errorCode\":\"HTTP_422\",\"errorCaseId\":\"93444DMRCD87BY\",\"httpStatus\":422,\"message\":\"\",\"messageParams\":{}}"
   },
   {
    "name": "Indigo Ag",
@@ -609,7 +636,7 @@
    "ats": "workday",
    "status": "ok",
    "fetched": 0,
-   "matches": 1
+   "matches": 2
   },
   {
    "name": "Novartis",
@@ -654,28 +681,28 @@
  ],
  "errors": [
   {
-   "company": "Jazz Pharmaceuticals",
-   "error": "workday:vhr-jazz/JazzPharmaceuticals HTTP 422 (all 4 payload variants failed, no CSRF cookie was set by landing page) - {\"errorCode\":\"HTTP_422\",\"errorCaseId\":\"2636D4MRC31DPZ\",\"httpStatus\":422,\"message\":\"\",\"messageParams\":{}}"
+   "company": "Vertex Pharmaceuticals",
+   "error": "workday:vrtx/Vertex_Careers HTTP 422 (all 4 payload variants failed, no CSRF token found in cookie or page HTML) - {\"errorCode\":\"HTTP_422\",\"errorCaseId\":\"996836MRCD78DJ\",\"httpStatus\":422,\"message\":\"\",\"messageParams\":{}}"
   },
   {
-   "company": "Vertex Pharmaceuticals",
-   "error": "workday:vrtx/Vertex_Careers HTTP 422 (all 4 payload variants failed, no CSRF cookie was set by landing page) - {\"errorCode\":\"HTTP_422\",\"errorCaseId\":\"8FDF6AMRC31EYH\",\"httpStatus\":422,\"message\":\"\",\"messageParams\":{}}"
+   "company": "Jazz Pharmaceuticals",
+   "error": "workday:vhr-jazz/JazzPharmaceuticals HTTP 422 (all 4 payload variants failed, no CSRF token found in cookie or page HTML) - {\"errorCode\":\"HTTP_422\",\"errorCaseId\":\"5ECFF7MRCD78ES\",\"httpStatus\":422,\"message\":\"\",\"messageParams\":{}}"
   },
   {
    "company": "Eli Lilly",
-   "error": "workday:lilly/LLY HTTP 422 (all 4 payload variants failed, no CSRF cookie was set by landing page) - {\"errorCode\":\"HTTP_422\",\"errorCaseId\":\"3B3B6AMRC31W9M\",\"httpStatus\":422,\"message\":\"\",\"messageParams\":{}}"
+   "error": "workday:lilly/LLY HTTP 422 (all 4 payload variants failed, no CSRF token found in cookie or page HTML) - {\"errorCode\":\"HTTP_422\",\"errorCaseId\":\"6096C0MRCD7I5X\",\"httpStatus\":422,\"message\":\"\",\"messageParams\":{}}"
   },
   {
    "company": "Otsuka",
-   "error": "workday:otsuka/External HTTP 422 (all 4 payload variants failed, no CSRF cookie was set by landing page) - {\"errorCode\":\"HTTP_422\",\"errorCaseId\":\"E2EB52MRC31ZFD\",\"httpStatus\":422,\"message\":\"\",\"messageParams\":{}}"
+   "error": "workday:otsuka/External HTTP 422 (all 4 payload variants failed, no CSRF token found in cookie or page HTML) - {\"errorCode\":\"HTTP_422\",\"errorCaseId\":\"ABE3F7MRCD7MLH\",\"httpStatus\":422,\"message\":\"\",\"messageParams\":{}}"
   },
   {
    "company": "Arrowhead Pharmaceuticals",
-   "error": "workday:arrowheadpharma/careers HTTP 422 (all 4 payload variants failed, no CSRF cookie was set by landing page) - {\"errorCode\":\"HTTP_422\",\"errorCaseId\":\"D21463MRC32M4M\",\"httpStatus\":422,\"message\":\"\",\"messageParams\":{}}"
+   "error": "workday:arrowheadpharma/careers HTTP 422 (all 4 payload variants failed, no CSRF token found in cookie or page HTML) - {\"errorCode\":\"HTTP_422\",\"errorCaseId\":\"AD245CMRCD8452\",\"httpStatus\":422,\"message\":\"\",\"messageParams\":{}}"
   },
   {
    "company": "Corteva Agriscience",
-   "error": "workday:corteva/External HTTP 422 (all 4 payload variants failed, no CSRF cookie was set by landing page) - {\"errorCode\":\"HTTP_422\",\"errorCaseId\":\"3C6EE0MRC32QR5\",\"httpStatus\":422,\"message\":\"\",\"messageParams\":{}}"
+   "error": "workday:corteva/External HTTP 422 (all 4 payload variants failed, no CSRF token found in cookie or page HTML) - {\"errorCode\":\"HTTP_422\",\"errorCaseId\":\"93444DMRCD87BY\",\"httpStatus\":422,\"message\":\"\",\"messageParams\":{}}"
   },
   {
    "company": "Inari",

@@ -39,7 +39,8 @@ def company_url(c: dict) -> str:
     """Best-effort public career-site link for the Companies tab."""
     ats = c.get("ats")
     if ats == "workday":
-        return f"https://{c['tenant']}.{c['wd']}.myworkdayjobs.com/en-US/{c['site']}"
+        host_tenant = c["tenant"].replace("_", "-")
+        return f"https://{host_tenant}.{c['wd']}.myworkdayjobs.com/en-US/{c['site']}"
     if ats == "greenhouse":
         return f"https://boards.greenhouse.io/{c['board']}"
     if ats == "lever":

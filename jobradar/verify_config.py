@@ -36,7 +36,8 @@ def _wd_probe(session, tenant, wd, site) -> tuple[bool, int, str]:
     from .adapters.workday import _wd_warmup
     headers = _wd_warmup(session, tenant, wd, site)
     headers.pop("_source", None)
-    url = f"https://{tenant}.{wd}.myworkdayjobs.com/wday/cxs/{tenant}/{site}/jobs"
+    host_tenant = tenant.replace("_", "-")
+    url = f"https://{host_tenant}.{wd}.myworkdayjobs.com/wday/cxs/{tenant}/{site}/jobs"
     r = session.post(url, headers=headers or None,
                      json={"appliedFacets": {}, "limit": 3, "offset": 0, "searchText": ""})
     if r is not None and r.status_code == 200 and "jobPostings" in r.text:

@@ -37,7 +37,7 @@
    "wd": "wd1",
    "site": "careers",
    "board": null,
-   "verified": false,
+   "verified": true,
    "note": "",
    "url": "https://regeneron.wd1.myworkdayjobs.com/en-US/careers"
   },
@@ -45,12 +45,12 @@
    "name": "Vertex Pharmaceuticals",
    "ats": "workday",
    "tenant": "vrtx",
-   "wd": "wd5",
+   "wd": "wd501",
    "site": "Vertex_Careers",
    "board": null,
    "verified": true,
    "note": "",
-   "url": "https://vrtx.wd5.myworkdayjobs.com/en-US/Vertex_Careers"
+   "url": "https://vrtx.wd501.myworkdayjobs.com/en-US/Vertex_Careers"
   },
   {
    "name": "Biogen",
@@ -77,11 +77,11 @@
   {
    "name": "Jazz Pharmaceuticals",
    "ats": "workday",
-   "tenant": "vhr-jazz",
+   "tenant": "vhr_jazz",
    "wd": "wd1",
    "site": "JazzPharmaceuticals",
    "board": null,
-   "verified": true,
+   "verified": false,
    "note": "",
    "url": "https://vhr-jazz.wd1.myworkdayjobs.com/en-US/JazzPharmaceuticals"
   },
@@ -145,22 +145,22 @@
    "ats": "workday",
    "tenant": "lilly",
    "wd": "wd5",
-   "site": "LLY",
+   "site": "Eli_Lilly_and_Company",
    "board": null,
-   "verified": true,
+   "verified": false,
    "note": "",
-   "url": "https://lilly.wd5.myworkdayjobs.com/en-US/LLY"
+   "url": "https://lilly.wd5.myworkdayjobs.com/en-US/Eli_Lilly_and_Company"
   },
   {
    "name": "Otsuka",
    "ats": "workday",
-   "tenant": "otsuka",
-   "wd": "wd5",
+   "tenant": "vhr_otsuka",
+   "wd": "wd1",
    "site": "External",
    "board": null,
-   "verified": true,
+   "verified": false,
    "note": "",
-   "url": "https://otsuka.wd5.myworkdayjobs.com/en-US/External"
+   "url": "https://vhr-otsuka.wd1.myworkdayjobs.com/en-US/External"
   },
   {
    "name": "Moderna",
@@ -208,25 +208,25 @@
   },
   {
    "name": "Arrowhead Pharmaceuticals",
-   "ats": "workday",
-   "tenant": "arrowheadpharma",
-   "wd": "wd5",
-   "site": "careers",
+   "ats": "unknown",
+   "tenant": null,
+   "wd": null,
+   "site": null,
    "board": null,
-   "verified": true,
-   "note": "",
-   "url": "https://arrowheadpharma.wd5.myworkdayjobs.com/en-US/careers"
+   "verified": false,
+   "note": "arrowheadpharma.com/careers -- own custom platform, not Workday",
+   "url": ""
   },
   {
    "name": "Corteva Agriscience",
    "ats": "workday",
    "tenant": "corteva",
-   "wd": "wd1",
-   "site": "External",
+   "wd": "wd5",
+   "site": "Corteva",
    "board": null,
-   "verified": true,
+   "verified": false,
    "note": "",
-   "url": "https://corteva.wd1.myworkdayjobs.com/en-US/External"
+   "url": "https://corteva.wd5.myworkdayjobs.com/en-US/Corteva"
   },
   {
    "name": "Indigo Ag",
@@ -252,14 +252,14 @@
   },
   {
    "name": "Inari",
-   "ats": "greenhouse",
+   "ats": "unknown",
    "tenant": null,
    "wd": null,
    "site": null,
-   "board": "inariagriculture",
-   "verified": true,
-   "note": "",
-   "url": "https://boards.greenhouse.io/inariagriculture"
+   "board": null,
+   "verified": false,
+   "note": "inari.com/careers -- own custom platform, not Greenhouse",
+   "url": ""
   },
   {
    "name": "Genentech (Roche)",

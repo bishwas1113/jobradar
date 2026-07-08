@@ -23,11 +23,11 @@ companies:
   tenant: regeneron
   wd: wd1
   site: careers
-  verified: false
+  verified: true
 - name: Vertex Pharmaceuticals
   ats: workday
   tenant: vrtx
-  wd: wd5
+  wd: wd501
   site: Vertex_Careers
   verified: true
 - name: Biogen
@@ -42,10 +42,10 @@ companies:
   note: careers.novonordisk.com -- own custom platform, not Workday
 - name: Jazz Pharmaceuticals
   ats: workday
-  tenant: vhr-jazz
+  tenant: vhr_jazz
   wd: wd1
   site: JazzPharmaceuticals
-  verified: true
+  verified: false
 - name: Bristol Myers Squibb
   ats: workday
   tenant: bristolmyerssquibb
@@ -78,14 +78,14 @@ companies:
   ats: workday
   tenant: lilly
   wd: wd5
-  site: LLY
-  verified: true
+  site: Eli_Lilly_and_Company
+  verified: false
 - name: Otsuka
   ats: workday
-  tenant: otsuka
-  wd: wd5
+  tenant: vhr_otsuka
+  wd: wd1
   site: External
-  verified: true
+  verified: false
 - name: Moderna
   ats: workday
   board: modernatx
@@ -108,17 +108,15 @@ companies:
   site: Exact_Sciences
   verified: true
 - name: Arrowhead Pharmaceuticals
-  ats: workday
-  tenant: arrowheadpharma
-  wd: wd5
-  site: careers
-  verified: true
+  ats: unknown
+  verified: false
+  note: arrowheadpharma.com/careers -- own custom platform, not Workday
 - name: Corteva Agriscience
   ats: workday
   tenant: corteva
-  wd: wd1
-  site: External
-  verified: true
+  wd: wd5
+  site: Corteva
+  verified: false
 - name: Indigo Ag
   ats: greenhouse
   board: indigo
@@ -128,9 +126,9 @@ companies:
   board: pivotbio
   verified: true
 - name: Inari
-  ats: greenhouse
-  board: inariagriculture
-  verified: true
+  ats: unknown
+  verified: false
+  note: inari.com/careers -- own custom platform, not Greenhouse
 - name: Genentech (Roche)
   ats: workday
   tenant: roche

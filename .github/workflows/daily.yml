@@ -2,7 +2,7 @@ name: Daily job scan
 
 on:
   schedule:
-    - cron: "20 11 * * *"   # 11:20 UTC = 7:20am ET, before your morning review
+    - cron: "0 10 * * *"    # 10:00 UTC = 6:00am ET during EDT (summer)
   workflow_dispatch: {}      # manual "Run workflow" button
 
 permissions:
@@ -15,11 +15,11 @@ concurrency:
 jobs:
   scan:
     runs-on: ubuntu-latest
-    timeout-minutes: 30
+    timeout-minutes: 35
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
 
-      - uses: actions/setup-python@v5
+      - uses: actions/setup-python@v6
         with:
           python-version: "3.12"
           cache: pip
@@ -34,9 +34,12 @@ jobs:
           key: minilm-l6-v2
 
       - name: Run pipeline
+        timeout-minutes: 28   # leaves ~7 min of the 35-min job budget for setup + commit
         run: python -m jobradar.pipeline --max-age-days 3
 
       - name: Commit results
+        if: always()   # runs even if the scan above was cut off by its timeout,
+                        # so whatever was checkpointed to disk still gets saved
         run: |
           git config user.name "jobradar-bot"
           git config user.email "bot@users.noreply.github.com"

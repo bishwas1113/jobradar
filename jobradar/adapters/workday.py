@@ -17,9 +17,9 @@ from typing import Callable, List, Optional
 
 from .base import Job, PoliteSession, html_to_text, safe_json
 
-LIST_URL = "https://{tenant}.{wd}.myworkdayjobs.com/wday/cxs/{tenant}/{site}/jobs"
-DETAIL_URL = "https://{tenant}.{wd}.myworkdayjobs.com/wday/cxs/{tenant}/{site}{path}"
-PUBLIC_URL = "https://{tenant}.{wd}.myworkdayjobs.com/en-US/{site}{path}"
+LIST_URL = "https://{host_tenant}.{wd}.myworkdayjobs.com/wday/cxs/{tenant}/{site}/jobs"
+DETAIL_URL = "https://{host_tenant}.{wd}.myworkdayjobs.com/wday/cxs/{tenant}/{site}{path}"
+PUBLIC_URL = "https://{host_tenant}.{wd}.myworkdayjobs.com/en-US/{site}{path}"
 
 _REL_RE = re.compile(r"(\d+)\+?\s*day", re.I)
 
@@ -57,7 +57,8 @@ def _wd_warmup(session, tenant, wd, site) -> dict:
     otherwise extract the token straight from the HTML (no JS execution
     needed -- the token is in the page source for the JS to read).
     Harmless no-op for tenants that don't require it."""
-    landing = f"https://{tenant}.{wd}.myworkdayjobs.com/en-US/{site}"
+    host_tenant = tenant.replace("_", "-")
+    landing = f"https://{host_tenant}.{wd}.myworkdayjobs.com/en-US/{site}"
     r = session.get(landing)  # cookies persist on the underlying requests.Session
     token = session.s.cookies.get("CALYPSO_CSRF_TOKEN")
     source = "cookie"
@@ -71,7 +72,7 @@ def _wd_warmup(session, tenant, wd, site) -> dict:
                 # way a browser would send them after its JS sets the cookie.
                 try:
                     session.s.cookies.set("CALYPSO_CSRF_TOKEN", token,
-                                          domain=f"{tenant}.{wd}.myworkdayjobs.com")
+                                          domain=f"{host_tenant}.{wd}.myworkdayjobs.com")
                 except Exception:
                     pass
                 break
@@ -118,7 +119,8 @@ def fetch_workday(
     from .. import cache as cache_mod
 
     start = time.monotonic()
-    list_url = LIST_URL.format(tenant=tenant, wd=wd, site=site)
+    host_tenant = tenant.replace("_", "-")
+    list_url = LIST_URL.format(host_tenant=host_tenant, tenant=tenant, wd=wd, site=site)
     seen: dict[str, Job] = {}
     # Warm-up: obtain the CSRF token some tenants require before API POSTs.
     csrf_headers = _wd_warmup(session, tenant, wd, site)
@@ -153,7 +155,7 @@ def fetch_workday(
                     company=company,
                     title=(p.get("title") or "").strip(),
                     location=p.get("locationsText", "") or "",
-                    url=PUBLIC_URL.format(tenant=tenant, wd=wd, site=site, path=path),
+                    url=PUBLIC_URL.format(host_tenant=host_tenant, tenant=tenant, wd=wd, site=site, path=path),
                     posted=parse_posted_on(p.get("postedOn", "")),
                     description="",
                     source="workday",
@@ -189,7 +191,7 @@ def fetch_workday(
             job.is_remote = bool(cached.get("is_remote"))
             jobs.append(job)
             continue
-        r = session.get(DETAIL_URL.format(tenant=tenant, wd=wd, site=site, path=path))
+        r = session.get(DETAIL_URL.format(host_tenant=host_tenant, tenant=tenant, wd=wd, site=site, path=path))
         if r is not None and r.status_code == 200:
             try:
                 info = safe_json(r, f"workday:{tenant}:detail").get("jobPostingInfo", {}) or {}

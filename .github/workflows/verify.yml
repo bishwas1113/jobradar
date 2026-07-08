@@ -1,28 +1,46 @@
 name: Verify ATS endpoints
 
-# Runs weekly and on-demand. Unlike anything checked inside a chat conversation,
-# this job runs on GitHub's runners with full internet access and hits the
-# REAL Workday/Greenhouse/Lever endpoints with the REAL adapter code -
-# it either returns live job counts and a sample title, or it fails loudly.
+# Runs weekly and on-demand. This job runs on GitHub's runners with full
+# internet access and hits the REAL Workday/Greenhouse/Lever endpoints with
+# the REAL adapter code (including the CSRF warm-up handshake).
+#
+# It runs in --fix mode: for any broken Workday entry it probes every
+# shard + site-name combination live, and if one actually returns postings,
+# it writes that working config into companies.yaml and commits it.
+# Anything it cannot make work against a live endpoint is left untouched
+# and flagged FAIL in the report -- never silently "fixed".
 
 on:
   schedule:
     - cron: "0 12 * * 1"   # Monday noon UTC
   workflow_dispatch: {}
 
+permissions:
+  contents: write
+
 jobs:
   verify:
     runs-on: ubuntu-latest
-    timeout-minutes: 10
+    timeout-minutes: 25
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
+      - uses: actions/checkout@v6
+      - uses: actions/setup-python@v6
         with:
           python-version: "3.12"
           cache: pip
       - run: pip install -r requirements.txt
-      - name: Verify every company endpoint
-        run: python -m jobradar.verify_config | tee verify_report.txt
+
+      - name: Verify + auto-fix against live endpoints
+        run: python -m jobradar.verify_config --fix | tee verify_report.txt
+
+      - name: Commit any live-verified fixes
+        run: |
+          git config user.name "jobradar-bot"
+          git config user.email "bot@users.noreply.github.com"
+          git add companies.yaml
+          git diff --cached --quiet || git commit -m "Live-verified ATS config fixes (verify workflow)"
+          git push
+
       - name: Upload report
         uses: actions/upload-artifact@v4
         with:

@@ -1373,10 +1373,10 @@ async function triggerRecalc() {
     let semScore = m.score_parts.semantic;
     if (customEmbedding && m.score_parts.embedding) {
       const dotProduct = m.score_parts.embedding.reduce((sum, val, idx) => sum + val * customEmbedding[idx], 0);
-      semScore = Math.max(0.0, Math.min(1.0, (dotProduct - 0.2) / 0.55));
+      semScore = Math.max(0.0, Math.min(1.0, (dotProduct - 0.2) / 0.70));
     } else {
       const tfidfSim = simpleCosineSimilarity(resumeText, jdText);
-      semScore = Math.max(0.0, Math.min(1.0, (tfidfSim - 0.02) / 0.33));
+      semScore = Math.max(0.0, Math.min(1.0, (tfidfSim - 0.02) / 0.48));
     }
     
     const finalScore = 100 * (WEIGHTS.semantic * semScore + 

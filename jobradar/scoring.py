@@ -48,8 +48,8 @@ def _semantic_batch(resume_text: str, jd_texts: List[str]) -> tuple[List[float],
         import numpy as np
         vecs = model.encode([resume_text] + jd_texts, normalize_embeddings=True)
         sims = (vecs[1:] @ vecs[0]).tolist()
-        # MiniLM resume-vs-JD sims live roughly in [0.2, 0.75]; stretch to 0-1.
-        stretched = [max(0.0, min(1.0, (s - 0.2) / 0.55)) for s in sims]
+        # MiniLM resume-vs-JD sims live roughly in [0.2, 0.90]; stretch to 0-1.
+        stretched = [max(0.0, min(1.0, (s - 0.2) / 0.70)) for s in sims]
         return stretched, vecs[1:].tolist()
     # TF-IDF fallback
     from sklearn.feature_extraction.text import TfidfVectorizer
@@ -57,8 +57,8 @@ def _semantic_batch(resume_text: str, jd_texts: List[str]) -> tuple[List[float],
     vec = TfidfVectorizer(stop_words="english", ngram_range=(1, 2), max_features=20000)
     m = vec.fit_transform([resume_text] + jd_texts)
     sims = cosine_similarity(m[0], m[1:]).ravel().tolist()
-    # TF-IDF sims for this task live roughly in [0.02, 0.35]; stretch to 0-1.
-    stretched = [max(0.0, min(1.0, (s - 0.02) / 0.33)) for s in sims]
+    # TF-IDF sims for this task live roughly in [0.02, 0.50]; stretch to 0-1.
+    stretched = [max(0.0, min(1.0, (s - 0.02) / 0.48)) for s in sims]
     return stretched, None
 
 

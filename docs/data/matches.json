@@ -1,7 +1,7 @@
 {
- "generated_at": "2026-07-09T14:05:04+00:00",
+ "generated_at": "2026-07-09T16:05:47+00:00",
  "max_age_days": 3,
- "raw_postings": 2482,
+ "raw_postings": 2541,
  "matches": [
   {
    "company": "Bristol Myers Squibb",
@@ -203,6 +203,35 @@
    "is_remote": false
   },
   {
+   "company": "Bayer Crop Science",
+   "title": "Associate Director, Market Access Data Science & Analytics",
+   "location": "Whippany, New Jersey, US",
+   "url": "https://jobs.bayer.com/job/Whippany-Associate-Director%2C-Market-Access-Data-Science-&-Analytics-New/1369790533/",
+   "posted": null,
+   "description": "At Bayer we\u2019re visionaries, driven to solve the world\u2019s toughest challenges and striving for a world where 'Health for all Hunger for none\u2019 is no longer a dream, but a real possibility. We\u2019re doing it with energy, curiosity and sheer dedication, always learning from unique perspectives of those around us, expanding our thinking, growing our capabilities and redefining \u2018impossible\u2019. There are so many reasons to join us. If you\u2019re hungry to build a varied and meaningful career in a community of brilliant and diverse minds to make a real difference, there\u2019s only one choice.\nAssociate Director, Ma",
+   "source": "successfactors",
+   "job_id": "",
+   "score": 68.0,
+   "score_parts": {
+    "semantic": 0.55,
+    "skills": 0.758,
+    "level_fit": 1.0,
+    "matched_skills": [
+     "business insights",
+     "data strategy",
+     "customer analytics",
+     "patient journey",
+     "python",
+     "sql",
+     "kpi",
+     "strategy"
+    ],
+    "first_seen": "2026-07-09T03:09:37+00:00"
+   },
+   "level": "Associate Director",
+   "is_remote": false
+  },
+  {
    "company": "Jazz Pharmaceuticals",
    "title": "Senior Manager Payer and Patient Data Management Global Capability Owner",
    "location": "US - Home-Based - PA",
@@ -317,6 +346,34 @@
    "is_remote": false
   },
   {
+   "company": "Amgen",
+   "title": "Commercial Analytics, Senior Manager",
+   "location": "US - California - Thousand Oaks",
+   "url": "https://amgen.wd1.myworkdayjobs.com/en-US/Careers/job/US---California---Thousand-Oaks/Commercial-Analytics--Senior-Manager_R-248617",
+   "posted": "2026-07-09",
+   "description": "Career Category\nSales & Marketing Operations\nJob Description\nJoin Amgen\u2019s Mission of Serving Patients\nAt Amgen, if you feel like you\u2019re part of something bigger, it\u2019s because you are. Our shared mission\u2014to serve patients living with serious illnesses\u2014drives all that we do.\nSince 1980, we\u2019ve helped pioneer the world of biotech in our fight against the world\u2019s toughest diseases. With our focus on four therapeutic areas \u2013Oncology, Inflammation, General Medicine, and Rare Disease\u2013 we reach millions of patients each year. Amgen is advancing a broad and deep pipeline of medicines to treat cancer, he",
+   "source": "workday",
+   "job_id": "wd-amgen-/job/US---California---Thousand-Oaks/Commercial-Analytics--Senior-Manager_R-248617",
+   "score": 65.7,
+   "score_parts": {
+    "semantic": 0.558,
+    "skills": 0.667,
+    "level_fit": 1.0,
+    "matched_skills": [
+     "commercial analytics",
+     "business insights",
+     "brand strategy",
+     "oncology",
+     "kpi",
+     "cross-functional",
+     "strategy"
+    ],
+    "first_seen": "2026-07-09T16:05:47+00:00"
+   },
+   "level": "Senior Manager",
+   "is_remote": false
+  },
+  {
    "company": "Takeda",
    "title": "Associate Director, HAE HCP Marketing",
    "location": "USA - MA - Cambridge - Kendall Square - 500",
@@ -366,6 +423,34 @@
     "first_seen": "2026-07-08T22:10:21+00:00"
    },
    "level": "Senior Manager",
+   "is_remote": false
+  },
+  {
+   "company": "Bayer Crop Science",
+   "title": "Global Director Market Data & AI",
+   "location": "Whippany, New Jersey, US",
+   "url": "https://jobs.bayer.com/job/Whippany-Global-Director-Market-Data-&-AI-New/1412424033/",
+   "posted": null,
+   "description": "At Bayer we\u2019re visionaries, driven to solve the world\u2019s toughest challenges and striving for a world where 'Health for all Hunger for none\u2019 is no longer a dream, but a real possibility. We\u2019re doing it with energy, curiosity and sheer dedication, always learning from unique perspectives of those around us, expanding our thinking, growing our capabilities and redefining \u2018impossible\u2019. There are so many reasons to join us. If you\u2019re hungry to build a varied and meaningful career in a community of brilliant and diverse minds to make a real difference, there\u2019s only one choice.\nGlobal Director Market",
+   "source": "successfactors",
+   "job_id": "",
+   "score": 64.9,
+   "score_parts": {
+    "semantic": 0.533,
+    "skills": 0.786,
+    "level_fit": 0.8,
+    "matched_skills": [
+     "commercial analytics",
+     "data strategy",
+     "business insights",
+     "data architecture",
+     "predictive analytics",
+     "cross-functional",
+     "strategy"
+    ],
+    "first_seen": "2026-07-09T03:09:37+00:00"
+   },
+   "level": "Director",
    "is_remote": false
   },
   {
@@ -732,6 +817,33 @@
    "is_remote": false
   },
   {
+   "company": "Bayer Crop Science",
+   "title": "Director, Scientific Competitive Intelligence & Insights, Oncology",
+   "location": "Cambridge, Massachusetts, US",
+   "url": "https://jobs.bayer.com/job/Cambridge-Director%2C-Scientific-Competitive-Intelligence-&-Insights%2C-Oncology-Mass/1411541233/",
+   "posted": null,
+   "description": "At Bayer we\u2019re visionaries, driven to solve the world\u2019s toughest challenges and striving for a world where 'Health for all Hunger for none\u2019 is no longer a dream, but a real possibility. We\u2019re doing it with energy, curiosity and sheer dedication, always learning from unique perspectives of those around us, expanding our thinking, growing our capabilities and redefining \u2018impossible\u2019. There are so many reasons to join us. If you\u2019re hungry to build a varied and meaningful career in a community of brilliant and diverse minds to make a real difference, there\u2019s only one choice.\nDirector, Scientific C",
+   "source": "successfactors",
+   "job_id": "",
+   "score": 59.6,
+   "score_parts": {
+    "semantic": 0.535,
+    "skills": 0.607,
+    "level_fit": 0.8,
+    "matched_skills": [
+     "business insights",
+     "strategic insights",
+     "oncology",
+     "phd",
+     "clinical trial",
+     "strategy"
+    ],
+    "first_seen": "2026-07-09T03:09:37+00:00"
+   },
+   "level": "Director",
+   "is_remote": false
+  },
+  {
    "company": "Thermo Fisher",
    "title": "Innovation Director, Clinical Research Group",
    "location": "3 Locations",
@@ -960,26 +1072,75 @@
    "is_remote": false
   },
   {
-   "company": "Johnson & Johnson",
-   "title": "Sr Mgr Commercial Initiatives & Strategy",
-   "location": "Raynham, Massachusetts, United States of America",
-   "url": "https://jj.wd5.myworkdayjobs.com/en-US/JJ/job/Raynham-Massachusetts-United-States-of-America/Sr-Mgr-Commercial-Initiatives---Strategy_R-085123-2",
-   "posted": "2026-07-08",
-   "description": "At Johnson & Johnson,\u202fwe believe health is everything. Our strength in healthcare innovation empowers us to build a\u202fworld where complex diseases are prevented, treated, and cured,\u202fwhere treatments are smarter and less invasive, and\u202fsolutions are personal.\u202fThrough our expertise in Innovative Medicine and MedTech, we are uniquely positioned to innovate across the full spectrum of healthcare solutions today to deliver the breakthroughs of tomorrow, and profoundly impact health for humanity.\u202fLearn more at jnj.com\nAs guided by Our Credo, Johnson & Johnson is responsible to our employees who work wi",
-   "source": "workday",
-   "job_id": "wd-jj-/job/Raynham-Massachusetts-United-States-of-America/Sr-Mgr-Commercial-Initiatives---Strategy_R-085123-2",
-   "score": 57.5,
+   "company": "Bayer Crop Science",
+   "title": "Director, Regulatory Advertising and Promotion",
+   "location": "Whippany, New Jersey, US",
+   "url": "https://jobs.bayer.com/job/Whippany-Director%2C-Regulatory-Advertising-and-Promotion-New/1393568833/",
+   "posted": null,
+   "description": "At Bayer we\u2019re visionaries, driven to solve the world\u2019s toughest challenges and striving for a world where 'Health for all Hunger for none\u2019 is no longer a dream, but a real possibility. We\u2019re doing it with energy, curiosity and sheer dedication, always learning from unique perspectives of those around us, expanding our thinking, growing our capabilities and redefining \u2018impossible\u2019. There are so many reasons to join us. If you\u2019re hungry to build a varied and meaningful career in a community of brilliant and diverse minds to make a real difference, there\u2019s only one choice.\nDirector, Regulatory A",
+   "source": "successfactors",
+   "job_id": "",
+   "score": 57.8,
    "score_parts": {
-    "semantic": 0.394,
-    "skills": 0.692,
-    "level_fit": 1.0,
+    "semantic": 0.408,
+    "skills": 0.778,
+    "level_fit": 0.8,
     "matched_skills": [
-     "segmentation",
-     "kpi",
-     "crm",
+     "phd",
+     "launch",
      "strategy"
     ],
-    "first_seen": "2026-07-08T22:10:21+00:00"
+    "first_seen": "2026-07-09T03:09:37+00:00"
+   },
+   "level": "Director",
+   "is_remote": false
+  },
+  {
+   "company": "Bayer Crop Science",
+   "title": "Director Scientific Competitive Intelligence & Insights - Oncology (all genders)",
+   "location": "Berlin, Berlin, DE",
+   "url": "https://jobs.bayer.com/job/Berlin-Director-Scientific-Competitive-Intelligence-&-Insights-Oncology-%28all-genders%29-Berl/1410803233/",
+   "posted": null,
+   "description": "At Bayer we\u2019re visionaries, driven to solve the world\u2019s toughest challenges and striving for a world where ,Health for all, Hunger for none\u2019 is no longer a dream, but a real possibility. We\u2019re doing it with energy, curiosity and sheer dedication, always learning from unique perspectives of those around us, expanding our thinking, growing our capabilities and redefining \u2018impossible\u2019. There are so many reasons to join us. If you\u2019re hungry to build a varied and meaningful career in a community of brilliant and diverse minds to make a real difference, there\u2019s only one choice.\nDirector Scientific C",
+   "source": "successfactors",
+   "job_id": "",
+   "score": 57.7,
+   "score_parts": {
+    "semantic": 0.499,
+    "skills": 0.607,
+    "level_fit": 0.8,
+    "matched_skills": [
+     "business insights",
+     "strategic insights",
+     "oncology",
+     "phd",
+     "clinical trial",
+     "strategy"
+    ],
+    "first_seen": "2026-07-09T03:09:37+00:00"
+   },
+   "level": "Director",
+   "is_remote": false
+  },
+  {
+   "company": "Johnson & Johnson",
+   "title": "Sr. Manager, Tax Planning",
+   "location": "Leeds, West Yorkshire, United Kingdom",
+   "url": "https://jj.wd5.myworkdayjobs.com/en-US/JJ/job/Leeds-West-Yorkshire-United-Kingdom/Sr-Manager--Tax-Planning_R-085479-1",
+   "posted": "2026-07-09",
+   "description": "At Johnson & Johnson,\u202fwe believe health is everything. Our strength in healthcare innovation empowers us to build a\u202fworld where complex diseases are prevented, treated, and cured,\u202fwhere treatments are smarter and less invasive, and\u202fsolutions are personal.\u202fThrough our expertise in Innovative Medicine and MedTech, we are uniquely positioned to innovate across the full spectrum of healthcare solutions today to deliver the breakthroughs of tomorrow, and profoundly impact health for humanity.\u202fLearn more at jnj.com .\nAs guided by Our Credo, Johnson & Johnson is responsible to our employees who work ",
+   "source": "workday",
+   "job_id": "wd-jj-/job/Leeds-West-Yorkshire-United-Kingdom/Sr-Manager--Tax-Planning_R-085479-1",
+   "score": 57.5,
+   "score_parts": {
+    "semantic": 0.227,
+    "skills": 1.0,
+    "level_fit": 1.0,
+    "matched_skills": [
+     "forecasting",
+     "strategy"
+    ],
+    "first_seen": "2026-07-09T16:05:47+00:00"
    },
    "level": "Senior Manager",
    "is_remote": false
@@ -1041,6 +1202,30 @@
    "is_remote": false
   },
   {
+   "company": "Gilead Sciences",
+   "title": "Director, Corporate Storytelling and Editorial Strategy",
+   "location": "United States - California - Foster City",
+   "url": "https://gilead.wd1.myworkdayjobs.com/en-US/gileadcareers/job/United-States---California---Foster-City/Director--Corporate-Storytelling-and-Editorial-Strategy_R0053545-2",
+   "posted": "2026-07-07",
+   "description": "At Gilead, we\u2019re creating a healthier world for all people. For more than 35 years, we\u2019ve tackled diseases such as HIV, viral hepatitis, COVID-19 and cancer \u2013 working relentlessly to develop therapies that help improve lives and to ensure access to these therapies across the globe. We continue to fight against the world\u2019s biggest health challenges, and our mission requires collaboration, determination and a relentless drive to make a difference.\nEvery member of Gilead\u2019s team plays a critical role in the discovery and development of life-changing scientific innovations. Our employees are our gr",
+   "source": "workday",
+   "job_id": "wd-gilead-/job/United-States---California---Foster-City/Director--Corporate-Storytelling-and-Editorial-Strategy_R0053545-2",
+   "score": 56.5,
+   "score_parts": {
+    "semantic": 0.385,
+    "skills": 0.778,
+    "level_fit": 0.8,
+    "matched_skills": [
+     "phd",
+     "cross-functional",
+     "strategy"
+    ],
+    "first_seen": "2026-07-09T03:09:37+00:00"
+   },
+   "level": "Director",
+   "is_remote": false
+  },
+  {
    "company": "Bristol Myers Squibb",
    "title": "Director, Congress Excellence Strategy Lead",
    "location": "Princeton - NJ - US",
@@ -1091,6 +1276,32 @@
    "is_remote": false
   },
   {
+   "company": "Bayer Crop Science",
+   "title": "Associate Dir, Full Stack Data Scientist",
+   "location": "Cambridge, Massachusetts, US",
+   "url": "https://jobs.bayer.com/job/Cambridge-Associate-Dir%2C-Full-Stack-Data-Scientist-Mass/1409568333/",
+   "posted": null,
+   "description": "At Bayer we\u2019re visionaries, driven to solve the world\u2019s toughest challenges and striving for a world where 'Health for all Hunger for none\u2019 is no longer a dream, but a real possibility. We\u2019re doing it with energy, curiosity and sheer dedication, always learning from unique perspectives of those around us, expanding our thinking, growing our capabilities and redefining \u2018impossible\u2019. There are so many reasons to join us. If you\u2019re hungry to build a varied and meaningful career in a community of brilliant and diverse minds to make a real difference, there\u2019s only one choice.\nAssociate Dir, Full St",
+   "source": "successfactors",
+   "job_id": "",
+   "score": 56.2,
+   "score_parts": {
+    "semantic": 0.466,
+    "skills": 0.52,
+    "level_fit": 1.0,
+    "matched_skills": [
+     "python",
+     "sql",
+     "machine learning",
+     "cross-functional",
+     "strategy"
+    ],
+    "first_seen": "2026-07-09T03:09:37+00:00"
+   },
+   "level": "Associate Director",
+   "is_remote": false
+  },
+  {
    "company": "Gilead Sciences",
    "title": "Sr. Manager, IT - Web Solution Owner - Foster City",
    "location": "United States - California - Foster City",
@@ -1116,31 +1327,6 @@
    "is_remote": false
   },
   {
-   "company": "Takeda",
-   "title": "Director, Clinical Program Quality & Excellence (CPQE), Oncology",
-   "location": "USA - MA - Cambridge - Kendall Square - 500",
-   "url": "https://takeda.wd3.myworkdayjobs.com/en-US/External/job/USA---MA---Cambridge---Kendall-Square---500/Director--Clinical-Program-Quality---Excellence--CPQE---Oncology_R0183803",
-   "posted": "2026-07-09",
-   "description": "By clicking the \u201cApply\u201d button, I understand that my employment application process with Takeda will commence and that the information I provide in my application will be processed in line with Takeda\u2019s Privacy Notice and Terms of Use . \u00a0I further attest that all information I submit in my employment application is true to the best of my knowledge.\nJob Description\nOBJECTIVES/PURPOSE:\nShapes, at the asset-level, a risk based quality management model that elevates clinical program performance, strengthens regulatory confidence, and accelerates time to market by proactively reducing systemic comp",
-   "source": "workday",
-   "job_id": "wd-takeda-/job/USA---MA---Cambridge---Kendall-Square---500/Director--Clinical-Program-Quality---Excellence--CPQE---Oncology_R0183803",
-   "score": 55.8,
-   "score_parts": {
-    "semantic": 0.407,
-    "skills": 0.714,
-    "level_fit": 0.8,
-    "matched_skills": [
-     "oncology",
-     "phd",
-     "clinical trial",
-     "strategy"
-    ],
-    "first_seen": "2026-07-09T14:05:04+00:00"
-   },
-   "level": "Director",
-   "is_remote": false
-  },
-  {
    "company": "Johnson & Johnson",
    "title": "Sr. Manager, MedTech Technology Product Lifecycle Management Platform",
    "location": "Raritan, New Jersey, United States of America",
@@ -1162,6 +1348,31 @@
     "first_seen": "2026-07-08T22:10:21+00:00"
    },
    "level": "Senior Manager",
+   "is_remote": false
+  },
+  {
+   "company": "Gilead Sciences",
+   "title": "Director, Product Quality Lead (PQL), Global Quality",
+   "location": "United States - California - Foster City",
+   "url": "https://gilead.wd1.myworkdayjobs.com/en-US/gileadcareers/job/United-States---California---Foster-City/Director--Product-Quality-Lead--PQL---Global-Quality_R0053223-1",
+   "posted": "2026-07-08",
+   "description": "At Gilead, we\u2019re creating a healthier world for all people. For more than 35 years, we\u2019ve tackled diseases such as HIV, viral hepatitis, COVID-19 and cancer \u2013 working relentlessly to develop therapies that help improve lives and to ensure access to these therapies across the globe. We continue to fight against the world\u2019s biggest health challenges, and our mission requires collaboration, determination and a relentless drive to make a difference.\nEvery member of Gilead\u2019s team plays a critical role in the discovery and development of life-changing scientific innovations. Our employees are our gr",
+   "source": "workday",
+   "job_id": "wd-gilead-/job/United-States---California---Foster-City/Director--Product-Quality-Lead--PQL---Global-Quality_R0053223-1",
+   "score": 55.4,
+   "score_parts": {
+    "semantic": 0.411,
+    "skills": 0.692,
+    "level_fit": 0.8,
+    "matched_skills": [
+     "phd",
+     "launch",
+     "cross-functional",
+     "strategy"
+    ],
+    "first_seen": "2026-07-08T22:10:21+00:00"
+   },
+   "level": "Director",
    "is_remote": false
   },
   {
@@ -1493,6 +1704,34 @@
   },
   {
    "company": "Johnson & Johnson",
+   "title": "Senior Manager Market Access Product Management",
+   "location": "Titusville, New Jersey, United States of America",
+   "url": "https://jj.wd5.myworkdayjobs.com/en-US/JJ/job/Titusville-New-Jersey-United-States-of-America/Senior-Manager-Market-Access-Product-Management_R-085660-1",
+   "posted": "2026-07-09",
+   "description": "At Johnson & Johnson,\u202fwe believe health is everything. Our strength in healthcare innovation empowers us to build a\u202fworld where complex diseases are prevented, treated, and cured,\u202fwhere treatments are smarter and less invasive, and\u202fsolutions are personal.\u202fThrough our expertise in Innovative Medicine and MedTech, we are uniquely positioned to innovate across the full spectrum of healthcare solutions today to deliver the breakthroughs of tomorrow, and profoundly impact health for humanity.\u202fLearn more at jnj.com\nAs guided by Our Credo, Johnson & Johnson is responsible to our employees who work wi",
+   "source": "workday",
+   "job_id": "wd-jj-/job/Titusville-New-Jersey-United-States-of-America/Senior-Manager-Market-Access-Product-Management_R-085660-1",
+   "score": 53.4,
+   "score_parts": {
+    "semantic": 0.355,
+    "skills": 0.63,
+    "level_fit": 1.0,
+    "matched_skills": [
+     "tableau",
+     "machine learning",
+     "generative ai",
+     "forecasting",
+     "power bi",
+     "cross-functional",
+     "strategy"
+    ],
+    "first_seen": "2026-07-09T16:05:47+00:00"
+   },
+   "level": "Senior Manager",
+   "is_remote": false
+  },
+  {
+   "company": "Johnson & Johnson",
    "title": "Senior Manager, Project Management",
    "location": "Jacksonville, Florida, United States of America",
    "url": "https://jj.wd5.myworkdayjobs.com/en-US/JJ/job/Jacksonville-Florida-United-States-of-America/Senior-Manager--Project-Management_R-083022",
@@ -1536,6 +1775,53 @@
    },
    "level": "Associate Director",
    "is_remote": true
+  },
+  {
+   "company": "Johnson & Johnson",
+   "title": "Associate Director, Real World Value & Evidence (RWV&E) \u2013 Hematology",
+   "location": "Horsham, Pennsylvania, United States of America",
+   "url": "https://jj.wd5.myworkdayjobs.com/en-US/JJ/job/Horsham-Pennsylvania-United-States-of-America/Associate-Director--Real-World-Value---Evidence--RWV-E----Hematology_R-084412",
+   "posted": "2026-07-09",
+   "description": "At Johnson & Johnson,\u202fwe believe health is everything. Our strength in healthcare innovation empowers us to build a\u202fworld where complex diseases are prevented, treated, and cured,\u202fwhere treatments are smarter and less invasive, and\u202fsolutions are personal.\u202fThrough our expertise in Innovative Medicine and MedTech, we are uniquely positioned to innovate across the full spectrum of healthcare solutions today to deliver the breakthroughs of tomorrow, and profoundly impact health for humanity.\u202fLearn more at jnj.com .\nAs guided by Our Credo, Johnson & Johnson is responsible to our employees who work ",
+   "source": "workday",
+   "job_id": "wd-jj-/job/Horsham-Pennsylvania-United-States-of-America/Associate-Director--Real-World-Value---Evidence--RWV-E----Hematology_R-084412",
+   "score": 53.1,
+   "score_parts": {
+    "semantic": 0.382,
+    "skills": 0.571,
+    "level_fit": 1.0,
+    "matched_skills": [
+     "oncology",
+     "phd",
+     "cross-functional"
+    ],
+    "first_seen": "2026-07-09T16:05:47+00:00"
+   },
+   "level": "Associate Director",
+   "is_remote": false
+  },
+  {
+   "company": "Novo Nordisk",
+   "title": "Senior Manager - Strategic Partnerships, Consumer & Patient Engagement",
+   "location": "Plainsboro, NJ, US",
+   "url": "https://careers.novonordisk.com/job/Plainsboro-Senior-Manager-Strategic-Partnerships%2C-Consumer-&-Patient-Engagement-NJ/1402072933/",
+   "posted": "2026-07-07",
+   "description": "About the Department\nThe Finance & Operations department brings insights and intelligence to inform decision making & drives digitalization and business solutions to attain NNI goals. Finance & Operations works closely across the organization to guide enterprise-wide resource allocations, investment choices, drive core operations and develop insights to drive growth and operational excellence across the value chain while innovating for future capabilities. Our focus on innovation ensures we're constantly building future capabilities. We're responsible for regulating accounting, upholding workp",
+   "source": "successfactors",
+   "job_id": "",
+   "score": 52.6,
+   "score_parts": {
+    "semantic": 0.412,
+    "skills": 0.5,
+    "level_fit": 1.0,
+    "matched_skills": [
+     "cross-functional",
+     "strategy"
+    ],
+    "first_seen": "2026-07-09T03:09:37+00:00"
+   },
+   "level": "Senior Manager",
+   "is_remote": false
   },
   {
    "company": "AstraZeneca",
@@ -1637,6 +1923,30 @@
    },
    "level": "Senior Director",
    "is_remote": true
+  },
+  {
+   "company": "Takeda",
+   "title": "Associate Director, PharmSci Clinical Manufacturing Planning",
+   "location": "Lexington, MA",
+   "url": "https://takeda.wd3.myworkdayjobs.com/en-US/External/job/Lexington-MA/Associate-Director--PharmSci-Clinical-Manufacturing-Planning_R0184257",
+   "posted": "2026-07-09",
+   "description": "By clicking the \u201cApply\u201d button, I understand that my employment application process with Takeda will commence and that the information I provide in my application will be processed in line with Takeda\u2019s Privacy Notice and Terms of Use . \u00a0I further attest that all information I submit in my employment application is true to the best of my knowledge.\nJob Description\nObjective / Purpose:\nThe Supply Chain Management, Associate Director is responsible for managing and optimizing various aspects of the supply chain process. This role involves developing and implementing strategies to enhance logisti",
+   "source": "workday",
+   "job_id": "wd-takeda-/job/Lexington-MA/Associate-Director--PharmSci-Clinical-Manufacturing-Planning_R0184257",
+   "score": 52.0,
+   "score_parts": {
+    "semantic": 0.227,
+    "skills": 0.818,
+    "level_fit": 1.0,
+    "matched_skills": [
+     "business insights",
+     "strategic insights",
+     "forecasting"
+    ],
+    "first_seen": "2026-07-09T16:05:47+00:00"
+   },
+   "level": "Associate Director",
+   "is_remote": false
   },
   {
    "company": "Bristol Myers Squibb",
@@ -1815,6 +2125,30 @@
      "strategy"
     ],
     "first_seen": "2026-07-08T22:10:21+00:00"
+   },
+   "level": "Director",
+   "is_remote": false
+  },
+  {
+   "company": "Novo Nordisk",
+   "title": "Market Access Employer Strategy Director",
+   "location": "Plainsboro, NJ, US",
+   "url": "https://careers.novonordisk.com/job/Plainsboro-Market-Access-Employer-Strategy-Director-NJ/1413023133/",
+   "posted": "2026-07-08",
+   "description": "About the Department\nNovo Nordisk\u2019s Market Access and Public Affairs team engages diverse stakeholders across political and healthcare landscapes to forge solutions that drive patient access to innovative products. \u00a0We strive to deliver the best possible outcomes for patients with diabetes, obesity, growth hormone deficiencies and rare bleeding disorders through mutual wins for both Novo Nordisk and our Market Access customers. \u00a0Our passion for helping people live better lives and our award-winning product pipeline can only be as effective as our ability to provide information to healthcare pr",
+   "source": "successfactors",
+   "job_id": "",
+   "score": 49.8,
+   "score_parts": {
+    "semantic": 0.453,
+    "skills": 0.429,
+    "level_fit": 0.8,
+    "matched_skills": [
+     "launch",
+     "cross-functional",
+     "strategy"
+    ],
+    "first_seen": "2026-07-09T03:09:37+00:00"
    },
    "level": "Director",
    "is_remote": false
@@ -2072,6 +2406,31 @@
    "is_remote": true
   },
   {
+   "company": "Novo Nordisk",
+   "title": "Market Access Channel Strategy Trade Director",
+   "location": "Plainsboro, NJ, US",
+   "url": "https://careers.novonordisk.com/job/Plainsboro-Market-Access-Channel-Strategy-Trade-Director-NJ/1413039233/",
+   "posted": "2026-07-08",
+   "description": "About the Department\nNovo Nordisk\u2019s Market Access and Public Affairs team engages diverse stakeholders across political and healthcare landscapes to forge solutions that drive patient access to innovative products. \u00a0We strive to deliver the best possible outcomes for patients with diabetes, obesity, growth hormone deficiencies and rare bleeding disorders through mutual wins for both Novo Nordisk and our Market Access customers. \u00a0Our passion for helping people live better lives and our award-winning product pipeline can only be as effective as our ability to provide information to healthcare pr",
+   "source": "successfactors",
+   "job_id": "",
+   "score": 46.4,
+   "score_parts": {
+    "semantic": 0.353,
+    "skills": 0.5,
+    "level_fit": 0.8,
+    "matched_skills": [
+     "kpi",
+     "launch",
+     "cross-functional",
+     "strategy"
+    ],
+    "first_seen": "2026-07-09T03:09:37+00:00"
+   },
+   "level": "Director",
+   "is_remote": false
+  },
+  {
    "company": "Vertex Pharmaceuticals",
    "title": "Financial Planning and Analysis Associate Director",
    "location": "Boston, MA",
@@ -2095,6 +2454,30 @@
     "first_seen": "2026-07-08T22:10:21+00:00"
    },
    "level": "Associate Director",
+   "is_remote": false
+  },
+  {
+   "company": "Novo Nordisk",
+   "title": "Global Medical Director, Obesity",
+   "location": "S\u00f8borg, Capital Region of Denmark, DK",
+   "url": "https://careers.novonordisk.com/job/S%C3%B8borg-Global-Medical-Director%2C-Obesity-Capi/1412462833/",
+   "posted": "2026-07-07",
+   "description": "Are you passionate about shaping the future of obesity care? Do you bring a strategic mindset and a drive to create meaningful global impact? Do you flourish when working with diverse, high\u2011performing teams in a fast\u2011evolving environment? If so, join our Global Medical Affairs (GMA) Cagrisema Obesity team!\nYour new role\nAs a Medical Director, you will play a key role in shaping and executing critical Global Medical Affairs deliverables. You will provide timely, accurate, and credible scientific and medical guidance to both internal and external stakeholders. In this role, you will generate, in",
+   "source": "successfactors",
+   "job_id": "",
+   "score": 45.6,
+   "score_parts": {
+    "semantic": 0.339,
+    "skills": 0.5,
+    "level_fit": 0.8,
+    "matched_skills": [
+     "clinical trial",
+     "cross-functional",
+     "strategy"
+    ],
+    "first_seen": "2026-07-09T03:09:37+00:00"
+   },
+   "level": "Director",
    "is_remote": false
   },
   {
@@ -2164,30 +2547,6 @@
     "first_seen": "2026-07-09T02:29:09+00:00"
    },
    "level": "Director",
-   "is_remote": false
-  },
-  {
-   "company": "Takeda",
-   "title": "Associate Director, Analytical Portfolio Governance",
-   "location": "Lexington, MA",
-   "url": "https://takeda.wd3.myworkdayjobs.com/en-US/External/job/Lexington-MA/Associate-Director--Analytical-Portfolio-Governance_R0184019",
-   "posted": "2026-07-08",
-   "description": "By clicking the \u201cApply\u201d button, I understand that my employment application process with Takeda will commence and that the information I provide in my application will be processed in line with Takeda\u2019s Privacy Notice and Terms of Use . \u00a0I further attest that all information I submit in my employment application is true to the best of my knowledge.\nJob Description\nAbout the Role\nThe Associate Director, Analytical Portfolio Governance plays a critical role in enabling effective execution of the Analytical Development (AD) project portfolio through robust governance, portfolio visibility, decisi",
-   "source": "workday",
-   "job_id": "wd-takeda-/job/Lexington-MA/Associate-Director--Analytical-Portfolio-Governance_R0184019",
-   "score": 44.8,
-   "score_parts": {
-    "semantic": 0.214,
-    "skills": 0.6,
-    "level_fit": 1.0,
-    "matched_skills": [
-     "dashboards",
-     "cross-functional",
-     "strategy"
-    ],
-    "first_seen": "2026-07-08T22:10:21+00:00"
-   },
-   "level": "Associate Director",
    "is_remote": false
   },
   {
@@ -2282,28 +2641,6 @@
      "strategy"
     ],
     "first_seen": "2026-07-08T22:10:21+00:00"
-   },
-   "level": "Director",
-   "is_remote": false
-  },
-  {
-   "company": "Gilead Sciences",
-   "title": "Director, Corporate Storytelling and Editorial Strategy",
-   "location": "United States - California - Foster City",
-   "url": "https://gilead.wd1.myworkdayjobs.com/en-US/gileadcareers/job/United-States---California---Foster-City/Director--Corporate-Storytelling-and-Editorial-Strategy_R0053545-2",
-   "posted": "2026-07-07",
-   "description": "",
-   "source": "workday",
-   "job_id": "wd-gilead-/job/United-States---California---Foster-City/Director--Corporate-Storytelling-and-Editorial-Strategy_R0053545-2",
-   "score": 42.0,
-   "score_parts": {
-    "semantic": 0.0,
-    "skills": 1.0,
-    "level_fit": 0.8,
-    "matched_skills": [
-     "strategy"
-    ],
-    "first_seen": "2026-07-09T03:09:37+00:00"
    },
    "level": "Director",
    "is_remote": false
@@ -2584,6 +2921,30 @@
    "is_remote": true
   },
   {
+   "company": "Novo Nordisk",
+   "title": "Sr. Director, Marketing, Medical & Regulatory Affairs for BASAC region",
+   "location": "Panama city, Panama, PA",
+   "url": "https://careers.novonordisk.com/job/Panama-city-Sr_-Director%2C-Marketing%2C-Medical-&-Regulatory-Affairs-for-BASAC-region-Pana/1412995033/",
+   "posted": "2026-07-08",
+   "description": "Are you an experienced leader with proven ability to drive business results? Are you ready to take on a pivotal role within our leadership team?\nWe are currently looking for a Sr. Director Medical, Marketing & Regulatory Affairs (MMR) for BASAC region (Business Area South America, Central America & Caribbean) . Our team is composed of passionate and skilled professionals who thrive in a fast-paced and dynamic environment. We work collaboratively to achieve our goals and make a meaningful impact on patients' lives.\nThe job\nReporting to the regional VP of Business Area South America, Central Ame",
+   "source": "successfactors",
+   "job_id": "",
+   "score": 33.5,
+   "score_parts": {
+    "semantic": 0.217,
+    "skills": 0.467,
+    "level_fit": 0.5,
+    "matched_skills": [
+     "phd",
+     "clinical trial",
+     "strategy"
+    ],
+    "first_seen": "2026-07-09T03:09:37+00:00"
+   },
+   "level": "Senior Director",
+   "is_remote": false
+  },
+  {
    "company": "Vertex Pharmaceuticals",
    "title": "Project Management & Strategic Operations Director",
    "location": "Boston, MA",
@@ -2628,26 +2989,6 @@
     "first_seen": "2026-07-08T22:10:21+00:00"
    },
    "level": "Associate Director",
-   "is_remote": false
-  },
-  {
-   "company": "Gilead Sciences",
-   "title": "Director, Product Quality Lead (PQL), Global Quality",
-   "location": "United States - California - Foster City",
-   "url": "https://gilead.wd1.myworkdayjobs.com/en-US/gileadcareers/job/United-States---California---Foster-City/Director--Product-Quality-Lead--PQL---Global-Quality_R0053223-1",
-   "posted": "2026-07-08",
-   "description": "",
-   "source": "workday",
-   "job_id": "wd-gilead-/job/United-States---California---Foster-City/Director--Product-Quality-Lead--PQL---Global-Quality_R0053223-1",
-   "score": 27.0,
-   "score_parts": {
-    "semantic": 0.0,
-    "skills": 0.5,
-    "level_fit": 0.8,
-    "matched_skills": [],
-    "first_seen": "2026-07-08T22:10:21+00:00"
-   },
-   "level": "Director",
    "is_remote": false
   },
   {
@@ -2727,7 +3068,7 @@
    "ats": "workday",
    "status": "ok",
    "fetched": 0,
-   "matches": 4
+   "matches": 5
   },
   {
    "name": "Gilead Sciences",
@@ -2760,10 +3101,9 @@
   {
    "name": "Novo Nordisk",
    "ats": "successfactors",
-   "status": "error",
-   "error_kind": "unknown",
-   "hint": "Unrecognized failure \u2014 copy the verbose error into chat to troubleshoot",
-   "error": "No module named 'bs4'"
+   "status": "ok",
+   "fetched": 0,
+   "matches": 5
   },
   {
    "name": "Jazz Pharmaceuticals",
@@ -2798,7 +3138,7 @@
    "ats": "workday",
    "status": "ok",
    "fetched": 0,
-   "matches": 9
+   "matches": 8
   },
   {
    "name": "AbbVie",
@@ -2894,7 +3234,7 @@
    "ats": "workday",
    "status": "ok",
    "fetched": 0,
-   "matches": 12
+   "matches": 14
   },
   {
    "name": "Merck",
@@ -2920,10 +3260,9 @@
   {
    "name": "Bayer Crop Science",
    "ats": "successfactors",
-   "status": "error",
-   "error_kind": "unknown",
-   "hint": "Unrecognized failure \u2014 copy the verbose error into chat to troubleshoot",
-   "error": "No module named 'bs4'"
+   "status": "ok",
+   "fetched": 0,
+   "matches": 6
   },
   {
    "name": "Syngenta",
@@ -2947,15 +3286,6 @@
    "matches": 0
   }
  ],
- "errors": [
-  {
-   "company": "Novo Nordisk",
-   "error": "No module named 'bs4'"
-  },
-  {
-   "company": "Bayer Crop Science",
-   "error": "No module named 'bs4'"
-  }
- ],
+ "errors": [],
  "partial": false
 }

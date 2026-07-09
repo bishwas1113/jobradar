@@ -75,7 +75,7 @@ companies:
     verified: true
   - name: Novo Nordisk
     ats: successfactors
-    note: ""
+    domain: careers.novonordisk.com
     verified: true
   - name: Jazz Pharmaceuticals
     ats: workday
@@ -109,7 +109,7 @@ companies:
     verified: true
   - name: AbbVie
     ats: smartrecruiters
-    note: ""
+    board: abbvie
     verified: true
   - name: Eli Lilly
     ats: lilly
@@ -190,11 +190,11 @@ companies:
     verified: true
   - name: Bayer Crop Science
     ats: successfactors
-    note: ""
+    domain: jobs.bayer.com
     verified: true
   - name: Syngenta
     ats: smartrecruiters
-    note: ""
+    board: SyngentaGroup
     verified: true
   - name: Veeva
     ats: lever

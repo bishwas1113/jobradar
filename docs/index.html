@@ -881,6 +881,10 @@ function toYamlEntry(c){
     lines.push(`    board: ${c.board}`);
   }else if(c.ats==="lever"){
     lines.push(`    site: ${c.site}`);
+  }else if(c.ats==="smartrecruiters"){
+    lines.push(`    board: ${c.board}`);
+  }else if(c.ats==="successfactors"){
+    lines.push(`    domain: ${c.domain}`);
   }else{
     lines.push(`    note: ${yamlEscape(c.note||c.url||"")}`);
   }
@@ -911,7 +915,7 @@ function buildYaml(){
   const all=[...COMPANIES.companies
       .filter(c=>!removed.has(c.name))
       .map(c=>({name:c.name,ats:c.ats,tenant:c.tenant,wd:c.wd,site:c.site,board:c.board,
-                verified:c.verified,note:c.note})),
+                domain:c.domain,verified:c.verified,note:c.note})),
     ...pending.filter(p=>!removed.has(p.name))];
   
   const terms = ($("#cfgSearchTerms").value||"").split("\n").map(t=>t.trim()).filter(Boolean);

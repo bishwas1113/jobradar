@@ -37,8 +37,8 @@
   "level": 0.15
  },
  "level_fit": {
-  "Senior Manager": 1.0,
-  "Associate Director": 1.0,
+  "Senior Manager": 1,
+  "Associate Director": 1,
   "Director": 0.8,
   "Senior Director": 0.5
  },
@@ -203,7 +203,7 @@
    "tenant": "modernatx",
    "wd": "wd1",
    "site": "M_tx",
-   "board": "modernatx",
+   "board": null,
    "verified": true,
    "note": "",
    "url": "https://modernatx.wd1.myworkdayjobs.com/en-US/M_tx"
@@ -248,7 +248,7 @@
    "wd": null,
    "site": null,
    "board": null,
-   "verified": true,
+   "verified": false,
    "note": "arrowheadpharma.com/careers -- own custom platform, not Workday",
    "url": ""
   },

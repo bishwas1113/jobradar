@@ -43,29 +43,32 @@ level_fit:
   Senior Director: 0.5
 
 companies:
+  - name: AbbVie
+    ats: smartrecruiters
+    board: abbvie
+    verified: true
   - name: Amgen
     ats: workday
     tenant: amgen
     wd: wd1
     site: Careers
     verified: true
-  - name: Gilead Sciences
+  - name: Arrowhead Pharmaceuticals
+    ats: unknown
+    note: "arrowheadpharma.com/careers -- own custom platform, not Workday"
+  - name: AstraZeneca
     ats: workday
-    tenant: gilead
-    wd: wd1
-    site: gileadcareers
+    tenant: astrazeneca
+    wd: wd3
+    site: Careers
     verified: true
-  - name: Regeneron
-    ats: workday
-    tenant: regeneron
-    wd: wd1
-    site: careers
+  - name: Bayer Crop Science
+    ats: successfactors
+    domain: undefined
     verified: true
-  - name: Vertex Pharmaceuticals
-    ats: workday
-    tenant: vrtx
-    wd: wd501
-    site: Vertex_Careers
+  - name: Beam Therapeutics
+    ats: greenhouse
+    board: beamtherapeutics
     verified: true
   - name: Biogen
     ats: workday
@@ -73,63 +76,21 @@ companies:
     wd: wd3
     site: external
     verified: true
-  - name: Novo Nordisk
-    ats: successfactors
-    domain: careers.novonordisk.com
-    verified: true
-  - name: Jazz Pharmaceuticals
-    ats: workday
-    tenant: vhr_jazz
-    wd: wd1
-    site: JazzPharmaceuticals
-    verified: true
   - name: Bristol Myers Squibb
     ats: workday
     tenant: bristolmyerssquibb
     wd: wd5
     site: BMS
     verified: true
-  - name: Pfizer
+  - name: Corteva Agriscience
     ats: workday
-    tenant: pfizer
-    wd: wd1
-    site: PfizerCareers
-    verified: true
-  - name: AstraZeneca
-    ats: workday
-    tenant: astrazeneca
-    wd: wd3
-    site: Careers
-    verified: true
-  - name: Takeda
-    ats: workday
-    tenant: takeda
-    wd: wd3
-    site: External
-    verified: true
-  - name: AbbVie
-    ats: smartrecruiters
-    board: abbvie
+    tenant: corteva
+    wd: wd5
+    site: Corteva
     verified: true
   - name: Eli Lilly
     ats: lilly
     note: ""
-    verified: true
-  - name: Otsuka
-    ats: workday
-    tenant: vhr_otsuka
-    wd: wd1
-    site: External
-    verified: true
-  - name: Moderna
-    ats: workday
-    tenant: modernatx
-    wd: wd1
-    site: M_tx
-    verified: true
-  - name: Beam Therapeutics
-    ats: greenhouse
-    board: beamtherapeutics
     verified: true
   - name: Enveda Biosciences
     ats: lever
@@ -141,28 +102,33 @@ companies:
     wd: wd1
     site: Exact_Sciences
     verified: true
-  - name: Arrowhead Pharmaceuticals
-    ats: unknown
-    note: "arrowheadpharma.com/careers -- own custom platform, not Workday"
-  - name: Corteva Agriscience
-    ats: workday
-    tenant: corteva
-    wd: wd5
-    site: Corteva
-    verified: true
-  - name: Indigo Ag
-    ats: greenhouse
-    board: indigo
-    verified: true
-  - name: Pivot Bio
-    ats: greenhouse
-    board: pivotbio
-    verified: true
   - name: "Genentech (Roche)"
     ats: workday
     tenant: roche
     wd: wd3
     site: ROG-A2O-GENE
+    verified: true
+  - name: Gilead Sciences
+    ats: workday
+    tenant: gilead
+    wd: wd1
+    site: gileadcareers
+    verified: true
+  - name: GSK
+    ats: workday
+    tenant: gsk
+    wd: wd5
+    site: GSKCareers
+    verified: false
+  - name: Indigo Ag
+    ats: greenhouse
+    board: indigo
+    verified: true
+  - name: Jazz Pharmaceuticals
+    ats: workday
+    tenant: vhr_jazz
+    wd: wd1
+    site: JazzPharmaceuticals
     verified: true
   - name: "Johnson & Johnson"
     ats: workday
@@ -170,11 +136,21 @@ companies:
     wd: wd5
     site: JJ
     verified: true
+  - name: Komodo Health
+    ats: greenhouse
+    board: komodohealth
+    verified: true
   - name: Merck
     ats: workday
     tenant: msd
     wd: wd5
     site: SearchJobs
+    verified: true
+  - name: Moderna
+    ats: workday
+    tenant: modernatx
+    wd: wd1
+    site: M_tx
     verified: true
   - name: Novartis
     ats: workday
@@ -182,25 +158,55 @@ companies:
     wd: wd3
     site: Novartis_Careers
     verified: true
+  - name: Novo Nordisk
+    ats: successfactors
+    domain: undefined
+    verified: true
+  - name: Otsuka
+    ats: workday
+    tenant: vhr_otsuka
+    wd: wd1
+    site: External
+    verified: true
+  - name: Pfizer
+    ats: workday
+    tenant: pfizer
+    wd: wd1
+    site: PfizerCareers
+    verified: true
+  - name: Pivot Bio
+    ats: greenhouse
+    board: pivotbio
+    verified: true
+  - name: Regeneron
+    ats: workday
+    tenant: regeneron
+    wd: wd1
+    site: careers
+    verified: true
+  - name: Syngenta
+    ats: smartrecruiters
+    board: SyngentaGroup
+    verified: true
+  - name: Takeda
+    ats: workday
+    tenant: takeda
+    wd: wd3
+    site: External
+    verified: true
   - name: Thermo Fisher
     ats: workday
     tenant: thermofisher
     wd: wd5
     site: ThermoFisherCareers
     verified: true
-  - name: Bayer Crop Science
-    ats: successfactors
-    domain: jobs.bayer.com
-    verified: true
-  - name: Syngenta
-    ats: smartrecruiters
-    board: SyngentaGroup
-    verified: true
   - name: Veeva
     ats: lever
     site: veeva
     verified: true
-  - name: Komodo Health
-    ats: greenhouse
-    board: komodohealth
+  - name: Vertex Pharmaceuticals
+    ats: workday
+    tenant: vrtx
+    wd: wd501
+    site: Vertex_Careers
     verified: true

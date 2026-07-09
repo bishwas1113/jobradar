@@ -727,7 +727,7 @@ function buildControls(){
 
 function renderCoSidebarList(){
   const container=$("#coSidebarList");
-  const cs=DATA.companies_status||[];
+  const cs=(DATA.companies_status||[]).slice().sort((a,b)=>a.name.localeCompare(b.name));
   if(!cs.length){container.innerHTML="";return;}
   
   const currentFilteredJobs = DATA.matches.filter(m => 
@@ -917,6 +917,8 @@ function buildYaml(){
       .map(c=>({name:c.name,ats:c.ats,tenant:c.tenant,wd:c.wd,site:c.site,board:c.board,
                 domain:c.domain,verified:c.verified,note:c.note})),
     ...pending.filter(p=>!removed.has(p.name))];
+  
+  all.sort((a,b)=>a.name.localeCompare(b.name));
   
   const terms = ($("#cfgSearchTerms").value||"").split("\n").map(t=>t.trim()).filter(Boolean);
   const locs = ($("#cfgLocations").value||"").split("\n").map(l=>l.trim()).filter(Boolean);

@@ -5,12 +5,15 @@ def fetch_smartrecruiters(company_name: str, board: str, session: PoliteSession,
                            search_terms: list[str], detail_prefilter=None) -> list[Job]:
     """Fetch jobs from a company's SmartRecruiters portal."""
     jobs = []
+    seen_ids = set()
     base_url = f"https://api.smartrecruiters.com/v1/companies/{board}/postings"
+
+    combined_query = " OR ".join(search_terms)
     offset = 0
     limit = 100
-
     while True:
         params = {
+            "q": combined_query,
             "offset": str(offset),
             "limit": str(limit)
         }
@@ -26,6 +29,9 @@ def fetch_smartrecruiters(company_name: str, board: str, session: PoliteSession,
                 
             for p in postings:
                 job_id = p.get("id")
+                if job_id in seen_ids:
+                    continue
+                    
                 title = p.get("name") or ""
                 
                 # Check prefilter if available
@@ -54,6 +60,7 @@ def fetch_smartrecruiters(company_name: str, board: str, session: PoliteSession,
                 posted = released[:10] if released else None
                 url = f"https://jobs.smartrecruiters.com/{board}/{job_id}"
 
+                seen_ids.add(job_id)
                 jobs.append(Job(
                     company=company_name,
                     title=title.strip(),

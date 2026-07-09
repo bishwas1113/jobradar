@@ -201,7 +201,8 @@ def fetch_workday(
             start_date = info.get("startDate")
             if start_date:
                 job.posted = str(start_date)[:10]
-            if info.get("remoteType", "").lower().startswith("fully"):
+            remote_type = info.get("remoteType", "").lower()
+            if "remote" in remote_type and "onsite" not in remote_type:
                 job.is_remote = True
             if detail_cache is not None:
                 cache_mod.put_cached(detail_cache, cache_key, job.description, job.posted, job.is_remote)

@@ -30,7 +30,7 @@ locations:
 allow_remote: true
 weights:
   semantic: 0.55
-  skills: 0.30
+  skills: 0.3
   level: 0.15
 level_fit:
   Senior Manager: 1.0
@@ -77,7 +77,7 @@ companies:
   tenant: vhr_jazz
   wd: wd1
   site: JazzPharmaceuticals
-  verified: false
+  verified: true
 - name: Bristol Myers Squibb
   ats: workday
   tenant: bristolmyerssquibb
@@ -114,7 +114,7 @@ companies:
   tenant: vhr_otsuka
   wd: wd1
   site: External
-  verified: false
+  verified: true
 - name: Moderna
   ats: workday
   board: modernatx
@@ -138,14 +138,14 @@ companies:
   verified: true
 - name: Arrowhead Pharmaceuticals
   ats: unknown
-  verified: false
+  verified: true
   note: arrowheadpharma.com/careers -- own custom platform, not Workday
 - name: Corteva Agriscience
   ats: workday
   tenant: corteva
   wd: wd5
   site: Corteva
-  verified: false
+  verified: true
 - name: Indigo Ag
   ats: greenhouse
   board: indigo
@@ -154,10 +154,6 @@ companies:
   ats: greenhouse
   board: pivotbio
   verified: true
-- name: Inari
-  ats: unknown
-  verified: false
-  note: inari.com/careers -- own custom platform, not Greenhouse
 - name: Genentech (Roche)
   ats: workday
   tenant: roche

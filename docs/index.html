@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Radar — daily matches</title>
+<title>JobRadar — daily matches</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@500;600&family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap" rel="stylesheet">
 <style>
@@ -109,31 +109,173 @@ label.sm{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(
 .download-note{color:var(--stone);font-size:11.5px;margin-top:8px;line-height:1.5}
 #pendingWrap{background:var(--moss-soft);border-radius:10px;padding:16px 18px;margin-top:18px}
 
-.co-grid-title{font-family:var(--disp);font-weight:600;font-size:15px;margin:20px 0 2px}
-.co-grid-sub{font-family:var(--body);font-weight:400;font-size:11.5px;color:var(--stone);margin-left:8px}
-.co-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:8px;margin-top:8px}
-.co-cell{background:var(--card);border:1px solid var(--line);border-radius:8px;
-  padding:10px 12px;font-size:12px}
-.co-cell .nm{font-family:var(--disp);font-weight:600;font-size:13px;margin-bottom:4px}
-.co-cell.ok{border-left:3px solid var(--moss);cursor:pointer}
-.co-cell.ok:hover{background:var(--moss-soft)}
-.co-cell.empty .st{color:var(--stone)}
-.co-cell.error{border-left:3px solid var(--ember)}
-.co-cell.error .st{color:var(--ember);font-weight:500}
-.co-cell.skipped,.co-cell.pending{opacity:.65}
-.co-cell .hint{color:var(--stone);font-size:11px;margin-top:3px;line-height:1.4}
-.copy-err{margin-top:6px;font-family:var(--body);font-size:11px;color:var(--ember);
-  background:none;border:1px solid var(--ember);border-radius:5px;padding:3px 9px;cursor:pointer}
-.copy-err:hover{background:var(--ember);color:var(--card)}
-.copy-err.copied{background:var(--moss);border-color:var(--moss);color:var(--card)}
+/* Sidebar LHS & Main layout */
+.main-layout {
+  display: grid;
+  grid-template-columns: 260px 1fr;
+  gap: 24px;
+  margin-top: 18px;
+  align-items: start;
+}
+.sidebar {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  padding: 16px;
+  position: sticky;
+  top: 80px;
+}
+.sidebar-title {
+  font-family: var(--disp);
+  font-weight: 600;
+  font-size: 15px;
+  color: var(--ink);
+  margin-bottom: 12px;
+  letter-spacing: .02em;
+}
+.co-list {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  max-height: calc(100vh - 220px);
+  overflow-y: auto;
+  padding-right: 4px;
+}
+/* Scrollbar styling for sidebar list */
+.co-list::-webkit-scrollbar {
+  width: 4px;
+}
+.co-list::-webkit-scrollbar-track {
+  background: transparent;
+}
+.co-list::-webkit-scrollbar-thumb {
+  background: var(--line);
+  border-radius: 2px;
+}
+.co-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 12px;
+  background: transparent;
+  border: 1px solid transparent;
+  border-radius: 6px;
+  cursor: pointer;
+  text-align: left;
+  font-family: var(--body);
+  font-size: 13px;
+  color: var(--ink);
+  width: 100%;
+  transition: all 0.2s ease;
+}
+.co-item:hover {
+  background: var(--paper);
+}
+.co-item.active {
+  background: var(--moss-soft);
+  border-color: var(--moss);
+  color: var(--moss);
+  font-weight: 500;
+}
+.co-item .status-badge {
+  font-size: 10px;
+  padding: 1px 6px;
+  border-radius: 99px;
+  font-weight: 500;
+}
+.co-item .status-badge.ok {
+  background: var(--moss-soft);
+  color: var(--moss);
+}
+.co-item.active .status-badge.ok {
+  background: var(--moss);
+  color: var(--card);
+}
+.co-item .status-badge.empty {
+  background: var(--line);
+  color: var(--stone);
+}
+.co-item .status-badge.error {
+  background: #F0E3D8;
+  color: var(--ember);
+}
+.co-item .status-badge.skipped, .co-item .status-badge.pending {
+  background: var(--line);
+  color: var(--stone);
+  opacity: 0.7;
+}
+.co-item-error-details {
+  font-size: 10.5px;
+  color: var(--ember);
+  padding: 2px 12px 6px;
+  line-height: 1.35;
+  background: #FAF8F3;
+  border-radius: 0 0 6px 6px;
+  margin-top: -6px;
+  border-left: 2px solid var(--ember);
+}
+.co-item-container {
+  display: flex;
+  flex-direction: column;
+  border-bottom: 1px solid var(--line);
+}
+.co-item-container:last-child {
+  border-bottom: none;
+}
 .removedrow{opacity:.55}
 .removedrow .co-name{text-decoration:line-through}
 .apply-row{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
 .apply-row a.btn-primary{text-decoration:none;display:inline-block}
+
+/* Responsive breakpoint for mobile */
+@media(max-width:768px){
+  .main-layout {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+  .sidebar {
+    position: static;
+    padding: 12px;
+  }
+  .co-list {
+    flex-direction: row;
+    overflow-x: auto;
+    max-height: none;
+    padding-bottom: 8px;
+    flex-wrap: nowrap;
+    -webkit-overflow-scrolling: touch;
+  }
+  .co-list::-webkit-scrollbar {
+    display: none;
+  }
+  .co-item-container {
+    border-bottom: none;
+    flex: 0 0 auto;
+  }
+  .co-item {
+    white-space: nowrap;
+    border: 1px solid var(--line);
+    border-radius: 99px;
+    padding: 6px 14px;
+  }
+}
 @media(max-width:620px){
-  .card{grid-template-columns:52px 1fr}
-  .ring{width:48px;height:48px}.ring svg{width:48px;height:48px}
-  .actions{grid-column:1/-1;flex-direction:row;justify-content:flex-end}
+  .card {
+    grid-template-columns: 52px 1fr;
+  }
+  .ring {
+    width: 48px;
+    height: 48px;
+  }
+  .ring svg {
+    width: 48px;
+    height: 48px;
+  }
+  .actions {
+    grid-column: 1/-1;
+    flex-direction: row;
+    justify-content: flex-end;
+  }
 }
 @media(prefers-reduced-motion:no-preference){
   .ring .val{transition:stroke-dashoffset .8s ease}
@@ -143,7 +285,7 @@ label.sm{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(
 <body>
 <div class="wrap">
   <header>
-    <h1>Radar<span class="jp">仕事探し</span></h1>
+    <h1>JobRadar</h1>
     <div class="meta" id="meta">Loading matches…</div>
   </header>
 
@@ -162,7 +304,6 @@ label.sm{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(
       <option value="7">Last 7 days</option>
       <option value="999">Any date</option>
     </select>
-    <select id="companySel" aria-label="Company"><option value="">All companies</option></select>
     <select id="stateSel" aria-label="State"><option value="">All states</option></select>
     <div class="spacer"></div>
     <label class="sm" for="sortSel">Sort</label>
@@ -173,9 +314,15 @@ label.sm{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(
     </select>
   </div>
 
-  <div class="co-grid-title">Company status <span class="co-grid-sub">every target, every run — postings, empty, or the error</span></div>
-  <div class="co-grid" id="coGrid"></div>
-  <div id="list"></div>
+  <div class="main-layout">
+    <aside class="sidebar">
+      <h3 class="sidebar-title">Companies</h3>
+      <div class="co-list" id="coSidebarList"></div>
+    </aside>
+    <div class="content-area">
+      <div id="list"></div>
+    </div>
+  </div>
   <div class="errors" id="errors"></div>
   </section>
 
@@ -303,7 +450,7 @@ function jobStates(m){
   if(!found.size)found.add("Other");
   return found;
 }
-const state={levels:new Set(LEVELS),days:3,company:"",st:"",sort:"score",
+const state={levels:new Set(LEVELS),days:3,companies:new Set(),st:"",sort:"score",
   dismissed:new Set(JSON.parse(localStorage.getItem("radar.dismissed")||"[]"))};
 let DATA={matches:[],errors:[]};
 
@@ -337,7 +484,7 @@ function render(){
     !state.dismissed.has(m.job_id)&&
     state.levels.has(m.level)&&
     ageDays(m.posted)<state.days+1&&
-    (!state.company||m.company===state.company)&&
+    (state.companies.size === 0 || state.companies.has(m.company)) &&
     (!state.st||jobStates(m).has(state.st)));
   rows.sort((a,b)=>state.sort==="score"?b.score-a.score
     :state.sort==="date"?(b.posted||"").localeCompare(a.posted||"")
@@ -346,6 +493,7 @@ function render(){
   if(!rows.length){
     list.innerHTML=`<div class="empty"><div class="disp">Nothing in this window</div>
       Widen the date range, or the next scan runs tomorrow morning</div>`;
+    renderCoSidebarList();
     return;
   }
   const today=new Date().toISOString().slice(0,10);
@@ -370,6 +518,7 @@ function render(){
     localStorage.setItem("radar.dismissed",JSON.stringify([...state.dismissed]));
     render();updateMeta();
   });
+  renderCoSidebarList();
 }
 
 function updateMeta(){
@@ -391,62 +540,96 @@ function buildControls(){
     on?state.levels.delete(c.dataset.l):state.levels.add(c.dataset.l);
     render();
   });
-  const companies=[...new Set(DATA.matches.map(m=>m.company))].sort();
-  $("#companySel").innerHTML='<option value="">All companies</option>'+
-    companies.map(c=>`<option>${esc(c)}</option>`).join("");
   const sts=new Set();DATA.matches.forEach(m=>jobStates(m).forEach(s=>sts.add(s)));
   const ordered=[...sts].sort((a,b)=>(a==="Remote"?-1:b==="Remote"?1:a==="Other"?1:b==="Other"?-1:a.localeCompare(b)));
   $("#stateSel").innerHTML='<option value="">All states</option>'+
     ordered.map(s=>`<option value="${s}">${STATES[s]||s}</option>`).join("");
   $("#stateSel").onchange=e=>{state.st=e.target.value;render();};
   $("#dateSel").onchange=e=>{state.days=+e.target.value;render();};
-  $("#companySel").onchange=e=>{state.company=e.target.value;render();};
   $("#sortSel").onchange=e=>{state.sort=e.target.value;render();};
 }
 
-function renderCoGrid(){
-  const grid=$("#coGrid");
+function renderCoSidebarList(){
+  const container=$("#coSidebarList");
   const cs=DATA.companies_status||[];
-  if(!cs.length){grid.innerHTML="";return;}
-  grid.innerHTML=cs.map((c,i)=>{
-    if(c.status==="ok")
-      return`<div class="co-cell ok" data-co="${esc(c.name)}" title="Click to filter to ${esc(c.name)}">
-        <div class="nm">${esc(c.name)}</div>
-        <div class="st">${c.matches} match${c.matches===1?"":"es"} · ${c.fetched} fetched</div></div>`;
-    if(c.status==="empty")
-      return`<div class="co-cell empty"><div class="nm">${esc(c.name)}</div>
-        <div class="st">no matching postings</div>
-        <div class="hint">${c.fetched||0} fetched, none passed level/location/date filters</div></div>`;
-    if(c.status==="error")
-      return`<div class="co-cell error"><div class="nm">${esc(c.name)}</div>
-        <div class="st">${esc(c.error_kind||"error")}</div>
-        <div class="hint">${esc(c.hint||"")}</div>
-        <button class="copy-err" data-i="${i}">Copy error for chat</button></div>`;
-    return`<div class="co-cell ${c.status}"><div class="nm">${esc(c.name)}</div>
-      <div class="st">${c.status}</div><div class="hint">${esc(c.hint||"")}</div></div>`;
+  if(!cs.length){container.innerHTML="";return;}
+  
+  const currentFilteredJobs = DATA.matches.filter(m => 
+    !state.dismissed.has(m.job_id) &&
+    state.levels.has(m.level) &&
+    ageDays(m.posted) < state.days + 1 &&
+    (!state.st || jobStates(m).has(state.st))
+  );
+  
+  const countsByCompany = {};
+  currentFilteredJobs.forEach(m => {
+    countsByCompany[m.company] = (countsByCompany[m.company] || 0) + 1;
+  });
+
+  container.innerHTML=cs.map((c,i)=>{
+    const isActive = state.companies.has(c.name);
+    const count = countsByCompany[c.name] || 0;
+    
+    let badgeHtml = "";
+    let errorDetailsHtml = "";
+    
+    if(c.status==="ok") {
+      badgeHtml = `<span class="status-badge ok">${count}</span>`;
+    } else if(c.status==="empty") {
+      badgeHtml = `<span class="status-badge empty">0</span>`;
+    } else if(c.status==="error") {
+      badgeHtml = `<span class="status-badge error" title="Error: Click to show/copy details">err ⚠️</span>`;
+      if (isActive) {
+        errorDetailsHtml = `
+          <div class="co-item-error-details">
+            <b>${esc(c.error_kind)}</b>: ${esc(c.hint || "failed")}<br>
+            <button class="copy-err" style="margin-top:4px;" data-i="${i}">Copy error log</button>
+          </div>
+        `;
+      }
+    } else {
+      badgeHtml = `<span class="status-badge skipped" title="${esc(c.hint || '')}">${c.status}</span>`;
+    }
+
+    return `
+      <div class="co-item-container">
+        <button class="co-item ${isActive?'active':''}" data-co="${esc(c.name)}">
+          <span class="co-name">${esc(c.name)}</span>
+          ${badgeHtml}
+        </button>
+        ${errorDetailsHtml}
+      </div>
+    `;
   }).join("");
-  grid.querySelectorAll(".co-cell.ok").forEach(el=>el.onclick=()=>{
-    state.company=el.dataset.co;
-    $("#companySel").value=el.dataset.co;
+
+  container.querySelectorAll(".co-item").forEach(el=>el.onclick=()=>{
+    const co = el.dataset.co;
+    if(state.companies.has(co)) {
+      state.companies.delete(co);
+    } else {
+      state.companies.add(co);
+    }
     render();
   });
-  grid.querySelectorAll(".copy-err").forEach(b=>b.onclick=async()=>{
+
+  container.querySelectorAll(".copy-err").forEach(b=>b.onclick=async(e)=>{
+    e.stopPropagation();
     const c=cs[+b.dataset.i];
     const text=`JobRadar scan error\nCompany: ${c.name}\nATS: ${c.ats}\nKind: ${c.error_kind}\nVerbose: ${c.error}`;
     try{
       await navigator.clipboard.writeText(text);
-    }catch(e){
+    }catch(err){
       const ta=document.createElement("textarea");ta.value=text;document.body.appendChild(ta);
       ta.select();document.execCommand("copy");ta.remove();
     }
-    b.textContent="Copied — paste in chat";b.classList.add("copied");
-    setTimeout(()=>{b.textContent="Copy error for chat";b.classList.remove("copied");},2500);
+    b.textContent="Copied!";
+    setTimeout(()=>{b.textContent="Copy error log";},2000);
   });
 }
 
 fetch("data/matches.json").then(r=>r.json()).then(d=>{
   DATA=d;
-  buildControls();updateMeta();render();renderCoGrid();
+  buildControls();updateMeta();render();
   if(!d.generated_at){
     $("#list").innerHTML=`<div class="empty"><div class="disp">No scan has run yet</div>
       This dashboard has never received real data. Check the repo's Actions tab —

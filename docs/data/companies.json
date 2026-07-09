@@ -116,7 +116,7 @@
    "wd": "wd1",
    "site": "JazzPharmaceuticals",
    "board": null,
-   "verified": false,
+   "verified": true,
    "note": "",
    "url": "https://vhr-jazz.wd1.myworkdayjobs.com/en-US/JazzPharmaceuticals"
   },
@@ -193,7 +193,7 @@
    "wd": "wd1",
    "site": "External",
    "board": null,
-   "verified": false,
+   "verified": true,
    "note": "",
    "url": "https://vhr-otsuka.wd1.myworkdayjobs.com/en-US/External"
   },
@@ -248,7 +248,7 @@
    "wd": null,
    "site": null,
    "board": null,
-   "verified": false,
+   "verified": true,
    "note": "arrowheadpharma.com/careers -- own custom platform, not Workday",
    "url": ""
   },
@@ -259,7 +259,7 @@
    "wd": "wd5",
    "site": "Corteva",
    "board": null,
-   "verified": false,
+   "verified": true,
    "note": "",
    "url": "https://corteva.wd5.myworkdayjobs.com/en-US/Corteva"
   },
@@ -284,17 +284,6 @@
    "verified": true,
    "note": "",
    "url": "https://boards.greenhouse.io/pivotbio"
-  },
-  {
-   "name": "Inari",
-   "ats": "unknown",
-   "tenant": null,
-   "wd": null,
-   "site": null,
-   "board": null,
-   "verified": false,
-   "note": "inari.com/careers -- own custom platform, not Greenhouse",
-   "url": ""
   },
   {
    "name": "Genentech (Roche)",

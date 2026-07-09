@@ -42,14 +42,15 @@ def _get_embedder():
     return _EMBEDDER
 
 
-def _semantic_batch(resume_text: str, jd_texts: List[str]) -> List[float]:
+def _semantic_batch(resume_text: str, jd_texts: List[str]) -> tuple[List[float], Optional[List[List[float]]]]:
     model = _get_embedder()
     if model is not None:
         import numpy as np
         vecs = model.encode([resume_text] + jd_texts, normalize_embeddings=True)
         sims = (vecs[1:] @ vecs[0]).tolist()
         # MiniLM resume-vs-JD sims live roughly in [0.2, 0.75]; stretch to 0-1.
-        return [max(0.0, min(1.0, (s - 0.2) / 0.55)) for s in sims]
+        stretched = [max(0.0, min(1.0, (s - 0.2) / 0.55)) for s in sims]
+        return stretched, vecs[1:].tolist()
     # TF-IDF fallback
     from sklearn.feature_extraction.text import TfidfVectorizer
     from sklearn.metrics.pairwise import cosine_similarity
@@ -57,7 +58,8 @@ def _semantic_batch(resume_text: str, jd_texts: List[str]) -> List[float]:
     m = vec.fit_transform([resume_text] + jd_texts)
     sims = cosine_similarity(m[0], m[1:]).ravel().tolist()
     # TF-IDF sims for this task live roughly in [0.02, 0.35]; stretch to 0-1.
-    return [max(0.0, min(1.0, (s - 0.02) / 0.33)) for s in sims]
+    stretched = [max(0.0, min(1.0, (s - 0.02) / 0.33)) for s in sims]
+    return stretched, None
 
 
 def _skill_score(resume_skills: dict, jd_text: str) -> tuple[float, list]:
@@ -78,8 +80,8 @@ def score_jobs(jobs: List[Job], profile: ResumeProfile, weights: dict | None = N
         level_fit = _LEVEL_FIT
 
     jd_texts = [f"{j.title}\n{j.description}" for j in jobs]
-    semantic = _semantic_batch(profile.full_text, jd_texts)
-    for j, jd_text, sem in zip(jobs, jd_texts, semantic):
+    semantic, embeddings = _semantic_batch(profile.full_text, jd_texts)
+    for idx, (j, jd_text, sem) in enumerate(zip(jobs, jd_texts, semantic)):
         skill, matched = _skill_score(profile.skills, jd_text)
         level = level_fit.get(j.level or "", 0.4)
         final = 100 * (weights.get("semantic", 0.55) * sem + 
@@ -92,5 +94,7 @@ def score_jobs(jobs: List[Job], profile: ResumeProfile, weights: dict | None = N
             "level_fit": level,
             "matched_skills": matched[:8],
         }
+        if embeddings is not None:
+            j.score_parts["embedding"] = embeddings[idx]
     jobs.sort(key=lambda x: x.score or 0, reverse=True)
     return jobs

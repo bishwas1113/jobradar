@@ -208,7 +208,9 @@ def fetch_one_company(c: dict, terms: list, delay: float = 1.0) -> tuple[str, li
 def fetch_all_parallel(cfg: dict, errors: list, profile, max_age_days: int,
                         seen: dict, now: str, max_workers: int = 6,
                         first_pass_seconds: float = 150.0,
-                        retry_seconds: float = 100.0) -> tuple[list[Job], int]:
+                        retry_seconds: float = 100.0,
+                        existing_matches: dict | None = None,
+                        is_today: bool = False) -> tuple[list[Job], int]:
     """Scans every company concurrently instead of one at a time, so a single
     slow ATS endpoint never blocks the rest of the scan. Companies still
     in flight after the first pass get one retry window; anything still
@@ -225,6 +227,35 @@ def fetch_all_parallel(cfg: dict, errors: list, profile, max_age_days: int,
     companies = cfg["companies"]
     jobs: list[Job] = []
     company_fetch: dict[str, int] = {}   # company -> raw postings fetched
+
+    # Automated incremental scan: skip companies that were already scanned today
+    scanned_companies = set()
+    if is_today and existing_matches:
+        # Identify already scanned companies
+        scanned_companies = {c["name"] for c in existing_matches.get("companies_status", [])
+                             if c.get("status") in ("ok", "empty", "error")}
+        
+        # Load existing jobs for those companies
+        for m in existing_matches.get("matches", []):
+            if m["company"] in scanned_companies:
+                jobs.append(Job(
+                    company=m["company"], title=m["title"], location=m["location"],
+                    url=m["url"], posted=m["posted"], description=m["description"],
+                    source=m.get("source", ""), job_id=m.get("job_id", ""),
+                    score=m.get("score"), score_parts=m.get("score_parts", {}),
+                    level=m.get("level"), is_remote=m.get("is_remote", False)
+                ))
+        
+        # Load existing fetch counts and copy errors
+        for c in existing_matches.get("companies_status", []):
+            if c["name"] in scanned_companies:
+                if c.get("status") in ("ok", "empty"):
+                    company_fetch[c["name"]] = c.get("fetched", 0)
+                elif c.get("status") == "error":
+                    errors.append({"company": c["name"], "error": c.get("error", "unknown error")})
+        
+        # Filter down list of companies to only those not yet scanned
+        companies = [c for c in companies if c["name"] not in scanned_companies]
     write_lock = threading.Lock()
 
     def checkpoint(is_partial: bool):
@@ -284,7 +315,7 @@ def write_archive(payload: dict) -> None:
         old.unlink(missing_ok=True)
 
 
-def run(config_path: str, resume_path: str, max_age_days: int, fixtures: str | None) -> dict:
+def run(config_path: str, resume_path: str, max_age_days: int, fixtures: str | None, force_full: bool = False) -> dict:
     cfg = yaml.safe_load(Path(config_path).read_text())
     profile = parse_resume(Path(resume_path).read_text())
     errors: list = []
@@ -299,7 +330,26 @@ def run(config_path: str, resume_path: str, max_age_days: int, fixtures: str | N
         payload = build_payload(jobs, profile, cfg, max_age_days, errors, raw_count,
                                  seen, now, partial=False)
     else:
-        jobs, raw_count = fetch_all_parallel(cfg, errors, profile, max_age_days, seen, now)
+        # Load existing matches to detect if running incrementally on the same day
+        matches_file = Path("docs/data/matches.json")
+        existing_matches = None
+        is_today = False
+        if not force_full and matches_file.exists():
+            try:
+                existing_matches = json.loads(matches_file.read_text())
+                gen_at = existing_matches.get("generated_at", "")
+                if gen_at:
+                    existing_date = gen_at[:10]
+                    today_date = datetime.now(timezone.utc).date().isoformat()
+                    if existing_date == today_date:
+                        is_today = True
+            except Exception:
+                pass
+
+        jobs, raw_count = fetch_all_parallel(
+            cfg, errors, profile, max_age_days, seen, now,
+            existing_matches=existing_matches, is_today=is_today
+        )
         payload = build_payload(jobs, profile, cfg, max_age_days, errors, raw_count,
                                  seen, now, partial=False)
         write_archive(payload)
@@ -333,8 +383,9 @@ def main():
     ap.add_argument("--resume", default=str(ROOT / "resume.txt"))
     ap.add_argument("--max-age-days", type=int, default=3)
     ap.add_argument("--fixtures", default=None)
+    ap.add_argument("--force-full", action="store_true")
     a = ap.parse_args()
-    payload = run(a.config, a.resume, a.max_age_days, a.fixtures)
+    payload = run(a.config, a.resume, a.max_age_days, a.fixtures, force_full=a.force_full)
     print(f"matches: {len(payload['matches'])}  raw: {payload['raw_postings']}  "
           f"errors: {len(payload['errors'])}")
     for e in payload["errors"]:

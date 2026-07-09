@@ -107,11 +107,8 @@ companies:
   verified: true
   note: careers.abbvie.com -- own custom platform, not Workday
 - name: Eli Lilly
-  ats: workday
-  tenant: lilly
-  wd: wd5
-  site: Eli_Lilly_and_Company
-  verified: false
+  ats: lilly
+  verified: true
 - name: Otsuka
   ats: workday
   tenant: vhr_otsuka

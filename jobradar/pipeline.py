@@ -38,6 +38,8 @@ def job_key(j: Job) -> str:
 def company_url(c: dict) -> str:
     """Best-effort public career-site link for the Companies tab."""
     ats = c.get("ats")
+    if c.get("name") == "Eli Lilly" or ats == "lilly":
+        return "https://jobsearch.lilly.com/jobs/"
     if ats == "workday":
         host_tenant = c["tenant"].replace("_", "-")
         return f"https://{host_tenant}.{c['wd']}.myworkdayjobs.com/en-US/{c['site']}"
@@ -171,7 +173,10 @@ def fetch_one_company(c: dict, terms: list, delay: float = 1.0) -> tuple[str, li
     detail_cache = load_cache(CACHE_FILE)
     try:
         ats = c.get("ats")
-        if ats == "greenhouse":
+        if c.get("name") == "Eli Lilly" or ats == "lilly":
+            from .adapters.lilly import fetch_lilly
+            jobs = fetch_lilly(session, terms)
+        elif ats == "greenhouse":
             jobs = fetch_greenhouse(c["name"], c["board"], session)
         elif ats == "lever":
             jobs = fetch_lever(c["name"], c["site"], session)

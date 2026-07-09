@@ -177,14 +177,14 @@
   },
   {
    "name": "Eli Lilly",
-   "ats": "workday",
-   "tenant": "lilly",
-   "wd": "wd5",
-   "site": "Eli_Lilly_and_Company",
+   "ats": "lilly",
+   "tenant": null,
+   "wd": null,
+   "site": null,
    "board": null,
-   "verified": false,
+   "verified": true,
    "note": "",
-   "url": "https://lilly.wd5.myworkdayjobs.com/en-US/Eli_Lilly_and_Company"
+   "url": "https://jobsearch.lilly.com/jobs/"
   },
   {
    "name": "Otsuka",

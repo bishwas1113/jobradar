@@ -100,14 +100,14 @@
   },
   {
    "name": "Novo Nordisk",
-   "ats": "unknown",
+   "ats": "successfactors",
    "tenant": null,
    "wd": null,
    "site": null,
    "board": null,
    "verified": true,
-   "note": "careers.novonordisk.com -- own custom platform, not Workday",
-   "url": ""
+   "note": "",
+   "url": "https://careers.novonordisk.com/search/"
   },
   {
    "name": "Jazz Pharmaceuticals",
@@ -166,14 +166,14 @@
   },
   {
    "name": "AbbVie",
-   "ats": "unknown",
+   "ats": "smartrecruiters",
    "tenant": null,
    "wd": null,
    "site": null,
-   "board": null,
+   "board": "abbvie",
    "verified": true,
-   "note": "careers.abbvie.com -- own custom platform, not Workday",
-   "url": ""
+   "note": "",
+   "url": "https://careers.smartrecruiters.com/abbvie"
   },
   {
    "name": "Eli Lilly",
@@ -353,25 +353,25 @@
   },
   {
    "name": "Bayer Crop Science",
-   "ats": "unknown",
+   "ats": "successfactors",
    "tenant": null,
    "wd": null,
    "site": null,
    "board": null,
-   "verified": false,
-   "note": "career.bayer.com (SuccessFactors)",
-   "url": ""
+   "verified": true,
+   "note": "",
+   "url": "https://jobs.bayer.com/search/"
   },
   {
    "name": "Syngenta",
-   "ats": "unknown",
+   "ats": "smartrecruiters",
    "tenant": null,
    "wd": null,
    "site": null,
-   "board": null,
-   "verified": false,
-   "note": "syngenta.com careers (SuccessFactors)",
-   "url": ""
+   "board": "SyngentaGroup",
+   "verified": true,
+   "note": "",
+   "url": "https://careers.smartrecruiters.com/SyngentaGroup"
   },
   {
    "name": "Veeva",

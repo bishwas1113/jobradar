@@ -47,6 +47,10 @@ def company_url(c: dict) -> str:
         return f"https://boards.greenhouse.io/{c['board']}"
     if ats == "lever":
         return f"https://jobs.lever.co/{c['site']}"
+    if ats == "smartrecruiters":
+        return f"https://careers.smartrecruiters.com/{c['board']}"
+    if ats == "successfactors":
+        return f"https://{c['domain']}/search/"
     return ""
 
 
@@ -186,6 +190,12 @@ def fetch_one_company(c: dict, terms: list, delay: float = 1.0) -> tuple[str, li
                 search_terms=terms, detail_prefilter=title_prefilter,
                 detail_cache=detail_cache,
             )
+        elif ats == "smartrecruiters":
+            from .adapters.smartrecruiters import fetch_smartrecruiters
+            jobs = fetch_smartrecruiters(c["name"], c["board"], session, terms, detail_prefilter=title_prefilter)
+        elif ats == "successfactors":
+            from .adapters.successfactors import fetch_successfactors
+            jobs = fetch_successfactors(c["name"], c["domain"], session, terms, detail_prefilter=title_prefilter, detail_cache=detail_cache)
         else:
             jobs = []
         from .cache import save_cache

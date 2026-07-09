@@ -69,9 +69,9 @@ companies:
   site: external
   verified: true
 - name: Novo Nordisk
-  ats: unknown
+  ats: successfactors
+  domain: careers.novonordisk.com
   verified: true
-  note: careers.novonordisk.com -- own custom platform, not Workday
 - name: Jazz Pharmaceuticals
   ats: workday
   tenant: vhr_jazz
@@ -103,9 +103,9 @@ companies:
   site: External
   verified: true
 - name: AbbVie
-  ats: unknown
+  ats: smartrecruiters
+  board: abbvie
   verified: true
-  note: careers.abbvie.com -- own custom platform, not Workday
 - name: Eli Lilly
   ats: lilly
   verified: true
@@ -189,11 +189,13 @@ companies:
   site: ThermoFisherCareers
   verified: true
 - name: Bayer Crop Science
-  ats: unknown
-  note: career.bayer.com (SuccessFactors)
+  ats: successfactors
+  domain: jobs.bayer.com
+  verified: true
 - name: Syngenta
-  ats: unknown
-  note: syngenta.com careers (SuccessFactors)
+  ats: smartrecruiters
+  board: SyngentaGroup
+  verified: true
 - name: Veeva
   ats: lever
   site: veeva

@@ -466,6 +466,29 @@ label.sm{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(
 }
 
 @media(max-width:960px){
+  body {
+    padding: 0 8px 40px; /* Highly compact padding */
+  }
+  header {
+    padding: 16px 0 10px;
+    border-bottom: none; /* Make header take less vertical space */
+  }
+  h1 {
+    font-size: 20px;
+  }
+  .meta {
+    font-size: 11px;
+    margin-top: 2px;
+  }
+  .tabs {
+    margin-top: 8px;
+    margin-bottom: 10px;
+  }
+  .tab {
+    margin-right: 12px;
+    padding: 6px 2px;
+    font-size: 12.5px;
+  }
   .main-layout {
     grid-template-columns: 1fr;
     gap: 12px;
@@ -474,6 +497,10 @@ label.sm{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(
   .sidebar {
     display: none !important; /* Hide LHS sidebar on mobile since we have the top dropdown! */
   }
+  .mobile-controls-row {
+    display: flex;
+  }
+  
   /* Slide-out Control Panel Drawer */
   .control-panel {
     position: fixed;
@@ -507,31 +534,6 @@ label.sm{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(
   /* Hide the FAB-btn because the Upload Button is now in the top header row! */
   .fab-btn {
     display: none !important;
-  }
-}
-@media(max-width:620px){
-  body {
-    padding: 0 8px 40px; /* Highly compact padding */
-  }
-  header {
-    padding: 16px 0 10px;
-    border-bottom: none; /* Make header take less vertical space */
-  }
-  h1 {
-    font-size: 20px;
-  }
-  .meta {
-    font-size: 11px;
-    margin-top: 2px;
-  }
-  .tabs {
-    margin-top: 8px;
-    margin-bottom: 10px;
-  }
-  .tab {
-    margin-right: 12px;
-    padding: 6px 2px;
-    font-size: 12.5px;
   }
   
   /* Hyper-compact Job Cards for Mobile (to fit at least 5 on screen!) */

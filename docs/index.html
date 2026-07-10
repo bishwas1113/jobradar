@@ -365,9 +365,10 @@ label.sm{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(
   display: flex;
   gap: 10px;
   align-items: center;
+  flex-wrap: wrap;
 }
 .mobile-select {
-  flex: 1;
+  flex: 1 1 180px;
   font-family: var(--body);
   font-size: 15px;
   color: var(--ink);
@@ -378,6 +379,7 @@ label.sm{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(
   height: 44px;
 }
 .mobile-upload-btn {
+  flex: 1 1 auto;
   font-family: var(--body);
   font-size: 14px;
   font-weight: 600;
@@ -396,7 +398,7 @@ label.sm{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(
 .mobile-row-2 {
   display: flex;
   gap: 8px;
-  overflow-x: auto;
+  flex-wrap: wrap;
   padding-bottom: 4px;
 }
 .mobile-row-2::-webkit-scrollbar {
@@ -467,6 +469,9 @@ label.sm{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(
 @media(max-width:960px){
   body {
     padding: 0 16px 40px; /* Better horizontal breathing room */
+  }
+  .wrap {
+    max-width: 100%;
   }
   header {
     padding: 24px 0 16px; /* Generous header spacing */

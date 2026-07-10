@@ -354,39 +354,39 @@ label.sm{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(
 .mobile-controls-row {
   display: none;
   flex-direction: column;
-  gap: 8px;
-  margin-bottom: 12px;
-  padding: 10px 12px;
+  gap: 12px;
+  margin-bottom: 16px;
+  padding: 12px 14px;
   background: var(--card);
   border: 1px solid var(--line);
-  border-radius: 8px;
+  border-radius: 12px;
 }
 .mobile-row-1 {
   display: flex;
-  gap: 8px;
+  gap: 10px;
   align-items: center;
 }
 .mobile-select {
   flex: 1;
   font-family: var(--body);
-  font-size: 13px;
+  font-size: 15px;
   color: var(--ink);
   background: var(--paper);
   border: 1px solid var(--line);
-  border-radius: 6px;
-  padding: 6px 8px;
-  height: 36px;
+  border-radius: 8px;
+  padding: 8px 12px;
+  height: 44px;
 }
 .mobile-upload-btn {
   font-family: var(--body);
-  font-size: 12.5px;
-  font-weight: 500;
+  font-size: 14px;
+  font-weight: 600;
   color: var(--card);
   background: var(--moss);
   border: none;
-  border-radius: 6px;
-  padding: 0 12px;
-  height: 36px;
+  border-radius: 8px;
+  padding: 0 16px;
+  height: 44px;
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -395,18 +395,18 @@ label.sm{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(
 }
 .mobile-row-2 {
   display: flex;
-  gap: 4px;
+  gap: 8px;
   overflow-x: auto;
-  padding-bottom: 2px;
+  padding-bottom: 4px;
 }
 .mobile-row-2::-webkit-scrollbar {
   display: none;
 }
 .mobile-chip {
   font-family: var(--body);
-  font-size: 11px;
+  font-size: 13.5px;
   font-weight: 500;
-  padding: 4px 10px;
+  padding: 8px 16px;
   border: 1px solid var(--line);
   border-radius: 99px;
   background: var(--paper);
@@ -419,7 +419,6 @@ label.sm{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(
   border-color: var(--moss);
   color: var(--card);
 }
-
 /* Responsive breakpoint for mobile */
 .panel-header-mobile {
   display: none;
@@ -467,27 +466,32 @@ label.sm{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(
 
 @media(max-width:960px){
   body {
-    padding: 0 8px 40px; /* Highly compact padding */
+    padding: 0 16px 40px; /* Better horizontal breathing room */
   }
   header {
-    padding: 16px 0 10px;
-    border-bottom: none; /* Make header take less vertical space */
+    padding: 24px 0 16px; /* Generous header spacing */
+    border-bottom: none;
   }
   h1 {
-    font-size: 20px;
+    font-size: 24px;
   }
   .meta {
-    font-size: 11px;
-    margin-top: 2px;
+    font-size: 13px; /* Legible metadata */
+    margin-top: 4px;
+    color: var(--stone);
   }
   .tabs {
-    margin-top: 8px;
-    margin-bottom: 10px;
+    margin-top: 12px;
+    margin-bottom: 16px;
+    display: flex;
+    gap: 16px; /* Touch friendly tab spacing */
+    overflow-x: auto;
   }
   .tab {
-    margin-right: 12px;
-    padding: 6px 2px;
-    font-size: 12.5px;
+    margin-right: 0;
+    padding: 8px 0;
+    font-size: 15px; /* Touch friendly text */
+    font-weight: 500;
   }
   .main-layout {
     grid-template-columns: 1fr;
@@ -537,33 +541,36 @@ label.sm{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(
   }
   
   /* Hyper-compact Job Cards for Mobile (to fit at least 5 on screen!) */
+  /* Modern Touch-Friendly Job Cards for Mobile */
   .card {
     display: grid;
-    grid-template-columns: 32px 1fr 64px;
-    gap: 10px;
-    padding: 8px 10px;
-    margin-top: 6px;
-    border-radius: 6px;
-    align-items: center;
+    grid-template-columns: 44px 1fr;
+    grid-template-areas:
+      "ring info"
+      "actions actions";
+    gap: 12px;
+    padding: 16px;
+    margin-top: 10px;
+    border-radius: 12px;
     background: var(--card);
   }
   .card.new {
-    border-left: 2.5px solid var(--moss);
+    border-left: 3px solid var(--moss);
   }
   
-  /* Compact Score Badge Circle */
-  .ring svg {
-    display: none !important;
-  }
   .ring {
-    width: 32px;
-    height: 32px;
+    grid-area: ring;
+    width: 44px;
+    height: 44px;
     border-radius: 50%;
     background: var(--moss-soft);
     color: var(--moss);
-    border: 1.5px solid var(--moss);
+    border: 2px solid var(--moss);
     display: grid;
     place-items: center;
+  }
+  .ring svg {
+    display: none !important;
   }
   .ring.low {
     background: var(--line);
@@ -572,27 +579,28 @@ label.sm{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(
   }
   .ring .num {
     position: static;
-    font-size: 11px;
+    font-size: 14px;
     font-weight: 700;
   }
   
   /* Middle Content Info */
+  .info {
+    grid-area: info;
+    min-width: 0; /* allows text wrapping */
+    padding-top: 2px;
+  }
   .title {
-    font-size: 13px;
-    line-height: 1.25;
+    font-size: 16px;
+    line-height: 1.35;
     font-weight: 600;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    max-width: 100%;
+    white-space: normal; /* Wrap instead of truncate */
   }
   .sub {
-    font-size: 10.5px;
-    margin-top: 1px;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
+    font-size: 13.5px;
+    margin-top: 6px;
+    white-space: normal;
     color: var(--stone);
+    line-height: 1.4;
   }
   .sub .lvl {
     font-weight: 600;
@@ -601,25 +609,25 @@ label.sm{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(
     display: none !important; /* Hide tags to save huge vertical space */
   }
   
-  /* Right side compact Action Buttons */
+  /* Bottom Row: Actions */
   .actions {
-    grid-column: auto;
-    flex-direction: column;
-    gap: 4px;
-    align-items: flex-end;
-    justify-content: center;
+    grid-area: actions;
+    display: flex;
+    flex-direction: row;
+    gap: 12px;
+    justify-content: flex-end;
+    margin-top: 8px;
+    border-top: 1px solid var(--line);
+    padding-top: 14px;
   }
-  .apply {
-    font-size: 10px;
-    padding: 3px 6px;
-    border-radius: 4px;
+  .apply, .dismiss {
+    font-size: 14px;
+    padding: 10px 18px;
+    border-radius: 8px;
     font-weight: 600;
-    line-height: 1.1;
-  }
-  .dismiss {
-    font-size: 10px;
-    padding: 1px 2px;
-    color: var(--stone);
+    line-height: 1.2;
+    min-width: 80px;
+    text-align: center;
   }
 }
 @media(prefers-reduced-motion:no-preference){

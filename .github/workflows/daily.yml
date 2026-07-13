@@ -35,7 +35,7 @@ jobs:
 
       - name: Run pipeline
         timeout-minutes: 28   # leaves ~7 min of the 35-min job budget for setup + commit
-        run: python -m jobradar.pipeline --max-age-days 3
+        run: python -m jobradar.pipeline --max-age-days 14
 
       - name: Commit results
         if: always()   # runs even if the scan above was cut off by its timeout,

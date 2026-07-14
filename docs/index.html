@@ -4,6 +4,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>JobRadar — daily matches</title>
+<link rel="icon" type="image/png" href="icon.png">
+<link rel="apple-touch-icon" href="icon.png">
 <script src="https://cdn.jsdelivr.net/npm/@xenova/transformers@2.14.0"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.4.120/pdf.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/mammoth/1.6.0/mammoth.browser.min.js"></script>
@@ -642,9 +644,12 @@ label.sm{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(
 </head>
 <body>
 <div class="wrap">
-  <header>
-    <h1>JobRadar</h1>
-    <div class="meta" id="meta">Loading matches…</div>
+  <header style="display: flex; align-items: center; gap: 16px;">
+    <img src="icon.png" alt="JobRadar Logo" style="width: 52px; height: 52px; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.06);">
+    <div>
+      <h1 style="line-height: 1.1;">JobRadar</h1>
+      <div class="meta" id="meta" style="margin-top: 4px;">Loading matches…</div>
+    </div>
   </header>
 
   <div class="tabs" role="tablist">

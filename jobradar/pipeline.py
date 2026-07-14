@@ -40,6 +40,8 @@ def company_url(c: dict) -> str:
     ats = c.get("ats")
     if c.get("name") == "Eli Lilly" or ats == "lilly":
         return "https://jobsearch.lilly.com/jobs/"
+    if ats == "phenom":
+        return f"https://{c['site']}"
     if ats == "workday":
         host_tenant = c["tenant"].replace("_", "-")
         return f"https://{host_tenant}.{c['wd']}.myworkdayjobs.com/en-US/{c['site']}"
@@ -196,6 +198,9 @@ def fetch_one_company(c: dict, terms: list, delay: float = 1.0) -> tuple[str, li
         elif ats == "successfactors":
             from .adapters.successfactors import fetch_successfactors
             jobs = fetch_successfactors(c["name"], c["domain"], session, terms, detail_prefilter=title_prefilter, detail_cache=detail_cache)
+        elif ats == "phenom":
+            from .adapters.phenom import fetch_phenom
+            jobs = fetch_phenom(c["name"], c["site"], session, terms, detail_prefilter=title_prefilter)
         else:
             jobs = []
         from .cache import save_cache

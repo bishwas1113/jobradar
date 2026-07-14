@@ -210,3 +210,7 @@ companies:
     wd: wd501
     site: Vertex_Careers
     verified: true
+  - name: Genmab
+    ats: phenom
+    site: careers.genmab.com
+    verified: true

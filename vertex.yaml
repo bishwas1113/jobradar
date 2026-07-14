@@ -1,0 +1,7 @@
+companies:
+  - name: Vertex Pharmaceuticals
+    ats: workday
+    tenant: vrtx
+    wd: wd501
+    site: Vertex_Careers
+    verified: true

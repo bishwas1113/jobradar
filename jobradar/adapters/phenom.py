@@ -4,7 +4,7 @@ import time
 from .base import Job, PoliteSession, html_to_text, safe_json
 
 def fetch_phenom(company_name: str, site: str, session: PoliteSession,
-                 search_terms: list[str], detail_prefilter=None) -> list[Job]:
+                 search_terms: list[str], detail_cache: dict = None, detail_prefilter=None) -> list[Job]:
     """Fetch jobs from a Phenom People frontend."""
     jobs = []
     seen_ids = set()
@@ -69,22 +69,27 @@ def fetch_phenom(company_name: str, site: str, session: PoliteSession,
                 if "applyUrl" in p and p["applyUrl"]:
                     final_url = p["applyUrl"] # often links directly to Workday
                 
-                # Fetch full description from the detail page HTML
-                time.sleep(0.1) # polite spacing
-                dr = session.get(detail_url)
-                desc = p.get("descriptionTeaser", "")
-                
-                if dr is not None and dr.status_code == 200:
-                    # Extract the embedded phApp.ddo JSON payload from HTML
-                    m = re.search(r"phApp\.ddo\s*=\s*(\{.*?\});\s*phApp\.", dr.text, re.DOTALL)
-                    if m:
-                        try:
-                            ddo_data = json.loads(m.group(1))
-                            full_desc = ddo_data.get("jobDetail", {}).get("data", {}).get("job", {}).get("description", "")
-                            if full_desc:
-                                desc = html_to_text(full_desc)
-                        except json.JSONDecodeError:
-                            pass
+                if detail_cache is not None and detail_url in detail_cache:
+                    desc = detail_cache[detail_url]
+                else:
+                    # Fetch full description from the detail page HTML
+                    time.sleep(0.1) # polite spacing
+                    dr = session.get(detail_url)
+                    desc = p.get("descriptionTeaser", "")
+                    
+                    if dr is not None and dr.status_code == 200:
+                        # Extract the embedded phApp.ddo JSON payload from HTML
+                        m = re.search(r"phApp\.ddo\s*=\s*(\{.*?\});\s*phApp\.", dr.text, re.DOTALL)
+                        if m:
+                            try:
+                                ddo_data = json.loads(m.group(1))
+                                full_desc = ddo_data.get("jobDetail", {}).get("data", {}).get("job", {}).get("description", "")
+                                if full_desc:
+                                    desc = html_to_text(full_desc)
+                            except json.JSONDecodeError:
+                                pass
+                    if detail_cache is not None and desc:
+                        detail_cache[detail_url] = desc
                 
                 # Sometimes location is structured, sometimes flat
                 location = p.get("cityStateCountry") or p.get("location") or ""

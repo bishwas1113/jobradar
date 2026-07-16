@@ -175,7 +175,8 @@ def fetch_one_company(c: dict, terms: list, delay: float = 1.0) -> tuple[str, li
     request-spacing only throttles requests to that one company, not across
     all of them). Returns (company_name, jobs, error_or_None)."""
     from .cache import load_cache  # local import: cache file is read fresh per thread start
-    session = PoliteSession(delay=delay)
+    delay_override = 0.3 if c.get("ats") == "phenom" else delay
+    session = PoliteSession(delay=delay_override)
     detail_cache = load_cache(CACHE_FILE)
     try:
         ats = c.get("ats")
@@ -200,7 +201,7 @@ def fetch_one_company(c: dict, terms: list, delay: float = 1.0) -> tuple[str, li
             jobs = fetch_successfactors(c["name"], c["domain"], session, terms, detail_prefilter=title_prefilter, detail_cache=detail_cache)
         elif ats == "phenom":
             from .adapters.phenom import fetch_phenom
-            jobs = fetch_phenom(c["name"], c["site"], session, terms, detail_prefilter=title_prefilter)
+            jobs = fetch_phenom(c["name"], c["site"], session, terms, detail_cache=detail_cache, detail_prefilter=title_prefilter)
         else:
             jobs = []
         from .cache import save_cache

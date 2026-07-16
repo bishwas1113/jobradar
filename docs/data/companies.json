@@ -5,7 +5,13 @@
   "business insights",
   "customer analytics",
   "pipeline analytics",
-  "R&D data"
+  "R&D data",
+  "Corporate Strategy",
+  "Business Development & Strategy",
+  "Portfolio Strategy",
+  "Commercial Strategy",
+  "Strategic Planning",
+  "Business Excellence"
  ],
  "locations": [
   "PA",
@@ -185,6 +191,17 @@
    "verified": true,
    "note": "",
    "url": "https://roche.wd3.myworkdayjobs.com/en-US/ROG-A2O-GENE"
+  },
+  {
+   "name": "Genmab",
+   "ats": "phenom",
+   "tenant": null,
+   "wd": null,
+   "site": "careers.genmab.com",
+   "board": null,
+   "verified": true,
+   "note": "",
+   "url": "https://careers.genmab.com"
   },
   {
    "name": "Gilead Sciences",
@@ -394,17 +411,6 @@
    "verified": true,
    "note": "",
    "url": "https://vrtx.wd501.myworkdayjobs.com/en-US/Vertex_Careers"
-  },
-  {
-   "name": "Genmab",
-   "ats": "phenom",
-   "tenant": null,
-   "wd": null,
-   "site": "careers.genmab.com",
-   "board": null,
-   "verified": true,
-   "note": "",
-   "url": "https://careers.genmab.com"
   }
  ]
 }

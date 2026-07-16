@@ -195,7 +195,7 @@ def fetch_one_company(c: dict, terms: list, delay: float = 1.0) -> tuple[str, li
             )
         elif ats == "smartrecruiters":
             from .adapters.smartrecruiters import fetch_smartrecruiters
-            jobs = fetch_smartrecruiters(c["name"], c["board"], session, terms, detail_prefilter=title_prefilter)
+            jobs = fetch_smartrecruiters(c["name"], c["board"], session, terms, detail_cache=detail_cache, detail_prefilter=title_prefilter)
         elif ats == "successfactors":
             from .adapters.successfactors import fetch_successfactors
             jobs = fetch_successfactors(c["name"], c["domain"], session, terms, detail_prefilter=title_prefilter, detail_cache=detail_cache)

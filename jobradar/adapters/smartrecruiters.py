@@ -2,7 +2,7 @@ import time
 from .base import Job, PoliteSession, html_to_text
 
 def fetch_smartrecruiters(company_name: str, board: str, session: PoliteSession,
-                           search_terms: list[str], detail_prefilter=None) -> list[Job]:
+                           search_terms: list[str], detail_cache: dict = None, detail_prefilter=None) -> list[Job]:
     """Fetch jobs from a company's SmartRecruiters portal."""
     jobs = []
     seen_ids = set()
@@ -40,19 +40,26 @@ def fetch_smartrecruiters(company_name: str, board: str, session: PoliteSession,
                 
                 # Fetch details for description
                 detail_url = f"https://api.smartrecruiters.com/v1/companies/{board}/postings/{job_id}"
-                time.sleep(0.1) # polite spacing
                 
-                dr = session.get(detail_url)
-                desc = ""
-                if dr is not None and dr.status_code == 200:
-                    detail_data = dr.json()
-                    sections = detail_data.get("jobAd", {}).get("sections", {}) or {}
-                    parts = []
-                    for key in ["companyDescription", "jobDescription", "qualifications", "additionalInformation"]:
-                        text = sections.get(key, {}).get("text")
-                        if text:
-                            parts.append(text)
-                    desc = html_to_text("\n".join(parts))
+                if detail_cache is not None and detail_url in detail_cache:
+                    desc = detail_cache[detail_url]
+                else:
+                    time.sleep(0.1) # polite spacing
+                    
+                    dr = session.get(detail_url)
+                    desc = ""
+                    if dr is not None and dr.status_code == 200:
+                        detail_data = dr.json()
+                        sections = detail_data.get("jobAd", {}).get("sections", {}) or {}
+                        parts = []
+                        for key in ["companyDescription", "jobDescription", "qualifications", "additionalInformation"]:
+                            text = sections.get(key, {}).get("text")
+                            if text:
+                                parts.append(text)
+                        desc = html_to_text("\n".join(parts))
+                        
+                    if detail_cache is not None and desc:
+                        detail_cache[detail_url] = desc
                 
                 loc_data = p.get("location", {}) or {}
                 location = loc_data.get("fullLocation") or loc_data.get("city") or ""

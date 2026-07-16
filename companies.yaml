@@ -5,6 +5,12 @@ search_terms:
   - customer analytics
   - pipeline analytics
   - "R&D data"
+  - Corporate Strategy
+  - "Business Development & Strategy"
+  - Portfolio Strategy
+  - Commercial Strategy
+  - Strategic Planning
+  - Business Excellence
 
 locations:
   - PA
@@ -108,6 +114,10 @@ companies:
     wd: wd3
     site: ROG-A2O-GENE
     verified: true
+  - name: Genmab
+    ats: phenom
+    note: ""
+    verified: true
   - name: Gilead Sciences
     ats: workday
     tenant: gilead
@@ -209,8 +219,4 @@ companies:
     tenant: vrtx
     wd: wd501
     site: Vertex_Careers
-    verified: true
-  - name: Genmab
-    ats: phenom
-    site: careers.genmab.com
     verified: true

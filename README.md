@@ -15,6 +15,8 @@ resume, served as a static Japandi dashboard on GitHub Pages.
 The workflow in `.github/workflows/daily.yml` runs every morning at 7:20am ET,
 commits `docs/data/matches.json`, and Pages serves the dashboard.
 
+Page link: https://bishwas1113.github.io/jobradar/
+
 ## Local run
     python -m jobradar.pipeline --max-age-days 3
     python -m jobradar.pipeline --fixtures tests/fixtures   # offline demo

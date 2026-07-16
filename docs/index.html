@@ -1201,6 +1201,8 @@ function toYamlEntry(c){
     lines.push(`    board: ${c.board}`);
   }else if(c.ats==="successfactors"){
     lines.push(`    domain: ${c.domain}`);
+  }else if(c.ats==="phenom"){
+    lines.push(`    site: ${c.site}`);
   }else{
     lines.push(`    note: ${yamlEscape(c.note||c.url||"")}`);
   }

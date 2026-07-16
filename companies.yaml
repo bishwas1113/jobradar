@@ -116,7 +116,7 @@ companies:
     verified: true
   - name: Genmab
     ats: phenom
-    note: ""
+    site: careers.genmab.com
     verified: true
   - name: Gilead Sciences
     ats: workday

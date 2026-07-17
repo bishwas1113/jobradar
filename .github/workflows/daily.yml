@@ -3,8 +3,13 @@ name: Daily job scan
 on:
   schedule:
     - cron: "0 10 * * *"    # 10:00 UTC = 6:00am ET during EDT (summer)
-  workflow_dispatch: {}      # manual "Run workflow" button
-
+  workflow_dispatch:
+    inputs:
+      force_full:
+        description: 'Force a full rescan (ignore previous runs today)'
+        required: false
+        type: boolean
+        default: true
 permissions:
   contents: write
 
@@ -35,7 +40,7 @@ jobs:
 
       - name: Run pipeline
         timeout-minutes: 28   # leaves ~7 min of the 35-min job budget for setup + commit
-        run: python -m jobradar.pipeline --max-age-days 14
+        run: python -m jobradar.pipeline --max-age-days 14 ${{ github.event.inputs.force_full == 'true' && '--force-full' || '' }}
 
       - name: Commit results
         if: always()   # runs even if the scan above was cut off by its timeout,

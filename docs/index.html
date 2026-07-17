@@ -637,6 +637,50 @@ label.sm{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(
     text-align: center;
   }
 }
+@media (max-width: 900px) {
+  .main-layout {
+    display: flex;
+    flex-direction: column;
+  }
+  .sidebar { order: 2; width: 100%; position: static; margin-top: 20px; }
+  main { order: 1; width: 100%; }
+  .control-panel { order: 3; width: 100%; position: static; margin-top: 20px; }
+  .co-list {
+    max-height: 350px;
+  }
+  .card {
+    grid-template-columns: auto 1fr;
+    grid-template-rows: auto auto;
+    gap: 12px;
+  }
+  .ring {
+    width: 48px;
+    height: 48px;
+  }
+  .ring .num {
+    font-size: 14px;
+  }
+  .actions {
+    grid-column: 1 / -1;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
+    border-top: 1px solid var(--line);
+    padding-top: 12px;
+    margin-top: 4px;
+  }
+  .controls {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .chips {
+    width: 100%;
+    overflow-x: auto;
+    flex-wrap: nowrap;
+    padding-bottom: 8px;
+  }
+  .spacer { display: none; }
+}
 @media(prefers-reduced-motion:no-preference){
   .ring .val{transition:stroke-dashoffset .8s ease}
 }

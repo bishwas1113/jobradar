@@ -69,8 +69,10 @@ def fetch_phenom(company_name: str, site: str, session: PoliteSession,
                 if "applyUrl" in p and p["applyUrl"]:
                     final_url = p["applyUrl"] # often links directly to Workday
                 
-                if detail_cache is not None and detail_url in detail_cache:
-                    desc = detail_cache[detail_url]
+                from .. import cache as cache_mod
+                cached = cache_mod.get_cached(detail_cache, detail_url) if detail_cache is not None else None
+                if cached:
+                    desc = cached["description"]
                 else:
                     # Fetch full description from the detail page HTML
                     time.sleep(0.1) # polite spacing
@@ -89,7 +91,7 @@ def fetch_phenom(company_name: str, site: str, session: PoliteSession,
                             except json.JSONDecodeError:
                                 pass
                     if detail_cache is not None and desc:
-                        detail_cache[detail_url] = desc
+                        cache_mod.put_cached(detail_cache, detail_url, desc, None, False)
                 
                 # Sometimes location is structured, sometimes flat
                 location = p.get("cityStateCountry") or p.get("location") or ""

@@ -41,8 +41,10 @@ def fetch_smartrecruiters(company_name: str, board: str, session: PoliteSession,
                 # Fetch details for description
                 detail_url = f"https://api.smartrecruiters.com/v1/companies/{board}/postings/{job_id}"
                 
-                if detail_cache is not None and detail_url in detail_cache:
-                    desc = detail_cache[detail_url]
+                from .. import cache as cache_mod
+                cached = cache_mod.get_cached(detail_cache, detail_url) if detail_cache is not None else None
+                if cached:
+                    desc = cached["description"]
                 else:
                     time.sleep(0.1) # polite spacing
                     
@@ -59,7 +61,7 @@ def fetch_smartrecruiters(company_name: str, board: str, session: PoliteSession,
                         desc = html_to_text("\n".join(parts))
                         
                     if detail_cache is not None and desc:
-                        detail_cache[detail_url] = desc
+                        cache_mod.put_cached(detail_cache, detail_url, desc, None, False)
                 
                 loc_data = p.get("location", {}) or {}
                 location = loc_data.get("fullLocation") or loc_data.get("city") or ""

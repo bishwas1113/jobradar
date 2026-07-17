@@ -170,14 +170,12 @@ def classify_error(err: str) -> tuple[str, str]:
     return "unknown", "Unrecognized failure — copy the verbose error into chat to troubleshoot"
 
 
-def fetch_one_company(c: dict, terms: list, delay: float = 1.0) -> tuple[str, list[Job], Optional[str]]:
+def fetch_one_company(c: dict, terms: list, detail_cache: dict, delay: float = 1.0) -> tuple[str, list[Job], Optional[str]]:
     """Runs in its own thread with its own PoliteSession (so the polite
     request-spacing only throttles requests to that one company, not across
     all of them). Returns (company_name, jobs, error_or_None)."""
-    from .cache import load_cache  # local import: cache file is read fresh per thread start
     delay_override = 0.3 if c.get("ats") == "phenom" else delay
     session = PoliteSession(delay=delay_override)
-    detail_cache = load_cache(CACHE_FILE)
     try:
         ats = c.get("ats")
         if c.get("name") == "Eli Lilly" or ats == "lilly":
@@ -204,8 +202,6 @@ def fetch_one_company(c: dict, terms: list, delay: float = 1.0) -> tuple[str, li
             jobs = fetch_phenom(c["name"], c["site"], session, terms, detail_cache=detail_cache, detail_prefilter=title_prefilter)
         else:
             jobs = []
-        from .cache import save_cache
-        save_cache(CACHE_FILE, detail_cache)
         return c["name"], jobs, None
     except Exception as e:
         return c["name"], [], str(e)
@@ -262,15 +258,19 @@ def fetch_all_parallel(cfg: dict, errors: list, profile, max_age_days: int,
         
         # Filter down list of companies to only those not yet scanned
         companies = [c for c in companies if c["name"] not in scanned_companies]
+    from .cache import load_cache
+    shared_detail_cache = load_cache(CACHE_FILE)
     write_lock = threading.Lock()
 
     def checkpoint(is_partial: bool):
         with write_lock:
             build_payload(jobs, profile, cfg, max_age_days, errors, len(jobs), seen, now,
                           partial=is_partial, company_fetch=company_fetch)
+            from .cache import save_cache
+            save_cache(CACHE_FILE, shared_detail_cache)
 
     pool = cf.ThreadPoolExecutor(max_workers=max_workers)
-    pending = {pool.submit(fetch_one_company, c, terms): c for c in companies}
+    pending = {pool.submit(fetch_one_company, c, terms, shared_detail_cache): c for c in companies}
 
     def drain(timeout_budget: float, remaining: dict) -> dict:
         """Collect whatever finishes within the budget; return the still-pending map."""
